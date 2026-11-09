@@ -1,0 +1,77 @@
+{
+  "id": "indemnizacion-despido",
+  "fechaConsulta": "2026-11-01",
+  "norma": "Ley 27.802 de Modernización Laboral, art. 51 (sustituye art. 245 LCT). Sanción 27/02/2026, BO 06/03/2026",
+  "antiguedad245": {
+    "unidad": "1 mes por año o fracción > 3 meses",
+    "minimo": "1 mes",
+    "requisito": "despido sin justa causa, superado el período de prueba",
+    "base": "mejor remuneración mensual, normal y habitual del último año (o del tiempo trabajado)",
+    "excluyeDeBase": [
+      "SAC",
+      "vacaciones",
+      "premios no mensuales"
+    ],
+    "habitual": "conceptos devengados al menos 6 meses en el último año calendario",
+    "normalVariables": "promedio últimos 6 meses o último año si es más favorable",
+    "topeCCT": "3 × salario mensual promedio del CCT (input del usuario; lo calculan las partes signatarias)",
+    "pisoTope": 0.67,
+    "pisoTopeDescripcion": "el tope no puede reducir la base por debajo del 67% de la remuneración (criterio Vizzoti, CSJN 14/09/2004, ahora en el texto legal)",
+    "modelo": "base = min(mejorRem, topeCCT) ; base = max(base, 0.67*mejorRem) si hay topeCCT"
+  },
+  "preaviso231": {
+    "periodoPrueba": "no se requiere",
+    "hasta5Anios": 1,
+    "masDe5Anios": 2,
+    "unidad": "meses",
+    "norma": "art. 231 inc b) sust. por art. 48 Ley 27.802",
+    "nota": "El preaviso de 15 días en período de prueba fue eliminado"
+  },
+  "integracionMes233": {
+    "vigente": true,
+    "regla": "si el despido no coincide con el último día del mes y no hubo preaviso, se pagan los días restantes del mes",
+    "norma": "art. 233 LCT, no modificado por Ley 27.802"
+  },
+  "vacacionesNoGozadas": {
+    "diasArt150": [
+      {
+        "hastaAnios": 5,
+        "dias": 14
+      },
+      {
+        "hastaAnios": 10,
+        "dias": 21
+      },
+      {
+        "hastaAnios": 20,
+        "dias": 28
+      },
+      {
+        "masDe": 20,
+        "dias": 35
+      }
+    ],
+    "proporcional": "art. 156: proporcional al tiempo trabajado en el año",
+    "valorDia": "art. 155: remuneración mensual / 25",
+    "norma": "arts. 150, 155, 156 LCT (no modificados por Ley 27.802; el art. 154 sí fue modificado, solo en época de otorgamiento)"
+  },
+  "sacProporcional": "ver aguinaldo.json; el SAC sobre preaviso e integración se calcula como 1/12 de esos rubros (criterio usual, sin norma expresa en lo revisado)",
+  "ganancias": {
+    "antiguedadExenta": true,
+    "norma": "LIG t.o. 2019 art. 26 inc. i) (no modificado por Ley 27.802)",
+    "noExento": [
+      "preaviso"
+    ],
+    "criterioExcesoTope": "Circular AFIP 4/2012: si supera el monto con tope, exento hasta el mayor entre 67% del importe sin tope y el importe con tope",
+    "fuentes": [
+      "https://biblioteca.afip.gob.ar/dcp/LEY_C_020628_2019_12_05",
+      "https://www.boletinoficial.gob.ar/detalleAviso/primera/79806/20121130"
+    ]
+  },
+  "fuentes": [
+    "https://www.boletinoficial.gob.ar/detalleAviso/primera/339128/QR",
+    "https://servicios.infoleg.gob.ar/infolegInternet/anexos/420000-424999/423680/norma.htm",
+    "https://biblioteca.arca.gob.ar/dcp/LEY_C_027802_2026_02_27",
+    "https://servicios.infoleg.gob.ar/infolegInternet/anexos/25000-29999/25552/texact.htm"
+  ]
+}

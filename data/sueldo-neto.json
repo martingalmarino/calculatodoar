@@ -1,0 +1,25 @@
+{
+  "id": "sueldo-neto",
+  "fechaConsulta": "2026-11-01",
+  "aportesTrabajador": {
+    "jubilacionSIPA": 0.11,
+    "leyPAMI19032": 0.03,
+    "obraSocial": 0.03
+  },
+  "total": 0.17,
+  "baseAportes": "remuneración remunerativa, limitada a la base imponible máxima de ANSES del período devengado (ver anses-topes.json)",
+  "topeAplicaA": [
+    "jubilacionSIPA",
+    "leyPAMI19032",
+    "obraSocial"
+  ],
+  "noIncluido": [
+    "cuota sindical (según CCT, input del usuario)",
+    "aportes sobre no remunerativos según CCT (input)"
+  ],
+  "fuentes": [
+    "https://servicios.infoleg.gob.ar/infolegInternet/anexos/0-4999/639/texact.htm",
+    "https://servicios.infoleg.gob.ar/infolegInternet/anexos/430000-434999/431696/norma.htm"
+  ],
+  "estado": "11% Ley 24.241 art. 11 y 3% Ley 19.032 confirmados por normativa general; 3% obra social Ley 23.660 art. 16. URL Ley 24.241 a revisar enlace exacto de InfoLEG."
+}

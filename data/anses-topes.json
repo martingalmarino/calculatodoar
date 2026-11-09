@@ -1,0 +1,16 @@
+{
+  "id": "anses-base-imponible",
+  "fechaConsulta": "2026-11-01",
+  "vigencias": [
+    {
+      "periodoDevengado": "2026-11",
+      "vigenciaDesde": "2026-11-01",
+      "vigenciaHasta": null,
+      "baseImponibleMinima": 149592.45,
+      "baseImponibleMaxima": 4861685.38,
+      "norma": "Resolución ANSES 304/2026 (BO 28/10/2026)",
+      "fuente": "https://servicios.infoleg.gob.ar/infolegInternet/anexos/430000-434999/431696/norma.htm"
+    }
+  ],
+  "nota": "Se actualiza mensualmente por movilidad. Cargar los meses anteriores de 2026 antes de permitir cálculos retroactivos (NO cargados aún)."
+}

@@ -1,0 +1,202 @@
+{
+  "id": "monotributo",
+  "vigenciaDesde": "2026-08-01",
+  "vigenciaHasta": "2027-01-31 (estimado: próxima actualización semestral en febrero)",
+  "fechaConsulta": "2026-11-01",
+  "precioUnitarioMaximoVentaMuebles": 716840.77,
+  "categorias": [
+    {
+      "categoria": "A",
+      "ingresosBrutosAnuales": 12009410.45,
+      "superficieM2": 30,
+      "energiaKwAnual": 3330,
+      "alquileresAnuales": 2792886.15,
+      "impuestoIntegrado": {
+        "servicios": 5585.77,
+        "ventaCosasMuebles": 5585.77
+      },
+      "aporteSIPA": 18246.86,
+      "aporteObraSocial": 25694.55,
+      "total": {
+        "servicios": 49527.18,
+        "ventaCosasMuebles": 49527.18
+      }
+    },
+    {
+      "categoria": "B",
+      "ingresosBrutosAnuales": 17595182.74,
+      "superficieM2": 45,
+      "energiaKwAnual": 5000,
+      "alquileresAnuales": 2792886.15,
+      "impuestoIntegrado": {
+        "servicios": 10612.98,
+        "ventaCosasMuebles": 10612.98
+      },
+      "aporteSIPA": 20071.55,
+      "aporteObraSocial": 25694.55,
+      "total": {
+        "servicios": 56379.08,
+        "ventaCosasMuebles": 56379.08
+      }
+    },
+    {
+      "categoria": "C",
+      "ingresosBrutosAnuales": 24670494.31,
+      "superficieM2": 60,
+      "energiaKwAnual": 6700,
+      "alquileresAnuales": 3816944.41,
+      "impuestoIntegrado": {
+        "servicios": 18246.86,
+        "ventaCosasMuebles": 16757.32
+      },
+      "aporteSIPA": 22078.71,
+      "aporteObraSocial": 25694.55,
+      "total": {
+        "servicios": 66020.12,
+        "ventaCosasMuebles": 64530.58
+      }
+    },
+    {
+      "categoria": "D",
+      "ingresosBrutosAnuales": 30628651.43,
+      "superficieM2": 85,
+      "energiaKwAnual": 10000,
+      "alquileresAnuales": 3816944.41,
+      "impuestoIntegrado": {
+        "servicios": 29790.79,
+        "ventaCosasMuebles": 27742.67
+      },
+      "aporteSIPA": 24286.58,
+      "aporteObraSocial": 30535.56,
+      "total": {
+        "servicios": 84612.93,
+        "ventaCosasMuebles": 82564.81
+      }
+    },
+    {
+      "categoria": "E",
+      "ingresosBrutosAnuales": 36028231.33,
+      "superficieM2": 110,
+      "energiaKwAnual": 13000,
+      "alquileresAnuales": 4841002.66,
+      "impuestoIntegrado": {
+        "servicios": 55857.73,
+        "ventaCosasMuebles": 44313.79
+      },
+      "aporteSIPA": 26715.24,
+      "aporteObraSocial": 37238.48,
+      "total": {
+        "servicios": 119811.45,
+        "ventaCosasMuebles": 108267.51
+      }
+    },
+    {
+      "categoria": "F",
+      "ingresosBrutosAnuales": 45151659.41,
+      "superficieM2": 150,
+      "energiaKwAnual": 16500,
+      "alquileresAnuales": 4841002.66,
+      "impuestoIntegrado": {
+        "servicios": 78573.2,
+        "ventaCosasMuebles": 57719.64
+      },
+      "aporteSIPA": 29386.76,
+      "aporteObraSocial": 42824.25,
+      "total": {
+        "servicios": 150784.21,
+        "ventaCosasMuebles": 129930.65
+      }
+    },
+    {
+      "categoria": "G",
+      "ingresosBrutosAnuales": 53995798.87,
+      "superficieM2": 200,
+      "energiaKwAnual": 20000,
+      "alquileresAnuales": 5771964.69,
+      "impuestoIntegrado": {
+        "servicios": 142995.76,
+        "ventaCosasMuebles": 71497.87
+      },
+      "aporteSIPA": 41141.46,
+      "aporteObraSocial": 46175.72,
+      "total": {
+        "servicios": 230312.94,
+        "ventaCosasMuebles": 158815.05
+      }
+    },
+    {
+      "categoria": "H",
+      "ingresosBrutosAnuales": 81924660.37,
+      "superficieM2": 200,
+      "energiaKwAnual": 20000,
+      "alquileresAnuales": 8378658.45,
+      "impuestoIntegrado": {
+        "servicios": 409623.31,
+        "ventaCosasMuebles": 204811.64
+      },
+      "aporteSIPA": 57598.04,
+      "aporteObraSocial": 55485.33,
+      "total": {
+        "servicios": 522706.68,
+        "ventaCosasMuebles": 317895.01
+      }
+    },
+    {
+      "categoria": "I",
+      "ingresosBrutosAnuales": 91699761.9,
+      "superficieM2": 200,
+      "energiaKwAnual": 20000,
+      "alquileresAnuales": 8378658.45,
+      "impuestoIntegrado": {
+        "servicios": 814591.79,
+        "ventaCosasMuebles": 325836.71
+      },
+      "aporteSIPA": 80637.26,
+      "aporteObraSocial": 68518.81,
+      "total": {
+        "servicios": 963747.86,
+        "ventaCosasMuebles": 474992.78
+      }
+    },
+    {
+      "categoria": "J",
+      "ingresosBrutosAnuales": 105012519.2,
+      "superficieM2": 200,
+      "energiaKwAnual": 20000,
+      "alquileresAnuales": 8378658.45,
+      "impuestoIntegrado": {
+        "servicios": 977510.14,
+        "ventaCosasMuebles": 391004.07
+      },
+      "aporteSIPA": 112892.16,
+      "aporteObraSocial": 76897.46,
+      "total": {
+        "servicios": 1167299.76,
+        "ventaCosasMuebles": 580793.69
+      }
+    },
+    {
+      "categoria": "K",
+      "ingresosBrutosAnuales": 126610838.75,
+      "superficieM2": 200,
+      "energiaKwAnual": 20000,
+      "alquileresAnuales": 8378658.45,
+      "impuestoIntegrado": {
+        "servicios": 1368514.2,
+        "ventaCosasMuebles": 456171.4
+      },
+      "aporteSIPA": 158049.02,
+      "aporteObraSocial": 87882.82,
+      "total": {
+        "servicios": 1614446.04,
+        "ventaCosasMuebles": 702103.24
+      }
+    }
+  ],
+  "fuente": "https://www.arca.gob.ar/monotributo/categorias.asp",
+  "notas": [
+    "Superficie no se considera en ciudades < 40.000 habitantes",
+    "Relación de dependencia / otros regímenes previsionales: no pagan SIPA ni obra social",
+    "Totales recalculados y verificados contra la tabla ARCA"
+  ]
+}
