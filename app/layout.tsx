@@ -8,8 +8,8 @@ const publicSans = localFont({ src: "./fonts/PublicSans-latin.woff2", weight: "4
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
-  title: { default: "calculalo: calculadoras de sueldo, aguinaldo, Ganancias y monotributo", template: "%s | calculalo" },
-  description: "Calculadoras para Argentina con la norma vigente: sueldo neto, aguinaldo, indemnización, Ganancias y monotributo.",
+  title: { default: "calculalo: calculadoras online para tus cuentas de todos los días", template: "%s | calculalo" },
+  description: "Calculadoras online para tus cuentas de todos los días. Sacá la cuenta en segundos, con los números de hoy.",
   openGraph: { siteName: "calculalo", locale: "es_AR", type: "website" },
 };
 export const viewport: Viewport = { themeColor: "#1A1D1A" };

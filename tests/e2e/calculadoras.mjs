@@ -75,12 +75,47 @@ const casos = [
 
 const hubs = ["/finanzas/", "/hogar/"];
 
+/** Hrefs del catálogo = todas las calculadoras publicadas (lib/content.ts). */
+const hrefsCatalogo = [
+  "/laboral/sueldo-neto/", "/laboral/aguinaldo/", "/laboral/indemnizacion/",
+  "/laboral/liquidacion-final/", "/laboral/costo-laboral/", "/laboral/vacaciones/", "/laboral/horas-extras/",
+  "/impuestos/ganancias/", "/impuestos/monotributo/",
+  "/finanzas/actualizacion-alquiler/", "/finanzas/cuotas-o-contado/", "/finanzas/dolar-tarjeta/",
+  "/finanzas/plazo-fijo/", "/finanzas/inflacion/", "/finanzas/rendimiento-billeteras/", "/finanzas/prestamos/",
+  "/hogar/combustible/",
+];
+
 console.log("e2e: lanzando Chromium");
 const browser = await chromium.launch(process.env.PW_CHANNEL ? { channel: process.env.PW_CHANNEL } : {});
 let fallas = 0;
 try {
   const page = await browser.newPage();
   page.setDefaultTimeout(15_000);
+
+  // Home rediseñada (prompt 28)
+  await page.goto(BASE + "/", { waitUntil: "load" });
+  try {
+    const h1 = ((await page.locator("h1").first().textContent()) ?? "").trim();
+    assert.equal(h1, "Calculadoras online para tus cuentas de todos los días.");
+    assert.equal(await page.locator('form[role="search"]').getAttribute("action"), "/buscar/");
+    const lista = await page.$$eval(".catalogo .lista a", (as) => as.map((a) => a.getAttribute("href")));
+    assert.deepEqual([...lista].sort(), [...hrefsCatalogo].sort());
+    const hubsHome = await page.$$eval(".catalogo .bloque h2 a", (as) => as.map((a) => a.getAttribute("href")));
+    for (const h of hubsHome) assert.ok(["/laboral/", "/impuestos/", "/finanzas/", "/hogar/"].includes(h), `hub inesperado ${h}`);
+    assert.equal(hubsHome.length, 4);
+    const body = (await page.locator("body").innerText()) ?? "";
+    assert.equal(/Hacé la cuenta|Más usadas|Por tema|Tanda 2|\bNueva\b|Valores vigentes/i.test(body), false);
+    assert.equal(await page.locator(".valores").count(), 0);
+    const ld = await page.$$eval('script[type="application/ld+json"]', (ss) => ss.map((s) => s.textContent ?? ""));
+    assert.ok(ld.some((t) => t.includes('"WebSite"') && t.includes("SearchAction")));
+    assert.ok(ld.some((t) => t.includes('"Organization"')));
+    const nav = await page.$$eval("header .nav a", (as) => as.map((a) => a.textContent?.trim()));
+    assert.equal(nav.length, 4);
+    console.log(`ok  / → home (${lista.length} calcs, nav ${nav.join(", ")})`);
+  } catch (e) {
+    fallas++;
+    console.error(`MAL home: ${e.message}`);
+  }
 
   for (const hub of hubs) {
     const res = await page.goto(BASE + hub, { waitUntil: "load" });
