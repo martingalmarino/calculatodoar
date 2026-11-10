@@ -1,0 +1,24 @@
+{
+  "id": "prestamos-reglas",
+  "fechaConsulta": "2026-11-09",
+  "sistemaFrances": "cuota = P × i / (1 − (1 + i)^−n), con i = TNA / 12 (tasa mensual vencida)",
+  "ivaIntereses": {
+    "alicuota": 0.21,
+    "aplica": "Intereses de préstamos personales a consumidores finales",
+    "exencion": "Intereses de préstamos para compra, construcción o mejora de vivienda única destinada a casa-habitación: exentos (Ley de IVA art. 7 inc. h) punto 16) [VERIFICAR apartado exacto y requisitos]",
+    "fuente": "https://leyes-ar.com/ley_de_impuesto_al_valor_agregado/7.htm"
+  },
+  "uva": {
+    "capitalEnUVA": "monto en pesos / valor UVA del día del desembolso",
+    "cuotaEnPesos": "cuota en UVA × valor UVA del día de pago",
+    "proyeccion": "Si la fecha supera el último UVA publicado, proyectar con una inflación mensual esperada (input; se puede precargar con REM) y marcar el resultado como estimación."
+  },
+  "noOficial": [
+    "TNA, CFT, seguros y gastos de cada banco: input del usuario.",
+    "Relación cuota/ingreso máxima: la fija cada banco (input opcional; sin valor por defecto)."
+  ],
+  "fuentes": [
+    "https://api.bcra.gob.ar/estadisticas/v4.0/monetarias/31",
+    "https://www.bcra.gob.ar/archivos/Pdfs/texord/t-depinv.pdf"
+  ]
+}

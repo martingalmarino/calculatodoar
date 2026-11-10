@@ -1,0 +1,96 @@
+{
+  "id": "contribuciones-patronales",
+  "fechaConsulta": "2026-11-09",
+  "seguridadSocial": {
+    "norma": "Ley 27.541 art. 19 (SIPA, INSSJP, FNE y asignaciones familiares en una alícuota)",
+    "alicuotas": [
+      {
+        "clave": "A",
+        "alicuota": 0.204,
+        "descripcion": "Empleadores privados de servicios o comercio cuyas ventas superan los límites MiPyME"
+      },
+      {
+        "clave": "B",
+        "alicuota": 0.18,
+        "descripcion": "Resto de los empleadores privados (con certificado MiPyME vigente, industria, etc.)"
+      }
+    ],
+    "tope": "Sin tope: la base imponible máxima de ANSES solo limita los aportes del trabajador (ARCA, Guía LSD N° 31).",
+    "fuentes": [
+      "https://www.arca.gob.ar/relaciones-laborales/empleadores/aportes-y-contribuciones.asp",
+      "https://www.arca.gob.ar/LibrodeSueldosDigital/documentos/nuevos/G31-Topes-LSD.pdf"
+    ]
+  },
+  "detracciones": {
+    "general": 7003.68,
+    "sectoresDecretos1067_128_688": 17509.2,
+    "adicionalHasta25Empleados": 10000,
+    "detalle": "Se restan de la base de las contribuciones de seguridad social (art. 19), por trabajador y por mes, para devengados desde diciembre de 2019 (Ley 27.541 arts. 22-23). Montos fijos, sin actualización.",
+    "pendiente": "[VERIFICAR] si los $10.000 adicionales son por empleador (a repartir) o por trabajador; si se aplican en proporción en jornadas parciales; y si se suma detracción en el SAC. Por defecto: $10.000 por empleador, repartidos entre los empleados que ingrese el usuario; sin detracción sobre el SAC.",
+    "fuente": "https://www.arca.gob.ar/relaciones-laborales/empleadores/aportes-y-contribuciones.asp"
+  },
+  "obraSocial": {
+    "alicuota": 0.06,
+    "norma": "Ley 23.660 art. 16 inc. a)",
+    "nota": "Desde los devengados de enero de 2027 rige el nuevo texto del art. 16 inc. a) (Ley 27.802 art. 165, también 6%) y se deroga el art. 74 de la Ley 11.672 (art. 166) [VERIFICAR efecto en la distribución OS/FSR; no cambia el 6%].",
+    "fuente": "https://www.argentina.gob.ar/normativa/nacional/ley-27802-423680/texto"
+  },
+  "art": {
+    "valor": null,
+    "detalle": "ART = alícuota % del contrato + suma fija por trabajador (incluye el Fondo Fiduciario de Enfermedades Profesionales, que ARCA actualiza mensualmente). Depende de la ART y la actividad: input del usuario, sin valor por defecto.",
+    "referenciaFFEP": {
+      "valor": 1637,
+      "periodo": "2026-03",
+      "fuente": "https://arca.gob.ar/declaracionenlinea/actualizacion-versiones/version47-6.asp",
+      "nota": "Solo referencia histórica; el valor vigente cambia cada mes [VERIFICAR]."
+    }
+  },
+  "seguroVidaObligatorio": {
+    "valor": 424.62,
+    "vigenciaDesde": "2026-03-01",
+    "norma": "Decreto 1567/74",
+    "fuente": "https://arca.gob.ar/declaracionenlinea/actualizacion-versiones/version47-6.asp"
+  },
+  "rifl": {
+    "nombre": "Régimen de Incentivo a la Formalización Laboral (Ley 27.802 arts. 156-160)",
+    "alicuotaTotal": 0.05,
+    "detalle": {
+      "sipaFneAsignaciones": 0.02,
+      "inssjp": 0.03
+    },
+    "distribucion": {
+      "sipa": 0.0131,
+      "asignacionesFamiliares": 0.0057,
+      "fne": 0.0012,
+      "inssjp": 0.03
+    },
+    "altasDesde": "2026-05-01",
+    "altasHasta": "2027-04-30",
+    "duracionMeses": 48,
+    "requisitos": "Trabajador sin empleo registrado al 10/12/2025, o desempleado los 6 meses previos, o monotributista, o que venga del sector público (art. 157).",
+    "noIncluye": "Obra social, ART, seguro de vida y alícuotas de regímenes especiales.",
+    "pendiente": "[VERIFICAR] si la detracción de $7.003,68 se aplica sobre la base RIFL. Por defecto: no se aplica (resultado conservador).",
+    "fuentes": [
+      "https://www.argentina.gob.ar/normativa/nacional/resoluci%C3%B3n-5844-2026-425538/texto",
+      "https://www.boletinoficial.gob.ar/detalleAviso/primera/341443/20260504",
+      "https://www.arca.gob.ar/guias/paso-a-paso/Guia-RIFL.pdf"
+    ]
+  },
+  "fal": {
+    "nombre": "Fondo de Asistencia Laboral (Ley 27.802 arts. 58-77)",
+    "vigenciaDesde": "2026-12-01",
+    "primerPeriodoDevengado": "2026-12",
+    "alicuotas": {
+      "grandes": 0.01,
+      "mipyme": 0.025
+    },
+    "compensacion": "El empleador tiene una reducción equivalente en sus contribuciones de seguridad social (art. 76), así que el costo total no cambia: solo se redistribuye. No aplica la reducción a relaciones RIFL (art. 76).",
+    "pendiente": "[VERIFICAR] si las relaciones RIFL pagan FAL sin reducción (costo adicional) o están exceptuadas; y sobre qué subsistema se imputa la reducción.",
+    "fuentes": [
+      "https://www.argentina.gob.ar/noticias/prorroga-de-la-implementacion-del-fondo-de-asistencia-laboral",
+      "https://www.fiscal.com.ar/blog/fal-decreto-1228-2026-prorroga-vigencia-diciembre-2026-carencia-12-meses",
+      "https://servicios.infoleg.gob.ar/infolegInternet/anexos/420000-424999/423680/norma.htm"
+    ]
+  },
+  "aportesTrabajador": "ver sueldo-neto.json (17% con tope ANSES); se muestran solo como dato, no son costo del empleador."
+}

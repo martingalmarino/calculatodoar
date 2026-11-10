@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { CATEGORIAS } from "@/lib/content";
+import { categoriasConContenido } from "@/lib/content";
 
 export function Header({ actual }: { actual?: string }) {
   return (
@@ -8,7 +8,7 @@ export function Header({ actual }: { actual?: string }) {
         <Link className="logo" href="/" aria-label="calculalo, inicio">calcu<span>lalo</span></Link>
         <nav aria-label="Categorías">
           <ul className="nav">
-            {CATEGORIAS.map((c) => (
+            {categoriasConContenido().map((c) => (
               <li key={c.slug}><Link href={`/${c.slug}/`} aria-current={actual === c.slug ? "page" : undefined}>{c.nombre}</Link></li>
             ))}
           </ul>

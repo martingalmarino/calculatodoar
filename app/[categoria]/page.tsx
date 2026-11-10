@@ -5,11 +5,11 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { JsonLd } from "@/components/JsonLd";
 import { Migas } from "@/components/Migas";
-import { CATEGORIAS, calcsDe, getCategoria, urlCalc } from "@/lib/content";
+import { calcsDe, categoriasConContenido, getCategoria, urlCalc } from "@/lib/content";
 import { breadcrumb, collection } from "@/lib/seo";
 
 export const dynamicParams = false;
-export const generateStaticParams = () => CATEGORIAS.map((c) => ({ categoria: c.slug }));
+export const generateStaticParams = () => categoriasConContenido().map((c) => ({ categoria: c.slug }));
 
 type P = { params: Promise<{ categoria: string }> };
 

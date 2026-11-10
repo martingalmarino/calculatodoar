@@ -1,0 +1,17 @@
+{
+  "id": "combustible",
+  "fechaConsulta": "2026-11-09",
+  "precios": null,
+  "detalle": "Los precios de nafta, gasoil y GNC cambian seguido y varían por provincia, ciudad y bandera. NO se precargan: el usuario ingresa el precio que ve en el surtidor.",
+  "dondeConsultar": [
+    {
+      "nombre": "Secretaría de Energía: precios en surtidor (Res. 314/2016), por estación de servicio",
+      "url": "https://datos.gob.ar/dataset/energia-precios-surtidor---resolucion-3142016"
+    }
+  ],
+  "unidades": {
+    "nafta": "litros y $/litro; consumo en l/100 km o km/l",
+    "gnc": "m³ y $/m³; consumo en m³/100 km"
+  },
+  "nota": "El consumo de GNC por km depende del auto y del equipo; el usuario lo carga. No hay equivalencia oficial litro/m³ para usar por defecto."
+}

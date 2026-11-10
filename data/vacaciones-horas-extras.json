@@ -1,0 +1,70 @@
+{
+  "id": "vacaciones-horas-extras",
+  "fechaConsulta": "2026-11-09",
+  "vacaciones": {
+    "diasArt150": [
+      {
+        "hastaAnios": 5,
+        "dias": 14
+      },
+      {
+        "hastaAnios": 10,
+        "dias": 21
+      },
+      {
+        "hastaAnios": 20,
+        "dias": 28
+      },
+      {
+        "masDe": 20,
+        "dias": 35
+      }
+    ],
+    "antiguedadAl": "31 de diciembre del año al que corresponden las vacaciones (art. 150)",
+    "requisitoArt151": "haber trabajado al menos la mitad de los días hábiles del año calendario",
+    "proporcionalArt153": "si no se cumple el requisito: 1 día de descanso cada 20 días de trabajo efectivo",
+    "valorDiaArt155": "remuneración mensual / 25 (mensualizados); jornalizados: jornal diario; variables: promedio del semestre o del año según el art. 155",
+    "divisor": 25,
+    "pago": "al inicio de las vacaciones (art. 155)",
+    "goceArt154": "sustituido por la Ley 27.802 art. 41: aviso con 30 días de anticipación, entre el 1/10 y el 30/4 salvo acuerdo, fraccionable en tramos de al menos 7 días, verano al menos 1 vez cada 3 años",
+    "egresoArt156": "vacaciones proporcionales no gozadas al terminar la relación",
+    "norma": "LCT arts. 150-156; arts. 150, 151, 153, 155 y 156 no modificados por la Ley 27.802",
+    "fuentes": [
+      "https://servicios.infoleg.gob.ar/infolegInternet/anexos/25000-29999/25552/texact.htm",
+      "https://www.argentina.gob.ar/normativa/nacional/ley-27802-423680/texto"
+    ]
+  },
+  "horasExtras": {
+    "jornadaMaxima": {
+      "diaria": 8,
+      "semanal": 48,
+      "norma": "Ley 11.544 art. 1"
+    },
+    "recargos": [
+      {
+        "clave": "comun",
+        "descripcion": "días hábiles",
+        "recargo": 0.5
+      },
+      {
+        "clave": "descanso",
+        "descripcion": "sábados después de las 13, domingos y feriados",
+        "recargo": 1.0
+      }
+    ],
+    "normaRecargos": "LCT art. 201 (no modificado por la Ley 27.802)",
+    "limites": {
+      "mensual": 30,
+      "anual": 200,
+      "norma": "Decreto 484/2000",
+      "fuente": "https://servicios.infoleg.gob.ar/infolegInternet/verNorma.do?id=63347"
+    },
+    "bancoDeHoras": "LCT art. 197 bis (sustituido por Ley 27.802 art. 42): compensación voluntaria por escrito (banco de horas, francos). Si hay acuerdo válido, las horas se compensan con descanso en vez de pagarse con recargo.",
+    "valorHora": "remuneración mensual / horas normales del mes. La LCT no fija el divisor: la calculadora pide las horas mensuales (por defecto 200 para 48 h semanales, práctica habitual) y el usuario puede cambiarlas según su convenio.",
+    "fuentes": [
+      "https://servicios.infoleg.gob.ar/infolegInternet/anexos/25000-29999/25552/texact.htm",
+      "https://www.argentina.gob.ar/normativa/nacional/ley-27802-423680/texto",
+      "https://servicios.infoleg.gob.ar/infolegInternet/verNorma.do?id=63347"
+    ]
+  }
+}

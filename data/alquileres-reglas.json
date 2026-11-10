@@ -1,0 +1,47 @@
+{
+  "id": "alquileres-reglas",
+  "fechaConsulta": "2026-11-09",
+  "vigente": {
+    "norma": "CCyC art. 1199, texto según DNU 70/2023 art. 257",
+    "regla": "Libre: las partes pactan moneda, índice (público o privado) y periodicidad. Si el índice deja de publicarse, se usa un índice oficial similar del INDEC.",
+    "fuente": "https://www.rpba.gob.ar/files/Normas/Leyes/CCCN1199.pdf"
+  },
+  "regimenes": [
+    {
+      "clave": "ley27551",
+      "nombre": "Contratos firmados bajo la Ley 27.551",
+      "desde": "2020-07-01",
+      "hasta": "2023-10-17",
+      "ajuste": "anual por ICL",
+      "formula": "alquiler × ICL(fecha de ajuste) / ICL(fecha de inicio)",
+      "estado": "Confirmado el uso del ICL (Ley 27.551 art. 14). Corte: la Ley 27.737 rige desde el 18/10/2023 [VERIFICAR en el BO; fuente secundaria]."
+    },
+    {
+      "clave": "ley27737",
+      "nombre": "Contratos firmados bajo la Ley 27.737",
+      "desde": "2023-10-18",
+      "hasta": "2023-12-28",
+      "ajuste": "semestral por coeficiente 'Casa Propia'",
+      "formula": "input del usuario: coeficiente del período",
+      "estado": "Coeficiente Casa Propia (según fuentes secundarias: el menor entre 0,9 × variación del CVS de INDEC y el CER) [VERIFICAR]. NO está cargado: pedirlo como input.",
+      "fuentes": [
+        "https://biblioteca.arca.gob.ar/dcp/LEY_C_027737_2023_10_10",
+        "https://ajusteya.com.ar/ley-alquileres-27551-27737-dnu-70-2023/"
+      ]
+    },
+    {
+      "clave": "dnu70",
+      "nombre": "Contratos desde el DNU 70/2023",
+      "desde": "2023-12-29",
+      "hasta": null,
+      "ajuste": "el que pacten las partes (IPC, ICL u otro; trimestral, cuatrimestral, semestral…)",
+      "formula": "IPC: alquiler × IPC(mes final) / IPC(mes base). Acuerdo: % fijo por período, input del usuario.",
+      "estado": "DNU 70/2023 vigente desde el 29/12/2023 (fuentes secundarias coinciden) [VERIFICAR en el BO]."
+    }
+  ],
+  "convencionIPC": "No hay una regla legal sobre qué meses de IPC usar: lo define el contrato. La calculadora pide mes base y mes final (por defecto, el último IPC publicado como mes final).",
+  "fuentes": [
+    "https://www.rpba.gob.ar/files/Normas/Leyes/CCCN1199.pdf",
+    "https://www.boletinoficial.gob.ar/detalleAviso/primera/349259/20261019"
+  ]
+}

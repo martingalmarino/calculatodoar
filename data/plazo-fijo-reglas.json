@@ -1,0 +1,34 @@
+{
+  "id": "plazo-fijo-reglas",
+  "fechaConsulta": "2026-11-09",
+  "norma": "BCRA, texto ordenado Depósitos e inversiones a plazo (última com. incorporada A 8479)",
+  "divisor": 365,
+  "divisorNota": "Interés = capital × TNA × días / 365 (punto 3.5.3).",
+  "tea": "TEA = (1 + TNA × d / 365)^(365 / d) − 1 (punto 3.5.6)",
+  "plazoMinimo": {
+    "tasaFijaPesos": 30,
+    "uva": 90,
+    "uvaPrecancelablePersonasHumanas": 90,
+    "uvaPrecancelableCancelacionDesde": 30,
+    "unidad": "días"
+  },
+  "uva": {
+    "valorConstitucion": "UVA = 14,05 × CER(día hábil bancario anterior a la constitución) / CER(31/3/2016) (punto 1.9.1)",
+    "capitalAlVencimiento": "cantidad de UVA × valor UVA a la fecha de vencimiento (punto 1.9)",
+    "interes": "tasa fija pactada sobre el equivalente en pesos de las UVA (punto 1.11.5.2)"
+  },
+  "tasaMinima": "No hay tasa mínima regulada: las tasas se pactan libremente (puntos 2.3.4 y 3.5.1).",
+  "seguroDepositos": {
+    "montoMaximo": 50000000,
+    "vigenciaDesde": "2026-04-01",
+    "norma": "Com. BCRA A 8407 (05/03/2026)",
+    "alcance": "Por persona y por entidad. Cubre depósitos en bancos (plazo fijo, caja de ahorro, cuentas remuneradas bancarias). NO cubre saldos en billeteras/cuentas de pago ni fondos comunes de inversión (FCI money market).",
+    "fuentes": [
+      "https://www.bcra.gob.ar/archivos/Pdfs/comytexord/A8407.pdf",
+      "https://www.sedesa.com.ar/sistema-de-garantia-de-los-depositos/"
+    ]
+  },
+  "fuentes": [
+    "https://www.bcra.gob.ar/archivos/Pdfs/texord/t-depinv.pdf"
+  ]
+}

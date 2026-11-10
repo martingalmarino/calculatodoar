@@ -1,0 +1,67 @@
+{
+  "id": "tasas-referencia",
+  "fechaConsulta": "2026-11-09",
+  "aviso": "Valores ORIENTATIVOS para precargar campos editables. No son la tasa que te paga o cobra un banco o billetera puntual. Mostrar siempre la fecha y la fuente al lado del valor.",
+  "series": [
+    {
+      "clave": "depositos30d",
+      "nombre": "Tasa de interés de depósitos a 30 días (promedio del sistema)",
+      "unidad": "% TNA",
+      "fecha": "2026-11-04",
+      "valor": 21.18,
+      "fuente": "https://api.bcra.gob.ar/estadisticas/v4.0/monetarias/12"
+    },
+    {
+      "clave": "badlarPrivados",
+      "nombre": "BADLAR bancos privados (depósitos de más de $1 millón, 30-35 días)",
+      "unidad": "% TNA",
+      "fecha": "2026-11-04",
+      "valor": 21.5,
+      "fuente": "https://api.bcra.gob.ar/estadisticas/v4.0/monetarias/7"
+    },
+    {
+      "clave": "tamarPrivados",
+      "nombre": "TAMAR bancos privados",
+      "unidad": "% TNA",
+      "fecha": "2026-11-04",
+      "valor": 23.5625,
+      "fuente": "https://api.bcra.gob.ar/estadisticas/v4.0/monetarias/44"
+    },
+    {
+      "clave": "prestamosPersonales",
+      "nombre": "Tasa de préstamos personales (promedio del sistema)",
+      "unidad": "% TNA",
+      "fecha": "2026-11-04",
+      "valor": 62.11,
+      "fuente": "https://api.bcra.gob.ar/estadisticas/v4.0/monetarias/14"
+    },
+    {
+      "clave": "inflacionMensual",
+      "nombre": "Inflación mensual (IPC INDEC)",
+      "unidad": "%",
+      "fecha": "2026-09-30",
+      "valor": 1.9,
+      "fuente": "https://api.bcra.gob.ar/estadisticas/v4.0/monetarias/27"
+    },
+    {
+      "clave": "inflacionInteranual",
+      "nombre": "Inflación interanual (IPC INDEC)",
+      "unidad": "%",
+      "fecha": "2026-09-30",
+      "valor": 33.4,
+      "fuente": "https://api.bcra.gob.ar/estadisticas/v4.0/monetarias/28"
+    },
+    {
+      "clave": "remInflacion12m",
+      "nombre": "REM: mediana de inflación esperada próximos 12 meses",
+      "unidad": "%",
+      "fecha": "2026-10-31",
+      "valor": 21.8,
+      "fuente": "https://api.bcra.gob.ar/estadisticas/v4.0/monetarias/29"
+    }
+  ],
+  "noDisponibleOficial": [
+    "Tasa de cuentas remuneradas y billeteras (Mercado Pago, Ualá, Naranja X, etc.): cada entidad la publica en su app y cambia seguido. Input del usuario.",
+    "Tasa de plazo fijo de un banco puntual: input del usuario (la serie de depósitos a 30 días es un promedio del sistema)."
+  ]
+}

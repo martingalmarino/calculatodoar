@@ -1,0 +1,67 @@
+{
+  "id": "dolar-reglas",
+  "fechaConsulta": "2026-11-09",
+  "impuestoPais": {
+    "vigente": false,
+    "finVigencia": "2024-12-22",
+    "detalle": "Rigió 5 períodos fiscales (Ley 27.541, art. 35). Dejó de aplicarse desde el 23/12/2024.",
+    "fuente": "https://servicioscf.afip.gob.ar/publico/sitio/contenido/novedad/ver.aspx?id=4469"
+  },
+  "percepcionGananciasBienesPersonales": {
+    "norma": "RG ARCA 5617/2024 (BO 19/12/2024), mod. RG 5672/2025 y 5677/2025",
+    "estado": "Vigente al 2026-11-09",
+    "alicuota": 0.3,
+    "alcanza": [
+      "Consumos y extracciones en el exterior o en moneda extranjera con tarjeta de crédito, débito o prepaga cuando se pagan en pesos (art. 1 inc. b)",
+      "Servicios de no residentes pagados con tarjeta en pesos (art. 1 inc. c)",
+      "Servicios turísticos en el exterior contratados por agencias del país (art. 1 inc. d)",
+      "Pasajes internacionales (art. 1 inc. e; base: precio neto de impuestos y tasas)"
+    ],
+    "noAlcanza": [
+      "Compra de billetes y divisas por personas humanas (art. 2 inc. e)",
+      "Pago del resumen con dólares propios (la percepción solo aplica en la proporción que se paga en pesos, art. 1 último párrafo)",
+      "Salud, medicamentos, libros, plataformas educativas (art. 2 inc. a)",
+      "Transporte terrestre de pasajeros a países limítrofes (art. 2 inc. d)",
+      "Servicios digitales de los portales listados en el Anexo de la RG 5617 (art. 2 inc. f) [VERIFICAR listado vigente en arca.gob.ar]",
+      "Operaciones en o con destino a Islas Malvinas, Georgias y Sandwich del Sur"
+    ],
+    "baseCalculo": "30% sobre el importe en pesos de la operación (art. 6 inc. a). Conversión: tipo de cambio vendedor BNA del cierre del día hábil anterior a la emisión del resumen (art. 6).",
+    "naturaleza": "Pago a cuenta de Ganancias o Bienes Personales (art. 7). Si no tributás ninguno, se puede pedir la devolución desde el 1 de enero del año siguiente.",
+    "fuentes": [
+      "https://biblioteca.arca.gob.ar/search/query/norma.aspx?p=t%3ARAG%7Cn%3A5617%7Co%3A9%7Ca%3A2024%7Cf%3A18%2F12%2F2024",
+      "https://www.arca.gob.ar/regimen-devolucion-percepciones/ayuda/normativa.asp"
+    ]
+  },
+  "ivaServiciosDigitales": {
+    "alicuota": 0.21,
+    "norma": "Ley de IVA art. 1 inc. e) (Ley 27.430) y RG AFIP 4240/2018: la tarjeta percibe 21% sobre servicios digitales de prestadores del exterior",
+    "fuente": "https://arca.gob.ar/iva/servicios-digitales/reg-percepcion-4240.asp",
+    "pendiente": "[VERIFICAR] si la percepción del 30% se calcula sobre el importe con o sin IVA; por defecto la calculadora la aplica sobre el importe sin IVA y lo aclara."
+  },
+  "iibbServiciosDigitales": {
+    "valor": null,
+    "detalle": "Varias provincias perciben Ingresos Brutos sobre servicios digitales del exterior con alícuotas propias. [VERIFICAR] por provincia: input opcional del usuario, sin valor por defecto."
+  },
+  "referencias": [
+    {
+      "clave": "oficialMinorista",
+      "nombre": "Tipo de cambio minorista, promedio vendedor (BCRA)",
+      "fecha": "2026-11-05",
+      "valor": 1571.84,
+      "fuente": "https://api.bcra.gob.ar/estadisticas/v4.0/monetarias/4",
+      "nota": "Orientativo. Tu banco usa su propio vendedor (la percepción usa el vendedor BNA)."
+    },
+    {
+      "clave": "mayoristaA3500",
+      "nombre": "Tipo de cambio mayorista de referencia Com. A 3500 (BCRA)",
+      "fecha": "2026-11-05",
+      "valor": 1545.3974,
+      "fuente": "https://api.bcra.gob.ar/estadisticas/v4.0/monetarias/5",
+      "nota": "Referencia mayorista; no es el precio al público."
+    }
+  ],
+  "dolarMEP": {
+    "valor": null,
+    "detalle": "Cotización de mercado (compra y venta de bonos). No hay publicación oficial central: input del usuario, con la fecha que la consultó."
+  }
+}

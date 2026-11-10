@@ -1,0 +1,70 @@
+{
+  "id": "liquidacion-final",
+  "fechaConsulta": "2026-11-09",
+  "reutiliza": [
+    "indemnizacion-despido.json (antigüedad art. 245, preaviso art. 231 inc. b, integración art. 233, vacaciones arts. 150/155/156)",
+    "aguinaldo.json (días del semestre)"
+  ],
+  "motivos": [
+    {
+      "clave": "renuncia",
+      "nombre": "Renuncia",
+      "rubros": [
+        "diasTrabajados",
+        "vacacionesNoGozadas",
+        "sacProporcional"
+      ],
+      "nota": "Forma: telegrama o ante la autoridad (art. 240, sust. Ley 27.802 art. 49). El trabajador debe preavisar 15 días (art. 231 inc. a); si no lo hace, el empleador puede reclamarlo [VERIFICAR si se descuenta en la liquidación: la calculadora solo lo informa]."
+    },
+    {
+      "clave": "despidoSinCausa",
+      "nombre": "Despido sin causa",
+      "rubros": [
+        "diasTrabajados",
+        "vacacionesNoGozadas",
+        "sacProporcional",
+        "antiguedad245",
+        "preaviso",
+        "integracionMes",
+        "sacSobrePreavisoIntegracion"
+      ],
+      "nota": "Igual que la calculadora de indemnización."
+    },
+    {
+      "clave": "despidoConCausa",
+      "nombre": "Despido con justa causa",
+      "rubros": [
+        "diasTrabajados",
+        "vacacionesNoGozadas",
+        "sacProporcional"
+      ],
+      "nota": "Sin indemnización ni preaviso. Si la causa se discute, puede terminar en juicio: aviso destacado."
+    },
+    {
+      "clave": "mutuoAcuerdo",
+      "nombre": "Mutuo acuerdo (art. 241)",
+      "rubros": [
+        "diasTrabajados",
+        "vacacionesNoGozadas",
+        "sacProporcional",
+        "gratificacionPactada"
+      ],
+      "nota": "Escritura pública o ante autoridad judicial o administrativa (art. 241, sust. Ley 27.802 art. 50). La gratificación es la que pacten: input."
+    },
+    {
+      "clave": "periodoPrueba",
+      "nombre": "Fin durante el período de prueba",
+      "rubros": [
+        "diasTrabajados",
+        "vacacionesNoGozadas",
+        "sacProporcional"
+      ],
+      "nota": "Sin indemnización y sin preaviso (art. 231 inc. b, sust. Ley 27.802 art. 48)."
+    }
+  ],
+  "sacSobreVacaciones": "[VERIFICAR] La calculadora no suma SAC sobre vacaciones no gozadas (criterio del plenario CNAT 'Tulosai', 2009); aclararlo en el texto.",
+  "fuentes": [
+    "https://www.argentina.gob.ar/normativa/nacional/ley-27802-423680/texto",
+    "https://servicios.infoleg.gob.ar/infolegInternet/anexos/25000-29999/25552/texact.htm"
+  ]
+}

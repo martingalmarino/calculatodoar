@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { JsonLd } from "@/components/JsonLd";
-import { CALCULADORAS, CATEGORIAS, SITE, calcsDe, urlCalc } from "@/lib/content";
+import { SITE, calcsDe, categoriasConContenido, destacadas, urlCalc } from "@/lib/content";
 import { aguinaldo, ansesActual, tasaAportes } from "@/lib/data";
 import { fechaAR, pct, pesos } from "@/lib/format";
 import { abs, FECHA_MODIFICACION } from "@/lib/seo";
@@ -31,7 +31,7 @@ export default function Home() {
             <section aria-labelledby="mas">
               <h2 id="mas">Calculadoras</h2>
               <ol className="ranking">
-                {CALCULADORAS.map((c, i) => (
+                {destacadas().map((c, i) => (
                   <li key={c.slug}><span className="pos">{i + 1}</span><span><Link href={urlCalc(c)}>{c.nombre}</Link><small>{c.resumen}</small></span></li>
                 ))}
               </ol>
@@ -50,7 +50,7 @@ export default function Home() {
           <section aria-labelledby="cat">
             <h2 id="cat">Por tema</h2>
             <div className="cats">
-              {CATEGORIAS.map((cat) => (
+              {categoriasConContenido().map((cat) => (
                 <div className="cat" key={cat.slug}>
                   <h3><Link href={`/${cat.slug}/`}>{cat.nombre}</Link></h3>
                   <ul>{calcsDe(cat.slug).map((c) => <li key={c.slug}><Link href={urlCalc(c)}>{c.nombre}</Link></li>)}</ul>
