@@ -33,6 +33,9 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
   title: { default: "calculalo: calculadoras online para Argentina", template: "%s | calculalo" },
   description: "Calculadoras online para tus cuentas de todos los días. Sueldo, alquiler, dólar o cuotas, con los números de hoy.",
+  verification: {
+    google: "7IkZLr0lyGrOaWMNt4lmqbWrdTH2iad28H_5w3dfPsY",
+  },
   openGraph: { siteName: "calculalo", locale: "es_AR", type: "website" },
 };
 export const viewport: Viewport = { themeColor: "#0B4F5B" };
