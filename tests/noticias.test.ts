@@ -6,12 +6,14 @@ import {
   getNotaPorSlug,
   getNotasPublicadas,
   getTodasLasNotas,
+  miniaturaNota,
   resetNoticiasCache,
   urlNota,
   validarNota,
   volantaPorDefecto,
 } from "../lib/noticias";
 
+/** Imágenes reales de una nota publicada (el test solo exige que existan en public/). */
 const baseOk = {
   titulo: "Nota de prueba",
   bajada: "Una bajada.",
@@ -23,11 +25,11 @@ const baseOk = {
   autor: "Redacción Calculalo" as const,
   borrador: true,
   imagen: {
-    src: "/noticias/imagenes/ipc-octubre-2026-16x9.webp",
-    alt: "Gráfico de prueba con datos del IPC.",
-    credito: "Elaboración calculalo, con datos del INDEC.",
-    epigrafe: "Variación mensual de prueba.",
-    og: "/noticias/imagenes/ipc-octubre-2026-og.webp",
+    src: "/noticias/imagenes/como-se-calcula-el-aguinaldo-16x9.webp",
+    alt: "Ilustración de prueba sobre el aguinaldo.",
+    credito: "Elaboración calculalo.",
+    epigrafe: "Imagen de prueba para validar el schema.",
+    og: "/noticias/imagenes/como-se-calcula-el-aguinaldo-og.webp",
   },
   calculadoraRelacionada: { categoria: "finanzas" as const, slug: "inflacion" },
   enPocasPalabras: ["Uno.", "Dos.", "Tres."] as [string, string, string],
@@ -38,20 +40,18 @@ const baseOk = {
 test("el loader incluye los fixtures conocidos", () => {
   resetNoticiasCache();
   const todas = getTodasLasNotas();
-  const ipc = getNotaFixture("indec-publica-ipc-octubre-2026");
   const agu = getNotaFixture("como-se-calcula-el-aguinaldo");
-  assert.ok(todas.some((n) => n.slug === "indec-publica-ipc-octubre-2026"));
+  const dni = getNotaFixture("dni-nuevas-tarifas-renaper");
   assert.ok(todas.some((n) => n.slug === "como-se-calcula-el-aguinaldo"));
-  assert.ok(ipc);
+  assert.ok(todas.some((n) => n.slug === "dni-nuevas-tarifas-renaper"));
   assert.ok(agu);
-  assert.equal(ipc!.borrador, true);
-  assert.equal(ipc!.slug, "indec-publica-ipc-octubre-2026");
-  assert.equal(ipc!.archivo, "indec-publica-ipc-octubre-2026.md");
-  assert.equal(ipc!.autor, "Redacción Calculalo");
-  assert.equal(ipc!.volanta, volantaPorDefecto("actualidad", "impuestos"));
+  assert.ok(dni);
   assert.equal(agu!.slug, "como-se-calcula-el-aguinaldo");
   assert.equal(agu!.archivo, "como-se-calcula-el-aguinaldo.md");
   assert.equal(agu!.tipo, "guia");
+  assert.equal(agu!.autor, "Redacción Calculalo");
+  assert.equal(dni!.slug, "dni-nuevas-tarifas-renaper");
+  assert.equal(dni!.archivo, "dni-nuevas-tarifas-renaper.md");
 });
 
 test("borradores no entran a publicadas, sitemap ni params estáticos", async () => {
@@ -74,14 +74,17 @@ test("borradores no entran a publicadas, sitemap ni params estáticos", async ()
     vivos.map((n) => n.slug).sort(),
   );
 
-  // Con datos inventados: borrador: true nunca “sale” vía getNotaPorSlug / publicadas
+  // Fixture en memoria: borrador: true nunca “sale” vía getNotaPorSlug / publicadas / sitemap
   const ficticia = validarNota({ ...baseOk, borrador: true }, { archivoSlug: "nota-de-prueba", cuerpo: "Cuerpo." });
   assert.equal(ficticia.borrador, true);
+  assert.equal(ficticia.volanta, volantaPorDefecto("actualidad", "impuestos"));
   assert.equal(getNotasPublicadas().some((n) => n.slug === ficticia.slug), false);
+  assert.equal(getNotaPorSlug(ficticia.slug), undefined);
 
   const { entradasSitemapNoticias, abs } = await import("../lib/seo");
   const urls = entradasSitemapNoticias().map((e) => e.url);
   assert.ok(urls.includes(abs("/noticias/")));
+  assert.equal(urls.includes(abs(urlNota(ficticia.slug))), false, "sitemap no debería listar el borrador fixture");
   for (const n of borradores) {
     assert.equal(urls.includes(abs(urlNota(n.slug))), false, `sitemap no debería listar ${n.slug}`);
   }
@@ -92,6 +95,7 @@ test("borradores no entran a publicadas, sitemap ni params estáticos", async ()
   const { generateStaticParams: paramsNota } = await import("../app/noticias/[slug]/page");
   const slugsParams = (await Promise.resolve(paramsNota())).map((p) => p.slug).sort();
   assert.deepEqual(slugsParams, vivos.map((n) => n.slug).sort());
+  assert.equal(slugsParams.includes(ficticia.slug), false);
 });
 
 test("slug debe coincidir con el archivo", () => {
@@ -136,11 +140,34 @@ test("assertNoticiasValidas pasa con las notas actuales", () => {
   assert.doesNotThrow(() => assertNoticiasValidas());
 });
 
+test("miniaturaNota cae a 16x9 si falta la variante", () => {
+  const nota = validarNota({ ...baseOk, borrador: true }, { archivoSlug: "nota-de-prueba", cuerpo: "Cuerpo." });
+  // Ruta inventada de variante: no existe en disco → fallback a imagen.src
+  const sin4x3 = {
+    ...nota,
+    imagen: {
+      ...nota.imagen,
+      src: "/noticias/imagenes/como-se-calcula-el-aguinaldo-16x9.webp",
+    },
+  };
+  // Forzamos una src cuya variante 4x3 no exista
+  const ficticiaSrc = {
+    ...nota,
+    imagen: {
+      ...nota.imagen,
+      src: "/noticias/imagenes/nota-sin-miniatura-16x9.webp",
+    },
+  };
+  // La 4x3 del aguinaldo sí existe
+  assert.equal(miniaturaNota(sin4x3, "4x3"), "/noticias/imagenes/como-se-calcula-el-aguinaldo-4x3.webp");
+  assert.equal(miniaturaNota(ficticiaSrc, "4x3"), "/noticias/imagenes/nota-sin-miniatura-16x9.webp");
+});
+
 test("schemaNota: NewsArticle para actualidad y Article para guía", async () => {
   const { schemaNota } = await import("../lib/seo");
   resetNoticiasCache();
   const todas = getTodasLasNotas();
-  const actualidad = todas.find((n) => n.tipo === "actualidad") ?? getNotaFixture("indec-publica-ipc-octubre-2026");
+  const actualidad = todas.find((n) => n.tipo === "actualidad") ?? getNotaFixture("dni-nuevas-tarifas-renaper");
   const guia = todas.find((n) => n.tipo === "guia") ?? getNotaFixture("como-se-calcula-el-aguinaldo");
   assert.ok(actualidad);
   assert.ok(guia);

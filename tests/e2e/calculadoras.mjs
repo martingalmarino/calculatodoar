@@ -165,14 +165,15 @@ try {
     assert.equal(await page.locator('header .nav a[href="/noticias/"][aria-current="page"]').count(), 1);
     assert.equal(await page.locator('footer a[href="/noticias/"]').count(), 1);
     assert.equal(await page.locator("html").getAttribute("lang"), "es-AR");
-    const draft = await page.request.get(BASE + "/noticias/indec-publica-ipc-octubre-2026/");
-    assert.equal(draft.status(), 404, `borrador IPC → ${draft.status()}`);
+    // Slug inexistente: debe 404 (cubre el caso que antes usaba un borrador real en content/)
+    const missing = await page.request.get(BASE + "/noticias/nota-que-no-existe-qa/");
+    assert.equal(missing.status(), 404, `nota inexistente → ${missing.status()}`);
     const sm = await (await page.request.get(BASE + "/sitemap.xml")).text();
     assert.ok(sm.includes("https://www.calculalo.com.ar/noticias/"), "sitemap sin /noticias/");
-    assert.equal(sm.includes("/noticias/indec-publica-ipc-octubre-2026"), false);
+    assert.equal(sm.includes("/noticias/nota-que-no-existe-qa"), false);
     assert.ok(sm.includes("/laboral/sueldo-neto/"), "sitemap sin calculadoras");
     assert.ok(sm.includes("/impuestos/iva/"), "sitemap sin IVA");
-    console.log("ok  /noticias/ → H1, borrador 404, sitemap con /noticias/ e IVA");
+    console.log("ok  /noticias/ → H1, slug inexistente 404, sitemap con /noticias/ e IVA");
   } catch (e) {
     fallas++;
     console.error(`MAL noticias: ${e.message}`);

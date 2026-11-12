@@ -4,7 +4,7 @@ Guía corta para redactores. El modelo está en `content/noticias/` + `lib/notic
 
 ## Pasos
 
-1. **Copiá un fixture** de `content/noticias/` (por ejemplo `indec-publica-ipc-octubre-2026.md` o `como-se-calcula-el-aguinaldo.md`).
+1. **Copiá un fixture** de `content/noticias/` (por ejemplo `como-se-calcula-el-aguinaldo.md` o `dni-nuevas-tarifas-renaper.md`).
 2. **Renombrá el archivo** al slug nuevo, en minúsculas y guiones (`mi-nota-nueva.md`). El campo `slug` del frontmatter tiene que ser **igual** al nombre sin `.md`.
 3. **Completá el frontmatter**: título, bajada, tipo (`actualidad` o `guia`), categoría editorial (`laboral`, `impuestos`, `finanzas`, `hogar`), fechas ISO, `calculadoraRelacionada`, las 3 viñetas de `enPocasPalabras`, `fuentes` (al menos una URL oficial) y `faq`.
 4. **Autor**: siempre `Redacción Calculalo`. No inventes nombres propios.
