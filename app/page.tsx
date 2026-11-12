@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { JsonLd } from "@/components/JsonLd";
+import { GrillaCalcs } from "@/components/TarjetaCalc";
 import {
   SITE,
   calcsDe,
@@ -14,13 +15,14 @@ import { abs } from "@/lib/seo";
 
 export const metadata = { alternates: { canonical: "/" } };
 
-/** Orden visual del catálogo: densas arriba. Nav/footer siguen categoriasConContenido(). */
+/** Orden visual del catálogo (densas primero). Nav/footer siguen categoriasConContenido(). */
 const ORDEN_CATALOGO: CategoriaSlug[] = ["laboral", "finanzas", "impuestos", "hogar"];
 
 const atajosPosibles = [
-  { label: "sueldo en mano", cat: "laboral" as const, slug: "sueldo-neto" as const },
-  { label: "aumento de alquiler", cat: "finanzas" as const, slug: "actualizacion-alquiler" as const },
-  { label: "dólar tarjeta", cat: "finanzas" as const, slug: "dolar-tarjeta" as const },
+  { label: "sueldo neto", cat: "laboral" as const, slug: "sueldo-neto" as const },
+  { label: "alquiler", cat: "finanzas" as const, slug: "actualizacion-alquiler" as const },
+  { label: "dólar", cat: "finanzas" as const, slug: "dolar-tarjeta" as const },
+  { label: "aguinaldo", cat: "laboral" as const, slug: "aguinaldo" as const },
 ];
 
 export default function Home() {
@@ -50,46 +52,35 @@ export default function Home() {
             <form className="buscar" role="search" action="/buscar/" method="get">
               <label htmlFor="q" className="saltar">Buscar calculadora</label>
               <input id="q" name="q" type="search" placeholder="¿Qué querés calcular?" autoComplete="off" />
-              <button type="submit">Buscar</button>
+              <button type="submit">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8" /><path d="m21 21-4.3-4.3" /></svg>
+                Buscar
+              </button>
             </form>
             {atajos.length > 0 && (
               <p className="sugeridas">
-                Atajos:{" "}
-                {atajos.map((a, i) => (
-                  <span key={a.href}>
-                    {i > 0 ? " · " : null}
-                    <Link href={a.href}>{a.label}</Link>
-                  </span>
+                <span className="sugeridas-rotulo">Atajos:</span>
+                {atajos.map((a) => (
+                  <Link key={a.href} className="atajo" href={a.href}>{a.label}</Link>
                 ))}
               </p>
             )}
           </section>
 
           <section className="catalogo" aria-label="Calculadoras por tema">
-            <div className="tablero">
-              {bloques.map((cat) => {
-                const items = calcsDe(cat.slug);
-                const n = items.length;
-                return (
-                  <div className="bloque" key={cat.slug}>
-                    <div className="cabeza">
-                      <h2><Link href={`/${cat.slug}/`}>{cat.nombre}</Link></h2>
-                      <span className="cuenta">{n} {n === 1 ? "calculadora" : "calculadoras"}</span>
-                    </div>
-                    <ul className="lista">
-                      {items.map((c) => (
-                        <li key={c.slug}>
-                          <Link href={urlCalc(c)}>
-                            <span className="fila"><span className="nombre">{c.nombre}</span></span>
-                            <span className="resumen">{c.resumen}</span>
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
+            {bloques.map((cat) => {
+              const items = calcsDe(cat.slug);
+              const n = items.length;
+              return (
+                <section className="categoria" key={cat.slug} id={cat.slug}>
+                  <div className="cabeza">
+                    <h2><Link href={`/${cat.slug}/`}>{cat.nombre}</Link></h2>
+                    <span className="cuenta">{n} {n === 1 ? "calculadora" : "calculadoras"}</span>
                   </div>
-                );
-              })}
-            </div>
+                  <GrillaCalcs items={items.map((c) => ({ nombre: c.nombre, resumen: c.resumen, href: urlCalc(c) }))} />
+                </section>
+              );
+            })}
           </section>
         </div>
       </main>

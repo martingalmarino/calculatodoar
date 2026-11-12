@@ -1,11 +1,12 @@
 import type { ReactNode } from "react";
+
 export interface Linea { label: string; valor: string; total?: boolean }
-export function Resultado({ titulo, grande, lineas, nota, barra }: { titulo: string; grande: string; lineas: Linea[]; nota?: ReactNode; barra?: number }) {
+
+export function Resultado({ titulo, grande, lineas, nota }: { titulo: string; grande: string; lineas: Linea[]; nota?: ReactNode; /** @deprecated UI v3: ya no se muestra */ barra?: number }) {
   return (
     <section className="resultado" aria-labelledby="rt">
-      <h2 id="rt" className="rot" style={{ fontFamily: "var(--f-txt)", fontSize: "1rem", letterSpacing: 0 }}>{titulo}</h2>
+      <h2 id="rt" className="rot">{titulo}</h2>
       <output className="grande" aria-live="polite" data-testid="resultado">{grande}</output>
-      {barra !== undefined && <div className="barra" aria-hidden="true"><i style={{ width: `${Math.max(0, Math.min(100, barra))}%` }} /></div>}
       <table>
         <caption className="saltar">Detalle del cálculo</caption>
         <tbody>

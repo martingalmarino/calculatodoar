@@ -68,7 +68,7 @@ export default function DolarTarjeta() {
             nota={modo === "digital" ? pDolar.ivaServiciosDigitales.pendiente : modo === "compraOficial" ? "Personas humanas: sin percepción (RG 5617 art. 2 inc. e)." : undefined} />
         ) : (
           <section className="resultado" aria-labelledby="rt">
-            <h2 id="rt" className="rot" style={{ fontFamily: "var(--f-txt)", fontSize: "1rem", letterSpacing: 0 }}>Resultado</h2>
+            <h2 id="rt" className="rot" style={{ fontFamily: "var(--fuente)", fontSize: "1rem", letterSpacing: 0 }}>Resultado</h2>
             <output className="grande" aria-live="polite" data-testid="resultado">Falta un dato</output>
             <p className="nota">{r.error}</p>
           </section>

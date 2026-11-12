@@ -3,20 +3,30 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { SITE } from "@/lib/content";
 
-const bricolage = localFont({ src: "./fonts/BricolageGrotesque-latin.woff2", weight: "600 800", variable: "--font-bricolage", display: "swap" });
-const publicSans = localFont({ src: "./fonts/PublicSans-latin.woff2", weight: "400 700", variable: "--font-public", display: "swap" });
+const sourceSans = localFont({
+  src: [
+    { path: "./fonts/SourceSans3-latin-400.woff2", weight: "400", style: "normal" },
+    { path: "./fonts/SourceSans3-latin-600.woff2", weight: "600", style: "normal" },
+    { path: "./fonts/SourceSans3-latin-700.woff2", weight: "700", style: "normal" },
+    { path: "./fonts/SourceSans3-latin-ext-400.woff2", weight: "400", style: "normal" },
+    { path: "./fonts/SourceSans3-latin-ext-600.woff2", weight: "600", style: "normal" },
+    { path: "./fonts/SourceSans3-latin-ext-700.woff2", weight: "700", style: "normal" },
+  ],
+  variable: "--font-source-sans",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
-  title: { default: "calculalo: calculadoras online para tus cuentas de todos los días", template: "%s | calculalo" },
-  description: "Calculadoras online para tus cuentas de todos los días. Sacá la cuenta en segundos, con los números de hoy.",
+  title: { default: "calculalo: calculadoras online para Argentina", template: "%s | calculalo" },
+  description: "Calculadoras online para tus cuentas de todos los días. Sueldo, alquiler, dólar o cuotas, con los números de hoy.",
   openGraph: { siteName: "calculalo", locale: "es_AR", type: "website" },
 };
-export const viewport: Viewport = { themeColor: "#1A1D1A" };
+export const viewport: Viewport = { themeColor: "#0B4F5B" };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="es-AR" className={`${bricolage.variable} ${publicSans.variable}`}>
+    <html lang="es-AR" className={sourceSans.variable}>
       <body>
         <a className="saltar" href="#contenido">Saltar al contenido</a>
         {children}

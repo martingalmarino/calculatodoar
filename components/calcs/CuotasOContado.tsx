@@ -16,8 +16,8 @@ const mesInflacion = (() => {
 })();
 const fmt = (n: number, d = 2) => n.toLocaleString("es-AR", { maximumFractionDigits: d });
 const btnStyle: CSSProperties = {
-  border: 0, background: "var(--tinta)", color: "var(--papel)", font: "700 0.9rem var(--f-txt)",
-  padding: "var(--s2) var(--s4)", borderRadius: "var(--r)", cursor: "pointer",
+  border: 0, background: "var(--tinta)", color: "var(--superficie)", font: "700 0.9rem var(--fuente)",
+  padding: "var(--s2) var(--s4)", borderRadius: "var(--radio)", cursor: "pointer",
 };
 
 export default function CuotasOContado() {
@@ -93,7 +93,7 @@ export default function CuotasOContado() {
           nota={`Si esperás más de ${pct(r.tasaEquilibrio)} de inflación (o rendimiento) mensual, convienen las cuotas. Si las cuotas tienen interés o recargo, cargá el total real.`} />
       ) : (
         <section className="resultado" aria-labelledby="rt">
-          <h2 id="rt" className="rot" style={{ fontFamily: "var(--f-txt)", fontSize: "1rem", letterSpacing: 0 }}>Resultado</h2>
+          <h2 id="rt" className="rot" style={{ fontFamily: "var(--fuente)", fontSize: "1rem", letterSpacing: 0 }}>Resultado</h2>
           <output className="grande" aria-live="polite" data-testid="resultado">Revisá los datos</output>
           <p className="nota">{r.error}</p>
         </section>

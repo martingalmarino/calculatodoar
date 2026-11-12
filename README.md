@@ -33,8 +33,8 @@ Estructura:
 
 ## 2. Design system
 
-Los tokens (colores papel y tinta, espaciados `--s1` a `--s6`, radios y tipografías) están en `docs/design-system.md` y se aplican en `app/globals.css`.
-Las fuentes Bricolage Grotesque (títulos) y Public Sans (texto) se autoalojan con `next/font/local` desde `app/fonts/`. No se hacen pedidos a Google Fonts.
+Los tokens (petróleo, cobre, espaciados `--s1` a `--s8`, radios y tipografía) están en `docs/design-system.md` y se aplican en `app/globals.css`.
+Source Sans 3 (400/600/700, latin + latin-ext) se autoaloja con `next/font/local` desde `app/fonts/`. No se hacen pedidos a Google Fonts.
 
 ## 3. Plantilla
 

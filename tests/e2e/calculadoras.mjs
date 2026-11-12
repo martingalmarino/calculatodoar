@@ -92,26 +92,28 @@ try {
   const page = await browser.newPage();
   page.setDefaultTimeout(15_000);
 
-  // Home rediseñada (prompt 28)
+  // Home v3 (prompt 31)
   await page.goto(BASE + "/", { waitUntil: "load" });
   try {
     const h1 = ((await page.locator("h1").first().textContent()) ?? "").trim();
     assert.equal(h1, "Calculadoras online para tus cuentas de todos los días.");
+    const bajada = ((await page.locator(".hero .bajada").textContent()) ?? "").trim();
+    assert.equal(bajada, "Sacá la cuenta en segundos. Sueldo, alquiler, dólar o cuotas: lo que necesites, con los números de hoy.");
     assert.equal(await page.locator('form[role="search"]').getAttribute("action"), "/buscar/");
-    const lista = await page.$$eval(".catalogo .lista a", (as) => as.map((a) => a.getAttribute("href")));
+    const lista = await page.$$eval(".catalogo a.tarjeta", (as) => as.map((a) => a.getAttribute("href")));
     assert.deepEqual([...lista].sort(), [...hrefsCatalogo].sort());
-    const hubsHome = await page.$$eval(".catalogo .bloque h2 a", (as) => as.map((a) => a.getAttribute("href")));
+    const hubsHome = await page.$$eval(".catalogo .categoria h2 a", (as) => as.map((a) => a.getAttribute("href")));
     for (const h of hubsHome) assert.ok(["/laboral/", "/impuestos/", "/finanzas/", "/hogar/"].includes(h), `hub inesperado ${h}`);
     assert.equal(hubsHome.length, 4);
     const body = (await page.locator("body").innerText()) ?? "";
-    assert.equal(/Hacé la cuenta|Más usadas|Por tema|Tanda 2|\bNueva\b|Valores vigentes/i.test(body), false);
-    assert.equal(await page.locator(".valores").count(), 0);
+    assert.equal(/Hacé la cuenta|Más usadas|Por tema|Tanda 2|\bNueva\b|Valores vigentes|sitio independiente|no pertenece al Estado/i.test(body), false);
+    assert.equal(await page.locator(".valores, .ranking").count(), 0);
     const ld = await page.$$eval('script[type="application/ld+json"]', (ss) => ss.map((s) => s.textContent ?? ""));
     assert.ok(ld.some((t) => t.includes('"WebSite"') && t.includes("SearchAction")));
     assert.ok(ld.some((t) => t.includes('"Organization"')));
     const nav = await page.$$eval("header .nav a", (as) => as.map((a) => a.textContent?.trim()));
     assert.equal(nav.length, 4);
-    console.log(`ok  / → home (${lista.length} calcs, nav ${nav.join(", ")})`);
+    console.log(`ok  / → home v3 (${lista.length} tarjetas, nav ${nav.join(", ")})`);
   } catch (e) {
     fallas++;
     console.error(`MAL home: ${e.message}`);

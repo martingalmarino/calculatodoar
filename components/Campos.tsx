@@ -27,7 +27,7 @@ export function Seg<T extends string>({ name, legend, value, opciones, onChange 
       <legend>{legend}</legend>
       <div className="seg">
         {opciones.map((o) => (
-          <span key={o.v} style={{ display: "contents" }}>
+          <span key={o.v} className="seg-op">
             <input type="radio" name={name} id={`${name}-${o.v}`} value={o.v} checked={value === o.v} onChange={() => onChange(o.v)} />
             <label htmlFor={`${name}-${o.v}`}>{o.label}</label>
           </span>

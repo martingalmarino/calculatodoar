@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Calculadora de sueldo neto 2026: de bruto a neto en Argentina</title>
+  <meta name="description" content="Calculá tu sueldo en mano 2026: descontamos jubilación (11%), PAMI (3%) y obra social (3%) con el tope ANSES vigente.">
+  <link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+  <a class="saltar" href="#contenido">Saltar al contenido</a>
+
+  <header class="top">
+    <div class="wrap">
+      <a class="logo" href="../../index.html" aria-label="calculalo, inicio">calcu<em>lalo</em></a>
+      <nav aria-label="Categorías">
+        <ul class="nav">
+          <li><a href="../../index.html#laboral" aria-current="page">Laboral</a></li>
+          <li><a href="../../index.html#impuestos">Impuestos</a></li>
+          <li><a href="../../index.html#finanzas">Finanzas personales</a></li>
+          <li><a href="../../index.html#hogar">Hogar y auto</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="contenido">
+    <div class="wrap">
+      <nav class="migas" aria-label="Migas de pan">
+        <ol>
+          <li><a href="../../index.html">Inicio</a></li>
+          <li><a href="../../index.html#laboral">Laboral</a></li>
+          <li aria-current="page">Sueldo neto</li>
+        </ol>
+      </nav>
+
+      <header class="intro-calc">
+        <h1>Calculadora de sueldo neto</h1>
+        <p class="meta">Actualizada el <time datetime="2026-11-01">1/11/2026</time> · Tope ANSES de noviembre 2026 · <a href="#fuentes">Fuentes</a></p>
+        <p class="prosa">Ingresá tu sueldo bruto y te mostramos cuánto cobrás en mano. Aplicamos los aportes de ley del 17% y la base imponible máxima de ANSES del mes que elijas.</p>
+      </header>
+
+      <div class="calc">
+        <form class="campos" id="f" novalidate aria-label="Datos del sueldo">
+          <div class="campo">
+            <label for="bruto">Sueldo bruto remunerativo</label>
+            <span class="ayuda" id="ab">Lo que figura como “total remunerativo” en tu recibo.</span>
+            <div class="peso">
+              <span aria-hidden="true">$</span>
+              <input id="bruto" inputmode="numeric" autocomplete="off" value="1.500.000" aria-describedby="ab">
+            </div>
+          </div>
+          <div class="campo">
+            <label for="nr">Montos no remunerativos</label>
+            <span class="ayuda" id="an">Sumas fijas o bonos de convenio. Si no tenés, dejalo en 0.</span>
+            <div class="peso">
+              <span aria-hidden="true">$</span>
+              <input id="nr" inputmode="numeric" autocomplete="off" value="0" aria-describedby="an">
+            </div>
+          </div>
+          <div class="campo">
+            <label for="mes">Mes devengado</label>
+            <select id="mes">
+              <option value="4861685.38">Noviembre 2026 (tope $ 4.861.685,38)</option>
+            </select>
+          </div>
+          <fieldset class="campo">
+            <legend>¿Estás afiliado a un sindicato?</legend>
+            <div class="seg">
+              <input type="radio" name="sind" id="s0" value="0" checked>
+              <label for="s0">No</label>
+              <input type="radio" name="sind" id="s1" value="0.02">
+              <label for="s1">Sí, 2%</label>
+            </div>
+            <span class="ayuda" style="margin-top:.5rem">La cuota cambia según el convenio. Usamos 2% como referencia.</span>
+          </fieldset>
+          <p class="nota-form">¿Querés sumar la retención de Ganancias? <a href="../../index.html#impuestos">Usá la calculadora de Ganancias</a>.</p>
+        </form>
+
+        <section class="resultado" aria-labelledby="rt">
+          <h2 id="rt" class="rot">Cobrás en mano</h2>
+          <output class="grande num" id="neto" for="bruto nr mes" aria-live="polite">$ 1.245.000</output>
+          <table>
+            <caption class="saltar">Detalle de descuentos</caption>
+            <tbody>
+              <tr><th scope="row">Sueldo bruto</th><td class="num" id="t-b">$ 1.500.000,00</td></tr>
+              <tr><th scope="row">Jubilación (11%)</th><td class="num" id="t-j">− $ 165.000,00</td></tr>
+              <tr><th scope="row">PAMI, Ley 19.032 (3%)</th><td class="num" id="t-p">− $ 45.000,00</td></tr>
+              <tr><th scope="row">Obra social (3%)</th><td class="num" id="t-o">− $ 45.000,00</td></tr>
+              <tr><th scope="row">Cuota sindical</th><td class="num" id="t-s">− $ 0,00</td></tr>
+              <tr><th scope="row">No remunerativo</th><td class="num" id="t-n">+ $ 0,00</td></tr>
+              <tr class="tot"><th scope="row">Neto</th><td class="num" id="t-t">$ 1.245.000,00</td></tr>
+            </tbody>
+          </table>
+          <p class="nota" id="nota">Antes de Ganancias. Los aportes se calculan sobre el bruto, hasta el tope de ANSES.</p>
+        </section>
+      </div>
+
+      <div class="despues">
+        <div>
+          <section class="bloque-texto" aria-labelledby="como">
+            <h2 id="como">Cómo se calcula</h2>
+            <p class="formula">Neto = Bruto − 17% × mín(Bruto, Tope ANSES) + No remunerativo − cuota sindical</p>
+            <p>El 17% se reparte así: 11% de jubilación (Ley 24.241), 3% de PAMI (Ley 19.032) y 3% de obra social (Ley 23.660). Si el bruto supera el tope de ANSES, los aportes se calculan solo sobre ese tope.</p>
+            <p>Tope vigente: base imponible máxima de $ 4.861.685,38 desde el período devengado noviembre 2026 (Res. ANSES 304/2026). La cuota sindical y la obra social sobre no remunerativos dependen de tu convenio.</p>
+            <h3>Ejemplo</h3>
+            <p>Bruto $ 1.500.000. Jubilación $ 165.000 + PAMI $ 45.000 + obra social $ 45.000 = $ 255.000. Neto: <strong>$ 1.245.000</strong>. Con un bruto de $ 6.000.000, los aportes se calculan sobre el tope: 17% × $ 4.861.685,38 = $ 826.486,51 y el neto es $ 5.173.513,49 (antes de Ganancias).</p>
+          </section>
+
+          <section class="bloque-texto preguntas" aria-labelledby="pf">
+            <h2 id="pf">Preguntas frecuentes</h2>
+            <details>
+              <summary>¿Qué porcentaje se descuenta del sueldo?</summary>
+              <p>17%: 11% jubilación, 3% PAMI (Ley 19.032) y 3% obra social.</p>
+            </details>
+            <details>
+              <summary>¿Qué es el tope de ANSES?</summary>
+              <p>La remuneración máxima sobre la que se calculan aportes; por encima no se descuenta más. Se actualiza cada mes.</p>
+            </details>
+            <details>
+              <summary>¿Los montos no remunerativos tienen descuentos?</summary>
+              <p>No pagan jubilación; según el convenio pueden tener aporte de obra social.</p>
+            </details>
+            <details>
+              <summary>¿El neto incluye Ganancias?</summary>
+              <p>Solo si activás esa opción; la retención depende de tu sueldo anual y tus deducciones.</p>
+            </details>
+            <details>
+              <summary>¿Por qué mi recibo da distinto?</summary>
+              <p>Por adicionales de convenio, cuota sindical, embargos o retención de Ganancias.</p>
+            </details>
+          </section>
+
+          <section class="bloque-texto" id="fuentes" aria-labelledby="fu">
+            <h2 id="fu">Fuentes</h2>
+            <ul>
+              <li>Ley 24.241 (aportes jubilatorios) y Ley 19.032 (PAMI).</li>
+              <li>Ley 23.660, art. 16 (obra social).</li>
+              <li>ANSES, Resolución 304/2026: bases imponibles mínima y máxima vigentes en noviembre de 2026.</li>
+            </ul>
+          </section>
+        </div>
+
+        <aside>
+          <section class="bloque-texto" aria-labelledby="sig">
+            <h2 id="sig">Seguí con</h2>
+            <ul class="relacionadas">
+              <li><a href="../../index.html#impuestos">Ganancias 4ta categoría</a></li>
+              <li><a href="../../index.html#laboral">Aguinaldo (SAC)</a></li>
+              <li><a href="../../index.html#laboral">Liquidación final</a></li>
+              <li><a href="../../index.html#laboral">Todas las laborales</a></li>
+            </ul>
+          </section>
+        </aside>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <nav aria-label="Pie">
+        <ul>
+          <li><a href="../../index.html#laboral">Laboral</a></li>
+          <li><a href="../../index.html#impuestos">Impuestos</a></li>
+          <li><a href="../../index.html#finanzas">Finanzas personales</a></li>
+          <li><a href="../../index.html#hogar">Hogar y auto</a></li>
+        </ul>
+      </nav>
+      <p>calculalo.com.ar: las cuentas de la vida en Argentina, hechas con la norma vigente. El resultado es orientativo y no reemplaza el asesoramiento de un contador o abogado laboralista.</p>
+    </div>
+  </footer>
+
+  <script>
+    const $ = (id) => document.getElementById(id);
+    const fmt = new Intl.NumberFormat("es-AR", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    const fmt0 = new Intl.NumberFormat("es-AR", { maximumFractionDigits: 0 });
+    const parse = (v) => Number(String(v).replace(/[^\d,]/g, "").replace(",", ".")) || 0;
+    function mask(e) {
+      const el = e.target;
+      const raw = el.value.replace(/[^\d,]/g, "");
+      const [i, d] = raw.split(",");
+      el.value = (i ? fmt0.format(Number(i)) : "") + (d !== undefined ? "," + d.slice(0, 2) : "");
+    }
+    function calc() {
+      const b = parse($("bruto").value);
+      const n = parse($("nr").value);
+      const tope = Number($("mes").value);
+      const sp = Number(document.querySelector("[name=sind]:checked").value);
+      const base = Math.min(b, tope);
+      const j = base * 0.11, p = base * 0.03, o = base * 0.03, s = b * sp;
+      const neto = b - j - p - o - s + n;
+      $("neto").textContent = "$ " + fmt0.format(Math.round(neto));
+      $("t-b").textContent = "$ " + fmt.format(b);
+      $("t-j").textContent = "− $ " + fmt.format(j);
+      $("t-p").textContent = "− $ " + fmt.format(p);
+      $("t-o").textContent = "− $ " + fmt.format(o);
+      $("t-s").textContent = "− $ " + fmt.format(s);
+      $("t-n").textContent = "+ $ " + fmt.format(n);
+      $("t-t").textContent = "$ " + fmt.format(neto);
+      $("nota").textContent = (b > tope
+        ? "Tu sueldo supera el tope: los aportes se calculan sobre $ " + fmt.format(tope) + ". "
+        : "") + "Antes de Ganancias. Los aportes se calculan sobre el bruto, hasta el tope de ANSES.";
+    }
+    ["bruto", "nr"].forEach((id) => $(id).addEventListener("input", (e) => { mask(e); calc(); }));
+    $("f").addEventListener("change", calc);
+    calc();
+  </script>
+</body>
+</html>

@@ -1,71 +1,82 @@
-# calculalo.com.ar — Sistema de diseño v1 (propuesta)
+# Sistema de diseño — calculalo v3
 
-Posicionamiento visual: "planilla de contador bien hecha". Papel cálido, tinta casi negra, un verde de resultado y un ámbar de resaltador. Sin gradientes, sin glass, sin blobs, sin emojis.
+Dirección visual: **institucional argentino moderno** (claridad y jerarquía al estilo Argentina.gob.ar / Buenos Aires Ciudad), sin parecer un sitio del Estado. Una sola familia tipográfica, paleta petróleo + cobre, sin degradés ni glow.
 
-## Tipografía (open source, autoalojable con `next/font/local`)
-| Uso | Fuente | Pesos | Licencia |
-|---|---|---|---|
-| Títulos, cifra de resultado, logo | **Bricolage Grotesque** | 600, 800 (variable, eje opsz) | OFL |
-| Texto, inputs, tablas | **Public Sans** | 400, 600, 700 | OFL |
-| Fórmulas | `ui-monospace` del sistema | — | — |
+## Principios
 
-- Cifras siempre con `font-variant-numeric: tabular-nums` (columnas alineadas).
-- Escala: H1 `clamp(2rem,6vw,3.5rem)`, H2 `clamp(1.4rem,3.5vw,2rem)`, H3 1.15rem, cuerpo 1rem/1.6, ayuda 0.875rem. Resultado `clamp(2.4rem,9vw,3.6rem)`.
-- Producción: subset latin + latin-ext, woff2, `display: swap`, precargar solo Public Sans 400 y Bricolage 800; `size-adjust` del fallback para CLS ≈ 0.
+1. **La cuenta se encuentra y se entiende rápido.** El buscador va primero. Cada calculadora se ve de entrada, con título y bajada.
+2. **Claridad antes que ornamento.** Colores sólidos, bordes visibles, espacios generosos. Sin sombras, degradés ni brillos.
+3. **Se siente de acá, no oficial.** Tono rioplatense y paleta propia (petróleo y cobre), sin escudo ni colores institucionales.
+4. **Accesible, AA.** Contraste 4,5:1 en texto, 3:1 en componentes de interfaz. Áreas táctiles de 44 px. Foco visible. Semántica HTML.
 
-## Paleta (contrastes WCAG verificados)
+## Qué no se copia
+
+- Escudo, logo o isologotipo de ningún organismo.
+- Celeste y blanco como colores de marca.
+- La palabra “Gobierno”.
+- Encode Sans u otra tipografía de Argentina.gob.ar.
+- Degradés, glow, emojis, íconos de stock en cada tarjeta.
+- Fotos de ciudad a pantalla completa.
+
+## Paleta
+
 | Token | Hex | Uso | Contraste |
 |---|---|---|---|
-| `--papel` | #F7F4EC | Fondo | — |
-| `--papel-2` | #EFEADC | Fórmulas | tinta-2 sobre papel-2 6,65:1 |
-| `--tinta` | #1A1D1A | Texto, bordes, header | 15,48:1 sobre papel (AAA) |
-| `--tinta-2` | #4D524C | Texto secundario | 7,27:1 sobre papel / 7,99:1 sobre blanco (AAA) |
-| `--verde` | #0B5D3B | Links, foco, panel de resultado | 7,23:1 sobre papel; blanco sobre verde 7,95:1 (AAA) |
-| `--verde-claro` | #DDEBDF | Avisos | verde sobre él 6,44:1 |
-| `--ambar` | #F2B705 | Resaltador: logo, tags, subrayado activo | tinta sobre ámbar 9,36:1; ámbar sobre tinta 9,36:1 |
-| `--rojo` | #A3261B | Errores | 6,70:1 sobre papel |
-El ámbar nunca lleva texto blanco ni se usa como texto sobre papel (1,7:1).
+| `--fondo` | `#F4F5F2` | Fondo de página | — |
+| `--superficie` | `#FFFFFF` | Tarjetas, formulario, header | — |
+| `--tinta` | `#142026` | Texto principal, logo | ≥ 4,5:1 sobre fondo (AAA) |
+| `--tinta-suave` | `#3D4A51` | Bajadas, ayudas, footer | ≥ 4,5:1 |
+| `--linea` | `#7A817E` | Bordes | ≥ 3:1 contra blanco y fondo |
+| `--marca` | `#0B4F5B` | Links, foco, cifras, botones, borde del header | blanco sobre marca AAA |
+| `--marca-hover` | `#083E48` | Hover de links y botones | — |
+| `--marca-tint` | `#E6F0F1` | Fórmulas, avisos, fondos suaves | — |
+| `--acento` | `#C45C1A` | Solo decoración: subrayado del logo y raya del nav activo | gráfico ≥ 3:1 |
+| `--acento-texto` | `#8A3E10` | Si el cobre lleva texto | ≥ 4,5:1 |
+| `--peligro` | `#A3261B` | Errores | AA |
 
-## Espaciado (base 4px)
-`--s1` 4 · `--s2` 8 · `--s3` 12 · `--s4` 16 · `--s5` 24 · `--s6` 32 · `--s7` 48 · `--s8` 64. Ancho máximo 1120px, prosa 68ch. Radio único 6px.
+`--radio` = `8px`. `--max` = `1120px`. Escala `--s1`…`--s8`: 4, 8, 12, 16, 24, 32, 48, 64.
 
-## Componentes
-- **Header**: logo tipográfico "calcu**lalo**" (lalo sobre ámbar), nav por categoría con subrayado ámbar en `aria-current`. Línea inferior de 2px tinta.
-- **Buscador**: input + botón sólido tinta, `role="search"`.
-- **Ranking "Más usadas"**: lista numerada (`<ol>`) con número grande en verde y tag estacional ("Se viene"). Reemplaza la grilla de tarjetas.
-- **Bloque de categorías**: columnas asimétricas (2fr/1fr/1fr) con listas de links, divididas por filetes.
-- **Panel "Valores vigentes"**: `<dl>` sobre tinta, con fuente y fecha de revisión. Es la señal de confianza del sitio.
-- **Campo de moneda** (`.peso`): prefijo `$` visual (aria-hidden), `inputmode="numeric"`, máscara es-AR al tipear (puntos de miles, coma decimal), label + ayuda vinculada con `aria-describedby`, foco con anillo verde.
-- **Segmentado** (radios reales en `<fieldset>`/`<legend>`).
-- **Resultado**: panel verde, `<output aria-live="polite">` con la cifra grande redondeada, barra neto/aportes, tabla de desglose con 2 decimales y nota contextual (ej. "superás el tope").
-- **Fórmula**: bloque mono con borde ámbar. **Aviso**: borde verde. **FAQ**: `<details>/<summary>` nativo. **Migas**: `<nav><ol>`.
-- **Lista de calculadoras (hub)**: filas nombre / descripción / vigencia, agrupadas por subtema.
+## Tipografía
 
-## Arquitectura de URLs (según el plan)
-| Nivel | Ejemplo |
-|---|---|
-| Home | `/` |
-| Hub | `/laboral/`, `/impuestos/`, `/finanzas/` |
-| Calculadora | `/laboral/sueldo-neto/`, `/laboral/aguinaldo/`, `/laboral/indemnizacion-por-despido/`, `/impuestos/ganancias/`, `/impuestos/monotributo/` |
-| Guía | `/laboral/guias/como-se-calcula-el-aguinaldo/` |
-| Tabla | `/impuestos/tablas/escala-ganancias-2026/` |
-| Fase 2+ | `/hogar/`, `/construccion/`, `/salud/` |
-Sin año en la URL de calculadoras (va en title/H1); las tablas sí llevan año. Barra final, minúsculas, guiones.
-En Next.js: `app/[categoria]/page.tsx`, `app/[categoria]/[calculadora]/page.tsx` con `generateStaticParams` desde un registro de calculadoras; parámetros en `data/ar/.../AAAA-MM.json`.
+Una sola familia: **Source Sans 3** (SIL OFL 1.1), autoalojada con `next/font/local` en `app/fonts/` (latin + latin-ext, pesos 400, 600 y 700). Variable CSS: `--font-source-sans` / `--fuente`.
 
-## Schema sugerido (JSON-LD)
-- Home: `WebSite` + `SearchAction`, `Organization`.
-- Hub: `BreadcrumbList` (+ `ItemList` de calculadoras opcional).
-- Calculadora: `WebApplication` (applicationCategory `FinanceApplication`, `offers.price` 0 ARS, `inLanguage` es-AR, `dateModified` real), `BreadcrumbList`, `FAQPage` con las 5 preguntas visibles.
-- Guía: `HowTo` o `Article`. Generado por los componentes `<Calculadora>`, `<FAQ>`, `<Migas>`. Ver ejemplos en el HTML del mockup.
+| Uso | Peso | Tamaño |
+|---|---|---|
+| Cuerpo | 400 | 1 rem / 1,55 |
+| Etiquetas, nav, botones | 600 | 16–18 px |
+| Títulos y logo | 700 | H1 `clamp(2rem, 5vw, 2.75rem)`; H2 `clamp(1.35rem, 3vw, 1.75rem)` |
+| Número del resultado | 700, tabular-nums | grande, tabular |
 
-## Accesibilidad (WCAG 2.2 AA)
-`lang="es-AR"`, link "Saltar al contenido", landmarks (`header/nav/main/aside/footer`), un H1 por página, labels explícitos, foco visible de 3px, objetivos táctiles ≥ 44px, resultado anunciado con `aria-live`, sin información solo por color (la barra tiene nota textual), respeta `prefers-reduced-motion`.
+`font-variant-numeric: tabular-nums` en montos, tasas e índices. Links `--marca`, hover `--marca-hover`. Foco: `outline: 3px solid var(--marca); outline-offset: 2px` (sin box-shadow de brillo).
 
-## Core Web Vitals (metas p75 móvil: LCP < 2,0 s, INP < 100 ms, CLS < 0,05)
-- SSG para todo; la calculadora es una isla cliente chica (sin librerías de forms ni de números: `Intl.NumberFormat`). JS de la página < 30 KB gz.
-- El LCP es el H1 o la cifra del resultado: texto, no imagen. Resultado pre-renderizado con el ejemplo por defecto (ya hay valor sin JS).
-- Fuentes autoalojadas, 2 archivos precargados, fallback con métricas ajustadas.
-- Espacio reservado para anuncios AdSense (alto fijo por slot, nunca arriba del formulario en mobile) para no romper CLS; cargar ads con `lazyOnload`.
-- Cálculo síncrono en `input` (< 1 ms), sin debounce que demore la respuesta; nada de layout thrash.
-- Sin imágenes decorativas; íconos (si hacen falta) SVG inline de un set propio.
+## Componentes (referencia)
+
+Los detalles de header, home, hubs y plantilla de calculadora se implementan en los prompts 30–33. Reglas estables:
+
+- **Header:** superficie, borde inferior 3px marca; wordmark `calcu` + `lalo` con subrayado cobre 3px; nav con todas las categorías con contenido (wrap en mobile, sin hamburguesa ni ocultar ítems); raya cobre en `aria-current="page"`.
+- **Footer:** borde superior 1px línea, links a las mismas categorías, frase de marca + `SITE.descargo` (resultado orientativo). Sin leyenda de “sitio independiente”.
+- **Buscador:** borde 2 px marca, botón sólido marca.
+- **Home:** hero con H1 + bajada + buscador (borde línea, foco marca, botón marca ≥ 48px) + atajos tipo chip solo a calculadoras existentes. Catálogo por categoría desde `lib/content.ts`: tarjetas blancas con borde línea, radio 8px, hover borde marca; grilla 2 columnas desde 800px. Sin ranking, sin “Valores vigentes”, sin etiquetas internas ni AdSense.
+- **Hubs:** migas (Inicio / categoría), H1 = `cat.title` (SEO; metadata intacta), intro y la misma `GrillaCalcs` / `TarjetaCalc` que la home. Header con `aria-current` en la categoría.
+- **Catálogo / tarjetas:** título en marca, bajada en tinta suave; sin íconos decorativos por tarjeta. Componente compartido `components/TarjetaCalc.tsx`.
+- **Migas:** texto chico, tinta suave, actual sin link, separador `/`.
+- **Plantilla de calculadora:** a ≥900px, `.calc` en 2 columnas (form | resultado sticky); en mobile, form primero y resultado debajo. Formulario blanco, borde `--linea`, labels 700, ayuda `--tinta-suave`, `.peso` con `$`, inputs 1.15rem/600 tabular, controles ≥ 44px, foco outline `--marca` sin glow.
+- **Resultado:** tarjeta blanca, borde 2px `--marca`, título en mayúsculas marca, cifra `clamp(2.25rem, 8vw, 3.25rem)` 700 en petróleo, desglose en tabla, fila total con fondo `--marca-tint`. Sin barra ámbar.
+- **Fórmula / aviso:** fondo `--marca-tint`, borde izquierdo 4px `--marca`. FAQ en `details/summary` con borde de tarjeta.
+- **Footer:** nav de categorías + descargo orientativo. Sin bloque de “Valores vigentes” en la home.
+
+## Íconos
+
+Si hacen falta, Lucide (trazo 2, 18–20 px, `currentColor`), solo donde aportan (lupa del buscador, chevron de migas/FAQ). Prohibido un ícono genérico en cada tarjeta.
+
+## Voz
+
+Rioplatense, de vos, directa. Títulos en oración. Sin emojis ni signos de exclamación de más. Hablar de “normas vigentes” y “resultado orientativo”, no de trámite ni de organismo.
+
+## Accesibilidad (AA)
+
+- Contraste verificado en esta paleta (texto ≥ 4,5:1; `--linea` ≥ 3:1).
+- `lang="es-AR"`, jerarquía de headings, `aria-label` en nav y buscador, `aria-live` en el resultado, `aria-current` en migas y nav.
+- Campos con `label` explícito y `aria-describedby` para la ayuda.
+- Skip link “Saltar al contenido”.
+- Respetar `prefers-reduced-motion`.

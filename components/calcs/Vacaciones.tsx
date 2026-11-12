@@ -84,13 +84,13 @@ export default function Vacaciones() {
               : `Plus = total con divisor 25 menos esos ${r.dias} días a sueldo ÷ 30.`}
           />
           <section className="grupo" style={{ marginTop: "var(--s4)" }} aria-labelledby="goce">
-            <h2 id="goce" className="rot" style={{ fontFamily: "var(--f-txt)", fontSize: "1rem", letterSpacing: 0 }}>Goce (art. 154)</h2>
+            <h2 id="goce" className="rot" style={{ fontFamily: "var(--fuente)", fontSize: "1rem", letterSpacing: 0 }}>Goce (art. 154)</h2>
             <p className="nota">{pVacaciones.goceArt154}</p>
           </section>
         </div>
       ) : (
         <section className="resultado" aria-labelledby="rt">
-          <h2 id="rt" className="rot" style={{ fontFamily: "var(--f-txt)", fontSize: "1rem", letterSpacing: 0 }}>Resultado</h2>
+          <h2 id="rt" className="rot" style={{ fontFamily: "var(--fuente)", fontSize: "1rem", letterSpacing: 0 }}>Resultado</h2>
           <output className="grande" aria-live="polite" data-testid="resultado">Revisá los datos</output>
           <p className="nota">{r.error}</p>
         </section>

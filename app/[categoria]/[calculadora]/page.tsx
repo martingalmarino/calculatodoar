@@ -73,33 +73,35 @@ export default async function CalcPage({ params }: P) {
       <main id="contenido">
         <div className="wrap">
           <Migas items={migas} />
-          <h1>{c.h1}</h1>
-          <p className="meta">Actualizada el <time dateTime={fechaVisible(c)}>{fechaAR(fechaVisible(c))}</time> · <a href="#fuentes">Fuentes y vigencia</a></p>
-          <Prosa>{c.intro}</Prosa>
+          <header className="intro-calc">
+            <h1>{c.h1}</h1>
+            <p className="meta">Actualizada el <time dateTime={fechaVisible(c)}>{fechaAR(fechaVisible(c))}</time> · <a href="#fuentes">Fuentes y vigencia</a></p>
+            <Prosa>{c.intro}</Prosa>
+          </header>
           <Calc />
           <p className="descargo">{descargo}</p>
-          <div className="dos">
-            <div className="prosa">
-              <section aria-labelledby="como">
+          <div className="despues">
+            <div>
+              <section className="bloque-texto" aria-labelledby="como">
                 <h2 id="como">Cómo se calcula</h2>
                 <p className="formula">{c.formula}</p>
                 <p className="aviso">{ej.aviso}</p>
                 {ej.ejemplo && (<><h3>Ejemplo</h3><p>{ej.ejemplo}</p></>)}
               </section>
-              <section aria-labelledby="pf">
+              <section className="bloque-texto preguntas" aria-labelledby="pf">
                 <h2 id="pf">Preguntas frecuentes</h2>
                 {c.faq.map((f) => <details key={f.q}><summary>{f.q}</summary><p>{f.a}</p></details>)}
               </section>
-              <Fuentes sets={ej.procedencia.map((k) => PROCEDENCIA[k])} />
+              <div className="bloque-texto">
+                <Fuentes sets={ej.procedencia.map((k) => PROCEDENCIA[k])} />
+              </div>
             </div>
-            <aside>
-              <section className="grupo" aria-labelledby="sig">
-                <h2 id="sig">Seguí con</h2>
-                <ul className="relacionadas">
-                  {relacionadasDe(c).map((x) => <li key={x.slug}><Link href={urlCalc(x)}>{x.nombre}</Link></li>)}
-                  <li><Link href={`/${cat.slug}/`}>Todas las de {cat.nombre.toLowerCase()}</Link></li>
-                </ul>
-              </section>
+            <aside className="bloque-texto" aria-labelledby="sig">
+              <h2 id="sig">Seguí con</h2>
+              <ul className="relacionadas">
+                {relacionadasDe(c).map((x) => <li key={x.slug}><Link href={urlCalc(x)}>{x.nombre}</Link></li>)}
+                <li><Link href={`/${cat.slug}/`}>Todas las de {cat.nombre.toLowerCase()}</Link></li>
+              </ul>
             </aside>
           </div>
         </div>

@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>calculalo: calculadoras online para tus cuentas de todos los días</title>
+  <meta name="description" content="Calculadoras online para tus cuentas de todos los días. Sacá la cuenta en segundos, con los números de hoy.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="saltar" href="#contenido">Saltar al contenido</a>
+
+  <header class="top">
+    <div class="wrap">
+      <a class="logo" href="./" aria-label="calculalo, inicio">calcu<em>lalo</em></a>
+      <nav aria-label="Categorías">
+        <ul class="nav">
+          <li><a href="#laboral">Laboral</a></li>
+          <li><a href="#impuestos">Impuestos</a></li>
+          <li><a href="#finanzas">Finanzas personales</a></li>
+          <li><a href="#hogar">Hogar y auto</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="contenido">
+    <div class="wrap">
+      <section class="hero" aria-labelledby="h1">
+        <h1 id="h1">Calculadoras online para tus cuentas de todos los días.</h1>
+        <p class="bajada">Sacá la cuenta en segundos. Sueldo, alquiler, dólar o cuotas: lo que necesites, con los números de hoy.</p>
+        <form class="buscar" role="search" action="#" method="get">
+          <label for="q" class="saltar">Buscar calculadora</label>
+          <input id="q" name="q" type="search" placeholder="¿Qué querés calcular?" autocomplete="off">
+          <button type="submit">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+            Buscar
+          </button>
+        </form>
+        <p class="sugeridas">Atajos: <a href="laboral/sueldo-neto/index.html">sueldo en mano</a> · <a href="#finanzas">aumento de alquiler</a> · <a href="#finanzas">dólar tarjeta</a></p>
+      </section>
+
+      <p class="vacio" id="vacio" hidden>No hay una calculadora con ese nombre. Probá con “sueldo”, “alquiler” o “dólar”.</p>
+
+      <section class="catalogo" aria-label="Calculadoras por tema">
+        <section class="categoria" id="laboral" data-cat>
+          <div class="cabeza">
+            <h2><a href="#laboral">Laboral</a></h2>
+            <span class="cuenta">7 calculadoras</span>
+          </div>
+          <div class="grilla">
+            <a class="tarjeta" href="laboral/sueldo-neto/index.html" data-q="sueldo neto en mano bruto jubilación pami obra social">
+              <h3>Sueldo neto</h3>
+              <p>De bruto a neto: jubilación, PAMI y obra social con tope.</p>
+            </a>
+            <a class="tarjeta" href="#" data-q="aguinaldo sac proporcional bruto en mano">
+              <h3>Aguinaldo (SAC)</h3>
+              <p>Completo o proporcional a los días trabajados, en bruto y en mano.</p>
+            </a>
+            <a class="tarjeta" href="#" data-q="indemnización despido artículo 245 ley 27802 preaviso vacaciones sac">
+              <h3>Indemnización por despido</h3>
+              <p>Art. 245 según Ley 27.802, preaviso, integración del mes, vacaciones y SAC.</p>
+            </a>
+            <a class="tarjeta" href="#" data-q="vacaciones días antigüedad plus vacacional">
+              <h3>Vacaciones</h3>
+              <p>Días por antigüedad, sueldo ÷ 25 y plus vacacional.</p>
+            </a>
+            <a class="tarjeta" href="#" data-q="horas extras 50 100 decreto 484">
+              <h3>Horas extras</h3>
+              <p>Al 50% y al 100%, con los límites del Decreto 484/2000.</p>
+            </a>
+            <a class="tarjeta" href="#" data-q="liquidación final renuncia despido mutuo acuerdo">
+              <h3>Liquidación final</h3>
+              <p>Renuncia, despido o mutuo acuerdo, con vacaciones y SAC proporcional.</p>
+            </a>
+            <a class="tarjeta" href="#" data-q="costo laboral empleador contribuciones detracción rifl fal">
+              <h3>Costo laboral</h3>
+              <p>Contribuciones, detracción, RIFL y FAL, para el empleador.</p>
+            </a>
+          </div>
+        </section>
+
+        <section class="categoria" id="finanzas" data-cat>
+          <div class="cabeza">
+            <h2><a href="#finanzas">Finanzas personales</a></h2>
+            <span class="cuenta">7 calculadoras</span>
+          </div>
+          <div class="grilla">
+            <a class="tarjeta" href="#" data-q="actualización alquiler icl ipc índice aumento">
+              <h3>Actualización de alquiler</h3>
+              <p>Ajuste por ICL, IPC, porcentaje acordado u otro índice.</p>
+            </a>
+            <a class="tarjeta" href="#" data-q="cuotas o contado valor hoy">
+              <h3>Cuotas o contado</h3>
+              <p>Valor de hoy de las cuotas, comparado con pagar de contado.</p>
+            </a>
+            <a class="tarjeta" href="#" data-q="dólar tarjeta oficial percepción 30 mep billetes">
+              <h3>Dólar tarjeta</h3>
+              <p>Oficial, percepción del 30%, MEP y compra de billetes.</p>
+            </a>
+            <a class="tarjeta" href="#" data-q="plazo fijo tradicional uva tna tea">
+              <h3>Plazo fijo</h3>
+              <p>Tradicional y UVA, con TNA y TEA.</p>
+            </a>
+            <a class="tarjeta" href="#" data-q="inflación ipc indec poder adquisitivo">
+              <h3>Inflación</h3>
+              <p>Cuánto vale hoy un monto de otro mes, según el IPC del INDEC.</p>
+            </a>
+            <a class="tarjeta" href="#" data-q="rendimiento billeteras capitalización diaria tasa">
+              <h3>Rendimiento de billeteras</h3>
+              <p>Capitalización diaria de cuentas remuneradas, con la tasa que cargás.</p>
+            </a>
+            <a class="tarjeta" href="#" data-q="préstamos sistema francés iva uva">
+              <h3>Préstamos</h3>
+              <p>Sistema francés, con IVA, y préstamo UVA.</p>
+            </a>
+          </div>
+        </section>
+
+        <section class="categoria" id="impuestos" data-cat>
+          <div class="cabeza">
+            <h2><a href="#impuestos">Impuestos</a></h2>
+            <span class="cuenta">2 calculadoras</span>
+          </div>
+          <div class="grilla">
+            <a class="tarjeta" href="#" data-q="ganancias cuarta categoría impuesto anual arca">
+              <h3>Ganancias 4ta categoría</h3>
+              <p>Impuesto anual con la escala de la liquidación anual 2026 de ARCA.</p>
+            </a>
+            <a class="tarjeta" href="#" data-q="monotributo categoría cuota facturado">
+              <h3>Monotributo</h3>
+              <p>Tu categoría y la cuota mensual según lo facturado en 12 meses.</p>
+            </a>
+          </div>
+        </section>
+
+        <section class="categoria" id="hogar" data-cat>
+          <div class="cabeza">
+            <h2><a href="#hogar">Hogar y auto</a></h2>
+            <span class="cuenta">1 calculadora</span>
+          </div>
+          <div class="grilla">
+            <a class="tarjeta" href="#" data-q="combustible nafta gnc viaje costo">
+              <h3>Combustible</h3>
+              <p>Costo del viaje y comparación nafta vs. GNC, con los precios que cargás.</p>
+            </a>
+          </div>
+        </section>
+      </section>
+
+    </div>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <nav aria-label="Pie">
+        <ul>
+          <li><a href="#laboral">Laboral</a></li>
+          <li><a href="#impuestos">Impuestos</a></li>
+          <li><a href="#finanzas">Finanzas personales</a></li>
+          <li><a href="#hogar">Hogar y auto</a></li>
+        </ul>
+      </nav>
+      <p>calculalo.com.ar: las cuentas de la vida en Argentina, hechas con la norma vigente. El resultado es orientativo y no reemplaza el asesoramiento de un contador o abogado laboralista.</p>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const form = document.querySelector(".buscar");
+      const input = document.getElementById("q");
+      const empty = document.getElementById("vacio");
+      const cats = document.querySelectorAll("[data-cat]");
+      function norm(s) {
+        return s.toLowerCase().normalize("NFD").replace(/\p{Diacritic}/gu, "");
+      }
+      function filter() {
+        const q = norm(input.value.trim());
+        let visible = 0;
+        cats.forEach((cat) => {
+          let n = 0;
+          cat.querySelectorAll(".tarjeta").forEach((card) => {
+            const hay = !q || norm(card.getAttribute("data-q") + " " + card.textContent).includes(q);
+            card.hidden = !hay;
+            if (hay) n++;
+          });
+          cat.hidden = n === 0;
+          visible += n;
+          const cuenta = cat.querySelector(".cuenta");
+          if (cuenta && q) cuenta.textContent = n + (n === 1 ? " calculadora" : " calculadoras");
+        });
+        empty.hidden = visible !== 0;
+        empty.classList.toggle("visible", visible === 0);
+      }
+      form.addEventListener("submit", function (e) { e.preventDefault(); filter(); });
+      input.addEventListener("input", filter);
+    })();
+  </script>
+</body>
+</html>

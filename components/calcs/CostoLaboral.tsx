@@ -99,7 +99,7 @@ export default function CostoLaboral() {
         />
       ) : (
         <section className="resultado" aria-labelledby="rt">
-          <h2 id="rt" className="rot" style={{ fontFamily: "var(--f-txt)", fontSize: "1rem", letterSpacing: 0 }}>Resultado</h2>
+          <h2 id="rt" className="rot" style={{ fontFamily: "var(--fuente)", fontSize: "1rem", letterSpacing: 0 }}>Resultado</h2>
           <output className="grande" aria-live="polite" data-testid="resultado">Revisá los datos</output>
           <p className="nota">{r.error}</p>
         </section>

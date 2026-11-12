@@ -138,7 +138,7 @@ export default function PlazoFijo() {
 function Err({ msg }: { msg: string }) {
   return (
     <section className="resultado" aria-labelledby="rt">
-      <h2 id="rt" className="rot" style={{ fontFamily: "var(--f-txt)", fontSize: "1rem", letterSpacing: 0 }}>Resultado</h2>
+      <h2 id="rt" className="rot" style={{ fontFamily: "var(--fuente)", fontSize: "1rem", letterSpacing: 0 }}>Resultado</h2>
       <output className="grande" aria-live="polite" data-testid="resultado">Revisá el plazo</output>
       <p className="nota">{msg}</p>
     </section>

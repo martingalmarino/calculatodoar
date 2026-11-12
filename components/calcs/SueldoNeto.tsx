@@ -18,7 +18,6 @@ export default function SueldoNeto() {
   const v = anses.vigencias.find((x) => x.periodoDevengado === periodo)!;
   const a = sueldoNeto.aportesTrabajador;
   const r = calcularSueldoNeto({ bruto: parsePesos(bruto), noRemunerativo: parsePesos(nr), cuotaSindical: parsePesos(sind) / 100 }, { baseImponibleMaxima: v.baseImponibleMaxima, aportes: a });
-  const total = r.bruto + r.noRemunerativo;
   return (
     <div className="calc">
       <form className="campos" noValidate aria-label="Datos del sueldo" onSubmit={(e) => e.preventDefault()}>
@@ -33,7 +32,7 @@ export default function SueldoNeto() {
           <input id="sind" inputMode="decimal" value={sind} onChange={(e) => setSind(e.target.value.replace(/[^\d,]/g, ""))} />
         </Campo>
       </form>
-      <Resultado titulo="Cobrás en mano" grande={pesos0(r.neto)} barra={total ? (r.neto / total) * 100 : 0}
+      <Resultado titulo="Cobrás en mano" grande={pesos0(r.neto)}
         lineas={[
           { label: "Sueldo bruto", valor: pesos(r.bruto) },
           { label: `Jubilación (${a.jubilacionSIPA * 100}%)`, valor: `− ${pesos(r.jubilacion)}` },

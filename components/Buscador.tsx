@@ -1,7 +1,7 @@
 "use client";
-import Link from "next/link";
 import { useState } from "react";
 import { useSearchParams } from "next/navigation";
+import { GrillaCalcs } from "@/components/TarjetaCalc";
 
 interface Item { nombre: string; resumen: string; href: string; texto: string }
 const norm = (s: string) => s.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
@@ -18,7 +18,7 @@ export function Buscador({ items }: { items: Item[] }) {
         <input id="q" type="search" value={q} onChange={(e) => setQ(e.target.value)} placeholder="Ej.: aguinaldo" autoComplete="off" />
       </form>
       {res.length ? (
-        <ul className="lista-calc">{res.map((i) => <li key={i.href}><h2><Link href={i.href}>{i.nombre}</Link></h2><p>{i.resumen}</p></li>)}</ul>
+        <GrillaCalcs items={res.map((i) => ({ nombre: i.nombre, resumen: i.resumen, href: i.href }))} />
       ) : <p>No encontramos calculadoras para “{q}”.</p>}
     </>
   );
