@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 import { CALCULADORAS, categoriasConContenido, urlCalc } from "@/lib/content";
-import { abs, dateModifiedDe, FECHA_MODIFICACION } from "@/lib/seo";
+import { abs, dateModifiedDe, entradasSitemapNoticias, FECHA_MODIFICACION } from "@/lib/seo";
 
 export const dynamic = "force-static";
 
@@ -15,6 +15,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: abs(urlCalc(c)),
       lastModified: asDate(dateModifiedDe(c)),
       priority: 0.9,
+    })),
+    ...entradasSitemapNoticias().map((e) => ({
+      url: e.url,
+      lastModified: asDate(e.lastModified),
+      priority: e.priority,
     })),
   ];
 }

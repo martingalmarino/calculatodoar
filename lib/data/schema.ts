@@ -24,7 +24,7 @@ export interface AguinaldoFile {
   fechaConsulta: string;
   diasDelSemestre: Record<string, number>;
   criterioDivisor: string;
-  vencimientos: { primeraCuota: string; segundaCuota: string; tolerancia: string };
+  vencimientos: { primeraCuota: string; segundaCuota: string };
   fuentes: string[];
 }
 

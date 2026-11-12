@@ -7,7 +7,7 @@
 | ganancias-4ta-2026.json | Alquiler: 40% con tope en el MNI, +10% RELI | 2024 en adelante | arca.gob.ar/572Web/carga-datos/alquileres.asp | 40% y requisitos confirmados; tope = MNI anual (6.019.671,36): ARCA remite a "ver tratamiento" |
 | anses-topes.json | Base imponible mín. 149.592,45 / máx. 4.861.685,38 | devengado nov-2026 | Res. ANSES 304/2026, BO 28/10/2026 (InfoLEG 431696) | Confirmado. Meses previos de 2026 NO cargados |
 | sueldo-neto.json | Aportes 11% + 3% + 3% | permanente | Ley 24.241 art. 11, Ley 19.032, Ley 23.660 art. 16 | Confirmado por normativa general (sin cambios detectados en Ley 27.802) |
-| aguinaldo.json | 50% de la mejor remuneración del semestre; proporcional | permanente | LCT arts. 121-123; Ley 23.041 | Fórmula confirmada. Divisor 181/184 = criterio adoptado (la ley no fija divisor) |
+| aguinaldo.json | 50% de la mejor remuneración del semestre; proporcional; vencimientos 30/6 y 18/12 | permanente | LCT art. 122 (Ley 20.744 texto según Ley 27.073); arts. 121-123; Ley 23.041 | Fórmula confirmada. Divisor 181/184 = criterio adoptado. Art. 122 no menciona tolerancia de 4 días hábiles (eso es art. 128, interpretación habitual) |
 | indemnizacion-despido.json | Art. 245 nuevo (tope CCT ×3, piso 67%, exclusiones de base) | desde 06/03/2026 | Ley 27.802 art. 51 (BO 06/03/2026; InfoLEG 423680; biblioteca ARCA) | Confirmado |
 | indemnizacion-despido.json | Preaviso: sin preaviso en prueba, 1 mes ≤5 años, 2 meses >5 | desde 06/03/2026 | Ley 27.802 art. 48 (sust. art. 231 inc. b) | Confirmado |
 | indemnizacion-despido.json | Integración del mes (art. 233), vacaciones (arts. 150/155/156) | vigente | LCT; Ley 27.802 no los modifica (lista de artículos modificados revisada) | Confirmado; art. 154 modificado solo en época de goce |

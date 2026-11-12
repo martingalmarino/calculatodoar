@@ -7,6 +7,12 @@ export const fechaAR = (iso: string) => {
   const [y, m, d] = iso.split("-");
   return `${Number(d)}/${Number(m)}/${y}`;
 };
+const MESES_LARGOS = ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"];
+/** "11 de noviembre de 2026" */
+export const fechaLargaAR = (iso: string) => {
+  const [y, m, d] = iso.split("-").map(Number);
+  return `${d} de ${MESES_LARGOS[m - 1]} de ${y}`;
+};
 /** Convierte "1.500.000,50" en 1500000.5 */
 export const parsePesos = (s: string) => Number(s.replace(/[^\d,]/g, "").replace(",", ".")) || 0;
 /** Máscara es-AR mientras se tipea */

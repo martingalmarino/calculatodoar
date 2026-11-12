@@ -5,9 +5,18 @@ import {
   CATEGORIAS,
   DESTACADAS,
   RELACIONADAS_PLAN,
+  SITE,
   categoriasConContenido,
   relacionadasDe,
 } from "../lib/content";
+import { abs } from "../lib/seo";
+
+test("SITE.url es www sin barra final y abs arma rutas absolutas", () => {
+  assert.equal(SITE.url, "https://www.calculalo.com.ar");
+  assert.equal(abs("/"), "https://www.calculalo.com.ar/");
+  assert.equal(abs("/sitemap.xml"), "https://www.calculalo.com.ar/sitemap.xml");
+  assert.equal(abs("/laboral/sueldo-neto/"), "https://www.calculalo.com.ar/laboral/sueldo-neto/");
+});
 
 test("categorias vacías no aparecen en el nav/sitemap", () => {
   const con = categoriasConContenido().map((c) => c.slug);

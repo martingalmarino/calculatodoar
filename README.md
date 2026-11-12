@@ -78,7 +78,7 @@ Toma la menor categoría que cubre facturación, superficie, energía y alquiler
 2. En vercel.com → **Add New → Project**, importá el repositorio. Vercel detecta Next.js: build `next build`, sin variables de entorno.
 3. En **Settings → Domains**, agregá `calculalo.com.ar` y `www.calculalo.com.ar` y configurá el DNS que indica Vercel.
 4. Cada push a `main` publica a producción y cada pull request genera una preview.
-5. Después del primer deploy, cargá `https://calculalo.com.ar/sitemap.xml` en Google Search Console.
+5. Después del primer deploy, cargá `https://www.calculalo.com.ar/sitemap.xml` en Google Search Console. El dominio principal es `www.calculalo.com.ar` (sin www redirige 301 en Vercel).
 
 ## Pendientes conocidos (ver `data/FUENTES.md`)
 - Topes ANSES de enero a octubre de 2026 (necesarios para cálculos retroactivos).

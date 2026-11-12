@@ -3,6 +3,7 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { JsonLd } from "@/components/JsonLd";
 import { GrillaCalcs } from "@/components/TarjetaCalc";
+import { BloqueUltimas } from "@/components/noticias/BloqueUltimas";
 import {
   SITE,
   calcsDe,
@@ -82,6 +83,8 @@ export default function Home() {
               );
             })}
           </section>
+
+          <BloqueUltimas />
         </div>
       </main>
       <Footer />

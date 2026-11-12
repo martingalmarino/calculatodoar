@@ -16,6 +16,19 @@ const sourceSans = localFont({
   display: "swap",
 });
 
+const sourceSerif = localFont({
+  src: [
+    { path: "./fonts/SourceSerif4-latin-400.woff2", weight: "400", style: "normal" },
+    { path: "./fonts/SourceSerif4-latin-600.woff2", weight: "600", style: "normal" },
+    { path: "./fonts/SourceSerif4-latin-700.woff2", weight: "700", style: "normal" },
+    { path: "./fonts/SourceSerif4-latin-ext-400.woff2", weight: "400", style: "normal" },
+    { path: "./fonts/SourceSerif4-latin-ext-600.woff2", weight: "600", style: "normal" },
+    { path: "./fonts/SourceSerif4-latin-ext-700.woff2", weight: "700", style: "normal" },
+  ],
+  variable: "--font-source-serif",
+  display: "swap",
+});
+
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
   title: { default: "calculalo: calculadoras online para Argentina", template: "%s | calculalo" },
@@ -26,7 +39,7 @@ export const viewport: Viewport = { themeColor: "#0B4F5B" };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="es-AR" className={sourceSans.variable}>
+    <html lang="es-AR" className={`${sourceSans.variable} ${sourceSerif.variable}`}>
       <body>
         <a className="saltar" href="#contenido">Saltar al contenido</a>
         {children}

@@ -1,6 +1,6 @@
 export const SITE = {
   nombre: "calculalo",
-  url: "https://calculalo.com.ar",
+  url: "https://www.calculalo.com.ar",
   descargo: "Resultado orientativo. No reemplaza el asesoramiento de un contador o abogado laboralista.",
 };
 
@@ -104,7 +104,7 @@ export const CALCULADORAS: Calculadora[] = [
     intro: "El aguinaldo es la mitad del mejor sueldo bruto del semestre. Si entraste o saliste en el medio, te corresponde la parte proporcional, que calculamos sobre los días reales del semestre (181 o 182 en el primero, 184 en el segundo). Acá lo calculás en bruto y en mano.",
     formula: "SAC = mejor remuneración ÷ 2 × días trabajados ÷ días del semestre",
     faq: [
-      { q: "¿Cuándo se paga el aguinaldo de diciembre 2026?", a: "Hasta el 18/12, con tolerancia de 4 días hábiles." },
+      { q: "¿Cuándo se paga el aguinaldo de diciembre 2026?", a: "La ley fija el pago hasta el 18 de diciembre (art. 122 de la LCT). Algunos interpretan que rige la tolerancia de 4 días hábiles del art. 128, pero la norma del aguinaldo no la menciona." },
       { q: "¿Tiene descuentos?", a: "Sí, los mismos aportes del 17% que el sueldo." },
       { q: "¿Paga Ganancias?", a: "Sí, si tus ingresos anuales superan las deducciones personales." },
       { q: "¿Por qué divide por 184 y no por 180?", a: "La ley dice proporcional al tiempo trabajado y no fija un divisor. Usamos los días reales del semestre, como el software de liquidación; algunas calculadoras usan 180 y dan un poco más." },

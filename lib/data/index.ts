@@ -73,7 +73,7 @@ const vigAnses = (v = ansesActual) => `desde el período devengado ${v.periodoDe
 export const PROCEDENCIA: Record<string, Procedencia> = {
   anses: { nombre: `Base imponible ANSES (${ansesActual.norma})`, vigencia: vigAnses(), consultado: fechaAR(anses.fechaConsulta), fuentes: anses.vigencias.map((v) => v.fuente) },
   aportes: { nombre: "Aportes del trabajador: 11% jubilación (Ley 24.241), 3% PAMI (Ley 19.032), 3% obra social (Ley 23.660)", vigencia: "permanente", consultado: fechaAR(sueldoNeto.fechaConsulta), fuentes: sueldoNeto.fuentes },
-  sac: { nombre: "Sueldo anual complementario (LCT arts. 121-123, Ley 23.041)", vigencia: "permanente", consultado: fechaAR(aguinaldo.fechaConsulta), fuentes: aguinaldo.fuentes },
+  sac: { nombre: "Sueldo anual complementario (LCT arts. 121–123; vencimientos art. 122, Ley 20.744 texto según Ley 27.073; Ley 23.041)", vigencia: "permanente", consultado: fechaAR(aguinaldo.fechaConsulta), fuentes: aguinaldo.fuentes },
   ganancias: { nombre: `Ganancias: escala art. 94 y deducciones art. 30, ${ganancias.anual.uso}`, vigencia: `período fiscal ${ganancias.periodoFiscal}`, consultado: fechaAR(ganancias.fechaConsulta), fuentes: [...ganancias.anual.fuentes, ganancias.alquilerCasaHabitacion.fuente] },
   indemnizacion: { nombre: `Indemnización: ${indemnizacion.norma}`, vigencia: "desde el 6/3/2026", consultado: fechaAR(indemnizacion.fechaConsulta), fuentes: indemnizacion.fuentes },
   monotributo: { nombre: "Monotributo: categorías, parámetros y cuotas (ARCA)", vigencia: `desde el ${fechaAR(monotributo.vigenciaDesde)}`, consultado: fechaAR(monotributo.fechaConsulta), fuentes: [monotributo.fuente] },

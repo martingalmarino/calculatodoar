@@ -41,7 +41,7 @@ export const EJEMPLOS: Partial<Record<CalcSlug, { aviso: string; ejemplo: string
     procedencia: ["aportes", "anses"],
   },
   aguinaldo: {
-    aviso: `Usamos los días reales del semestre: ${aguinaldo.diasDelSemestre["2026-S1"]} en el primero de 2026 (${aguinaldo.diasDelSemestre.bisiestoS1} en años bisiestos) y ${aguinaldo.diasDelSemestre["2026-S2"]} en el segundo. La ley no fija un divisor; algunas calculadoras usan 180. Vencimientos: ${aguinaldo.vencimientos.primeraCuota} y ${aguinaldo.vencimientos.segundaCuota}, con tolerancia de ${aguinaldo.vencimientos.tolerancia}.`,
+    aviso: `Usamos los días reales del semestre: ${aguinaldo.diasDelSemestre["2026-S1"]} en el primero de 2026 (${aguinaldo.diasDelSemestre.bisiestoS1} en años bisiestos) y ${aguinaldo.diasDelSemestre["2026-S2"]} en el segundo. La ley no fija un divisor; algunas calculadoras usan 180. Vencimientos: ${aguinaldo.vencimientos.primeraCuota} y ${aguinaldo.vencimientos.segundaCuota} (art. 122, LCT).`,
     ejemplo: `Mejor sueldo del semestre ${pesos(1_500_000)}, ingreso el 3/10/2026: ${a1.diasTrabajados} días de ${a1.diasSemestre}. Aguinaldo bruto ${pesos(a1.bruto)}, neto ${pesos(a1.neto)}.`,
     procedencia: ["sac", "aportes", "anses"],
   },

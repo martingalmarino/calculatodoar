@@ -10,13 +10,12 @@
   "criterioDivisor": "La ley (LCT art. 121-123, Ley 23.041) dice 'proporcional al tiempo trabajado' y no fija divisor. Se usan los días reales del semestre (181/182/184), criterio de software de liquidación (Bejerman). Algunas calculadoras usan 180: mostrar nota.",
   "vencimientos": {
     "primeraCuota": "30 de junio",
-    "segundaCuota": "18 de diciembre",
-    "tolerancia": "4 días hábiles"
+    "segundaCuota": "18 de diciembre"
   },
   "base": "mayor remuneración mensual remunerativa devengada en el semestre",
   "fuentes": [
     "https://servicios.infoleg.gob.ar/infolegInternet/anexos/25000-29999/25552/texact.htm",
     "http://www.bejerman.com/Servicios/soporte/Faqs/sj/34053.htm"
   ],
-  "estado": "divisor: sin norma expresa (criterio adoptado, no 'confirmado'); fechas: Ley 23.041 modif. Ley 27.073 [no abrí el texto de la Ley 27.073 en InfoLEG]"
+  "estado": "divisor: sin norma expresa (criterio adoptado, no 'confirmado'); vencimientos art. 122 LCT (Ley 20.744, texto según Ley 27.073): 30/6 y 18/12, sin tolerancia legal; la tolerancia de 4 días hábiles del art. 128 es interpretación habitual, no texto del art. 122"
 }

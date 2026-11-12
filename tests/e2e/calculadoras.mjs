@@ -112,7 +112,11 @@ try {
     assert.ok(ld.some((t) => t.includes('"WebSite"') && t.includes("SearchAction")));
     assert.ok(ld.some((t) => t.includes('"Organization"')));
     const nav = await page.$$eval("header .nav a", (as) => as.map((a) => a.textContent?.trim()));
-    assert.equal(nav.length, 4);
+    assert.equal(nav.length, 5);
+    assert.equal(nav.at(-1), "Noticias");
+    assert.equal(await page.locator('header .nav a[href="/noticias/"]').count(), 1);
+    assert.equal(await page.locator('footer a[href="/noticias/"]').count(), 1);
+    assert.equal(await page.locator(".bloque-noticias").count(), 0);
     console.log(`ok  / → home v3 (${lista.length} tarjetas, nav ${nav.join(", ")})`);
   } catch (e) {
     fallas++;
@@ -125,6 +129,32 @@ try {
       assert.equal(res?.status(), 200, `${hub} status ${res?.status()}`);
       console.log(`ok  ${hub} → 200`);
     } catch (e) { fallas++; console.error(`MAL ${e.message}`); }
+  }
+
+  // Noticias QA (prompt 41): portada vacía, 404 de borradores, sitemap limpio
+  try {
+    const resN = await page.goto(BASE + "/noticias/", { waitUntil: "load" });
+    assert.equal(resN?.status(), 200, `/noticias/ status ${resN?.status()}`);
+    const h1n = ((await page.locator("h1").first().textContent()) ?? "").trim();
+    assert.equal(h1n, "Noticias");
+    const mainN = (await page.locator("main").innerText()) ?? "";
+    assert.equal(/El INDEC publica mañana|Cómo se calcula el aguinaldo/i.test(mainN), false);
+    assert.equal(await page.locator('header .nav a[href="/noticias/"][aria-current="page"]').count(), 1);
+    assert.equal(await page.locator('footer a[href="/noticias/"]').count(), 1);
+    assert.equal(await page.locator("html").getAttribute("lang"), "es-AR");
+    for (const slug of ["indec-publica-ipc-octubre-2026", "como-se-calcula-el-aguinaldo"]) {
+      const r = await page.request.get(BASE + `/noticias/${slug}/`);
+      assert.equal(r.status(), 404, `${slug} → ${r.status()}`);
+    }
+    const sm = await (await page.request.get(BASE + "/sitemap.xml")).text();
+    assert.ok(sm.includes("https://www.calculalo.com.ar/noticias/"), "sitemap sin /noticias/");
+    assert.equal(sm.includes("/noticias/indec-publica-ipc-octubre-2026"), false);
+    assert.equal(sm.includes("/noticias/como-se-calcula-el-aguinaldo"), false);
+    assert.ok(sm.includes("/laboral/sueldo-neto/"), "sitemap sin calculadoras");
+    console.log("ok  /noticias/ → vacía, 404 borradores, sitemap limpio");
+  } catch (e) {
+    fallas++;
+    console.error(`MAL noticias: ${e.message}`);
   }
 
   // Enlaces internos de home y hubs
