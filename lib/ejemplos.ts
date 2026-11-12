@@ -4,6 +4,8 @@ import { calcularAguinaldo } from "./calc/aguinaldo";
 import { calcularIndemnizacion } from "./calc/indemnizacion";
 import { calcularGanancias } from "./calc/ganancias";
 import { calcularMonotributo } from "./calc/monotributo";
+import { calcularIva } from "./calc/iva";
+import { calcularAutonomos } from "./calc/autonomos";
 import { calcularAlquiler } from "./calc/alquiler";
 import { calcularCuotas } from "./calc/cuotas";
 import { calcularDolar } from "./calc/dolar";
@@ -16,8 +18,12 @@ import { calcularVacaciones } from "./calc/vacaciones";
 import { calcularHorasExtras } from "./calc/horasExtras";
 import { calcularLiquidacionFinal } from "./calc/liquidacionFinal";
 import { calcularCostoLaboral } from "./calc/costoLaboral";
-import { pAguinaldo, pAlquiler, pBilletera, pCombustible, pCosto, pDolar, pGanancias, pHorasExtras, pIndem, pInflacion, pLiquidacion, pMono, pPlazoFijo, pPrestamo, pSueldo, pVacaciones } from "./params";
-import { aguinaldo, anses, ansesActual, ganancias, monotributo, rangoICL, rangoIPC, tasas, ultimoIPC, PROCEDENCIA } from "./data";
+import { calcularCasasParticulares } from "./calc/casasParticulares";
+import { calcularAsignaciones } from "./calc/asignaciones";
+import { calcularCostoAlquilar } from "./calc/costoAlquilar";
+import { calcularRetencionGanancias } from "./calc/retencionGanancias";
+import { pAguinaldo, pAlquiler, pAsignaciones, pAutonomos, pBilletera, pCasas, pCombustible, pCosto, pCostoAlquilar, pDolar, pGanancias, pHorasExtras, pIndem, pInflacion, pIva, pLiquidacion, pMono, pPlazoFijo, pPrestamo, pRetencion, pSueldo, pVacaciones } from "./params";
+import { aguinaldo, anses, ansesActual, asignacionesFamiliares, autonomos, casasParticulares, ganancias, iva, monotributo, rangoICL, rangoIPC, sellosAlquiler, tasas, ultimoIPC, PROCEDENCIA } from "./data";
 import { fechaAR, pesos, pct } from "./format";
 import type { CalcSlug } from "./content";
 
@@ -27,6 +33,8 @@ const a1 = calcularAguinaldo({ anio: 2026, semestre: 2, mejorRemuneracion: 1_500
 const i1 = calcularIndemnizacion({ ingreso: "2022-01-15", egreso: "2026-10-20", mejorRemuneracion: 1_500_000, superoPrueba: true, huboPreaviso: false, topeConvenio: 0, vacacionesGozadas: 0 }, pIndem)!;
 const g1 = calcularGanancias({ brutoMensual: 4_000_000, incluirSac: true, conyuge: false, hijos: 0, alquilerMensual: 0, alquilerReli: false, otrasDeducciones: 0 }, pGanancias);
 const m1 = calcularMonotributo({ facturacionAnual: 20_000_000, actividad: "servicios", superficieM2: 0, energiaKw: 0, alquileresAnuales: 0, precioUnitarioMax: 0, aportaPorOtroLado: false }, pMono);
+const ivaEj = calcularIva({ monto: 10_000, modo: "sumar", alicuota: pIva.alicuotas.find((a) => a.valor === 0.21)!.valor });
+const autEj = calcularAutonomos({ categoria: "minima-III" }, pAutonomos);
 const alq = calcularAlquiler({ modo: "icl", alquilerInicial: 200_000, fechaInicio: "2023-12-01", fechaAjuste: "2024-12-01" }, pAlquiler);
 const cuo = calcularCuotas({ precioContado: 1_080_000, cantidadCuotas: 6, valorCuota: 200_000, tasaMensual: 0.019, primeraCuotaHoy: false });
 const cotOficial = pDolar.referencias.find((r) => r.clave === "oficialMinorista")!.valor;
@@ -55,15 +63,68 @@ export const EJEMPLOS: Partial<Record<CalcSlug, { aviso: string; ejemplo: string
     ejemplo: `Bruto ${pesos(4_000_000)} por mes, con aguinaldo: ganancia anual ${pesos(g1.brutoAnual)}, aportes ${pesos(g1.aportes)}, ganancia neta imponible ${pesos(g1.gni)}. Impuesto anual: ${pesos(g1.impuesto)}.`,
     procedencia: ["ganancias", "aportes", "anses"],
   },
+  "retencion-ganancias": {
+    aviso: `${pRetencion.avisoAlcance} ${pRetencion.topeAnsesNota} Procedimiento SAC: ${pRetencion.procedimientoSac}.`,
+    ejemplo: (() => {
+      const r = calcularRetencionGanancias({
+        mesPago: "diciembre",
+        brutoMensual: 4_000_000,
+        sacJunio: true,
+        sacEsteMes: true,
+        importeSac: 4_000_000,
+        conyuge: false,
+        hijos: 0,
+        hijosDiscapacidad: 0,
+        alquilerMensual: 0,
+        alquilerReli: false,
+        otrasDeduccionesAcumuladas: 0,
+      }, pRetencion);
+      return r.ok
+        ? `Diciembre, bruto ${pesos(4_000_000)} con dos SAC: retención del pago ${pesos(r.retencion)}; neto aproximado ${pesos(r.netoAprox)}.`
+        : r.error;
+    })(),
+    procedencia: ["ganancias", "aportes", "anses"],
+  },
   monotributo: {
     aviso: `Categorías vigentes desde el ${fechaAR(monotributo.vigenciaDesde)}. Precio unitario máximo para venta de cosas muebles: ${pesos(monotributo.precioUnitarioMaximoVentaMuebles)}.`,
     ejemplo: m1.excluido ? "" : `Servicios con ${pesos(20_000_000)} facturados en 12 meses: categoría ${m1.categoria.categoria}, cuota mensual ${pesos(m1.cuota)}.`,
     procedencia: ["monotributo"],
   },
+  iva: {
+    aviso: `${iva.norma}. Consulta del ${fechaAR(iva.fechaConsulta)}. ${iva.nota}`,
+    ejemplo: ivaEj.ok ? `Neto ${pesos(10_000)} al 21%: IVA ${pesos(ivaEj.iva)}, total ${pesos(ivaEj.total)}.` : ivaEj.error,
+    procedencia: ["iva"],
+  },
+  autonomos: {
+    aviso: `Tabla ARCA vigente desde el ${fechaAR(autonomos.vigenciaDesde)}. Consulta del ${fechaAR(autonomos.fechaConsulta)}. ${autonomos.notaVigencia}`,
+    ejemplo: autEj.ok ? `Categoría ${autEj.categoria.etiqueta}: aporte mensual ${pesos(autEj.aporte)}.` : autEj.error,
+    procedencia: ["autonomos"],
+  },
   "actualizacion-alquiler": {
     aviso: `ICL del BCRA del ${fechaAR(rangoICL.primera)} al ${fechaAR(rangoICL.ultima)}. IPC nacional del ${rangoIPC.primera} al ${rangoIPC.ultima} (último publicado: ${ultimoIPC().periodo}). Sin interpolar: si falta el dato de un día o mes, no se calcula.`,
     ejemplo: alq.ok ? `Alquiler original ${pesos(200_000)}, inicio 1/12/2023 y ajuste 1/12/2024: coeficiente ${alq.coeficiente.toLocaleString("es-AR", { maximumFractionDigits: 4 })}, nuevo alquiler ${pesos(alq.nuevo)}.` : alq.error,
     procedencia: ["icl", "ipc", "alquileres"],
+  },
+  "costo-alquilar": {
+    aviso: `Sellos ejercicio ${sellosAlquiler.ejercicioFiscal}. Consulta del ${fechaAR(sellosAlquiler.fechaConsulta)}. ${sellosAlquiler.notaComision} ${sellosAlquiler.baseImponible.detalle}`,
+    ejemplo: (() => {
+      const r = calcularCostoAlquilar({
+        alquilerMensual: 800_000,
+        plazoMeses: 24,
+        jurisdiccion: "cordoba",
+        destino: "vivienda",
+        mesesDeposito: 1,
+        mesAdelantado: true,
+        modoComision: "meses",
+        mesesComision: 1,
+        porcentajeComision: 0,
+        expensas: 0,
+      }, pCostoAlquilar, pCostoAlquilar.notaComision);
+      return r.ok
+        ? `Córdoba, vivienda urbana, alquiler ${pesos(800_000)}, 24 meses: sellos ${pesos(r.sellos)}, total a juntar ${pesos(r.total)}.`
+        : r.error;
+    })(),
+    procedencia: ["sellosAlquiler"],
   },
   "cuotas-o-contado": {
     aviso: `La tasa se precarga con la inflación mensual del INDEC (${inflMensual.valor.toLocaleString("es-AR")} % al ${fechaAR(inflMensual.fecha)}), solo como referencia editable. ${tasas.aviso}`,
@@ -170,5 +231,47 @@ export const EJEMPLOS: Partial<Record<CalcSlug, { aviso: string; ejemplo: string
         : r.error;
     })(),
     procedencia: ["contribuciones", "aportes", "anses"],
+  },
+  "casas-particulares": {
+    aviso: `${casasParticulares.norma}. Escalas y aportes consultados el ${fechaAR(casasParticulares.fechaConsulta)}. ${casasParticulares.ordenAjustes} ${casasParticulares.conversionHoras.alcance}`,
+    ejemplo: (() => {
+      const r = calcularCasasParticulares({
+        periodo: "2026-11",
+        categoria: "tareas-generales",
+        modalidad: "con-retiro",
+        formaPago: "mensual",
+        horasSemanales: 48,
+        aniosAntiguedad: 0,
+        zonaDesfavorable: false,
+        situacion: "activo18",
+        semestreSac: 2,
+      }, pCasas);
+      return r.ok
+        ? `Noviembre, tareas generales con retiro, 48 h: remuneración ${pesos(r.remuneracion)}, aportes ARCA ${pesos(r.aportes?.importeAPagar ?? 0)}, costo del mes ${pesos(r.costoMensualEmpleador)}; medio SAC completo ${pesos(r.medioSac)}.`
+        : r.error;
+    })(),
+    procedencia: ["casasParticulares"],
+  },
+  "asignaciones-familiares": {
+    aviso: `${asignacionesFamiliares.norma}. Haberes desde ${asignacionesFamiliares.vigenciaDesde}. Consulta del ${fechaAR(asignacionesFamiliares.fechaConsulta)}. ${asignacionesFamiliares.notaIgf}`,
+    ejemplo: (() => {
+      const r = calcularAsignaciones({
+        regimen: "aaff",
+        zona: "general",
+        igf: 1_000_000,
+        hijos: 1,
+        hijosDiscapacidad: 0,
+        prenatal: false,
+        ayudaEscolar: false,
+        nacimiento: false,
+        matrimonio: false,
+        adopcion: false,
+        integranteSuperaTope: false,
+      }, pAsignaciones);
+      return r.ok
+        ? `AAFF, valor general, 1 hijo, IGF ${pesos(1_000_000)}: ${pesos(r.totalMensual)} mensuales.`
+        : r.error;
+    })(),
+    procedencia: ["asignaciones"],
   },
 };

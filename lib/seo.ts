@@ -10,8 +10,8 @@ import {
 } from "./noticias";
 import type { Miga } from "@/components/Migas";
 
-/** Fecha en que se cargaron los datos de la tanda 2 (tras data:series). */
-export const FECHA_MODIFICACION = "2026-11-10";
+/** Fecha de la última carga de datos / calculadora (autónomos). */
+export const FECHA_MODIFICACION = "2026-11-12";
 export const abs = (p: string) => `${SITE.url}${p}`;
 
 export const PORTADA_NOTICIAS = {

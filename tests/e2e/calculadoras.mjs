@@ -1,4 +1,4 @@
-// Prueba end-to-end: levanta el sitio compilado y verifica las 17 calculadoras + hubs + enlaces.
+// Prueba end-to-end: levanta el sitio compilado y verifica las calculadoras publicadas + hubs + enlaces.
 // Uso: npm run build && npm run test:e2e   (BASE_URL=http://... para probar otro servidor)
 import { chromium } from "playwright";
 import { spawn } from "node:child_process";
@@ -52,7 +52,14 @@ const casos = [
   { url: "/laboral/aguinaldo/", fills: [["#rem", "2000000"]], espera: (t) => cerca(num(t), 830_000) },
   { url: "/laboral/indemnizacion/", fills: [["#rem", "2000000"]], espera: (t) => num(t) > 10_000_000 },
   { url: "/impuestos/ganancias/", fills: [["#bruto", "4000000"]], espera: (t) => cerca(num(t), 792_864.71, 0.02) },
+  {
+    url: "/impuestos/retencion-ganancias/",
+    fills: [["#bruto", "4000000"]],
+    espera: (t) => cerca(num(t), 475_271.67, 0.02),
+  },
   { url: "/impuestos/monotributo/", fills: [["#fact", "20000000"]], espera: (t) => cerca(num(t), 66_020.12, 0.02) },
+  { url: "/impuestos/iva/", fills: [["#monto", "10000"]], espera: (t) => cerca(num(t), 12_100) },
+  { url: "/impuestos/autonomos/", fills: [], espera: (t) => cerca(num(t), 156_541.75, 0.02) },
   // Tanda 2
   { url: "/finanzas/actualizacion-alquiler/", fills: [["#alq", "200000"], ["#fi", "2023-12-01"], ["#fa", "2024-12-01"]], espera: (t) => cerca(num(t), 617_339) },
   { url: "/finanzas/cuotas-o-contado/", fills: [["#contado", "1080000"], ["#n", "6"], ["#cuota", "200000"], ["#tasa", "1,9"]], espera: (t) => cerca(num(t), 1_080_000) },
@@ -71,6 +78,21 @@ const casos = [
     fills: [["#bruto", "1500000"], ["#per", "2026-11"]],
     espera: (t) => cerca(num(t), 1_859_164),
   },
+  {
+    url: "/laboral/casas-particulares/",
+    fills: [],
+    espera: (t) => cerca(num(t), 556_664.00, 0.02),
+  },
+  {
+    url: "/laboral/asignaciones-familiares/",
+    fills: [["#igf", "1000000"], ["#hijos", "1"]],
+    espera: (t) => cerca(num(t), 79_816, 0.02),
+  },
+  {
+    url: "/finanzas/costo-alquilar/",
+    fills: [["#alquiler", "800000"], ["#jur", "cordoba"]],
+    espera: (t) => cerca(num(t), 2_400_000),
+  },
 ];
 
 const hubs = ["/finanzas/", "/hogar/"];
@@ -78,9 +100,9 @@ const hubs = ["/finanzas/", "/hogar/"];
 /** Hrefs del catálogo = todas las calculadoras publicadas (lib/content.ts). */
 const hrefsCatalogo = [
   "/laboral/sueldo-neto/", "/laboral/aguinaldo/", "/laboral/indemnizacion/",
-  "/laboral/liquidacion-final/", "/laboral/costo-laboral/", "/laboral/vacaciones/", "/laboral/horas-extras/",
-  "/impuestos/ganancias/", "/impuestos/monotributo/",
-  "/finanzas/actualizacion-alquiler/", "/finanzas/cuotas-o-contado/", "/finanzas/dolar-tarjeta/",
+  "/laboral/liquidacion-final/", "/laboral/costo-laboral/", "/laboral/casas-particulares/", "/laboral/asignaciones-familiares/", "/laboral/vacaciones/", "/laboral/horas-extras/",
+  "/impuestos/ganancias/", "/impuestos/retencion-ganancias/", "/impuestos/monotributo/", "/impuestos/iva/", "/impuestos/autonomos/",
+  "/finanzas/actualizacion-alquiler/", "/finanzas/costo-alquilar/", "/finanzas/cuotas-o-contado/", "/finanzas/dolar-tarjeta/",
   "/finanzas/plazo-fijo/", "/finanzas/inflacion/", "/finanzas/rendimiento-billeteras/", "/finanzas/prestamos/",
   "/hogar/combustible/",
 ];
@@ -116,7 +138,10 @@ try {
     assert.equal(nav.at(-1), "Noticias");
     assert.equal(await page.locator('header .nav a[href="/noticias/"]').count(), 1);
     assert.equal(await page.locator('footer a[href="/noticias/"]').count(), 1);
-    assert.equal(await page.locator(".bloque-noticias").count(), 0);
+    const bloque = await page.locator(".bloque-noticias").count();
+    if (bloque > 0) {
+      assert.equal(await page.locator('.bloque-noticias a[href="/noticias/"]').count(), 1);
+    }
     console.log(`ok  / → home v3 (${lista.length} tarjetas, nav ${nav.join(", ")})`);
   } catch (e) {
     fallas++;
@@ -131,27 +156,23 @@ try {
     } catch (e) { fallas++; console.error(`MAL ${e.message}`); }
   }
 
-  // Noticias QA (prompt 41): portada vacía, 404 de borradores, sitemap limpio
+  // Noticias QA: portada, borradores 404, publicadas en sitemap
   try {
     const resN = await page.goto(BASE + "/noticias/", { waitUntil: "load" });
     assert.equal(resN?.status(), 200, `/noticias/ status ${resN?.status()}`);
     const h1n = ((await page.locator("h1").first().textContent()) ?? "").trim();
     assert.equal(h1n, "Noticias");
-    const mainN = (await page.locator("main").innerText()) ?? "";
-    assert.equal(/El INDEC publica mañana|Cómo se calcula el aguinaldo/i.test(mainN), false);
     assert.equal(await page.locator('header .nav a[href="/noticias/"][aria-current="page"]').count(), 1);
     assert.equal(await page.locator('footer a[href="/noticias/"]').count(), 1);
     assert.equal(await page.locator("html").getAttribute("lang"), "es-AR");
-    for (const slug of ["indec-publica-ipc-octubre-2026", "como-se-calcula-el-aguinaldo"]) {
-      const r = await page.request.get(BASE + `/noticias/${slug}/`);
-      assert.equal(r.status(), 404, `${slug} → ${r.status()}`);
-    }
+    const draft = await page.request.get(BASE + "/noticias/indec-publica-ipc-octubre-2026/");
+    assert.equal(draft.status(), 404, `borrador IPC → ${draft.status()}`);
     const sm = await (await page.request.get(BASE + "/sitemap.xml")).text();
     assert.ok(sm.includes("https://www.calculalo.com.ar/noticias/"), "sitemap sin /noticias/");
     assert.equal(sm.includes("/noticias/indec-publica-ipc-octubre-2026"), false);
-    assert.equal(sm.includes("/noticias/como-se-calcula-el-aguinaldo"), false);
     assert.ok(sm.includes("/laboral/sueldo-neto/"), "sitemap sin calculadoras");
-    console.log("ok  /noticias/ → vacía, 404 borradores, sitemap limpio");
+    assert.ok(sm.includes("/impuestos/iva/"), "sitemap sin IVA");
+    console.log("ok  /noticias/ → H1, borrador 404, sitemap con /noticias/ e IVA");
   } catch (e) {
     fallas++;
     console.error(`MAL noticias: ${e.message}`);

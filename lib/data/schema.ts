@@ -247,5 +247,112 @@ export interface ContribucionesPatronalesFile {
   aportesTrabajador: string;
 }
 
+export interface IvaAlicuota {
+  valor: number;
+  etiqueta: string;
+  codigoLibroIva: string;
+  nombre: string;
+  ayuda: string;
+}
+export interface IvaFile {
+  id: string;
+  fechaConsulta: string;
+  vigencia: string;
+  norma: string;
+  alicuotas: IvaAlicuota[];
+  fuentes: string[];
+  nota: string;
+}
+
+export interface AutonomosCategoriaRow {
+  id: string;
+  etiqueta: string;
+  descripcion: string;
+  importeMensual: number;
+}
+export interface AutonomosGrupo {
+  id: string;
+  nombre: string;
+  categorias: AutonomosCategoriaRow[];
+}
+export interface AutonomosFile {
+  id: string;
+  fechaConsulta: string;
+  vigenciaDesde: string;
+  verificadoEnPdf: boolean;
+  tituloDocumento: string;
+  notaVigencia: string;
+  fuentes: string[];
+  umbralDecreto1866: { valor: number; detalle: string; usoEnCalculadora: string };
+  rentasReferencia: { categoria: string; importe: number }[];
+  grupos: AutonomosGrupo[];
+}
+
+export interface CasasEscalaCelda {
+  hora: number;
+  mes: number;
+}
+export interface CasasEscalaPeriodo {
+  verificadoEnPdf: boolean;
+  vigencia: string;
+  fuente: string;
+  norma?: string;
+  categorias: Record<string, Partial<Record<"conRetiro" | "sinRetiro", CasasEscalaCelda>>>;
+}
+export interface CasasAportesFila {
+  importeAPagar: number;
+  aportesSalud: number;
+  contribucionesSipa: number;
+  cuotaArt: number;
+}
+export interface CasasAportesPeriodo {
+  verificadoEnPdf: boolean;
+  vigencia: string;
+  fuente: string;
+  filas: Record<string, Record<string, CasasAportesFila>> | null;
+  nota?: string;
+}
+export interface CasasParticularesFile {
+  id: string;
+  fechaConsulta: string;
+  norma: string;
+  ordenAjustes: string;
+  conversionHoras: { detalle: string; alcance: string; fuente: string };
+  antiguedad: { porcentajePorAnio: number; computaDesde: string; seAbonaDesde: string; fuente: string; norma: string };
+  zonaDesfavorable: { porcentaje: number; jurisdicciones: string[]; detalle: string };
+  sac: { detalle: string; fuente: string };
+  vacaciones: { detalle: string; tramos: { hastaAnios: number | null; dias: number }[] };
+  fuentesGenerales: string[];
+  escalas: Record<string, CasasEscalaPeriodo>;
+  aportes: Record<string, CasasAportesPeriodo>;
+}
+
+export interface AsignacionesFamiliaresFile {
+  id: string;
+  fechaConsulta: string;
+  vigenciaDesde: string;
+  norma: string;
+  normaDetalle: string;
+  verificadoEnNorma: boolean;
+  fuentes: string[];
+  topeIgf: number;
+  topePorIntegrante: { monto: number; norma: string; detalle: string; verificadoEnNorma: boolean; noAplicaA: string[] };
+  auhRetencion: { cobroMensual: number; retenido: number; norma: string; verificadoEnNorma: boolean };
+  notaIgf: string;
+  anexoI: Record<string, unknown>;
+  anexoV: Record<string, unknown>;
+  anexoVI: Record<string, unknown>;
+  anexosIf: Record<string, string>;
+}
+
+export interface SellosAlquilerFile {
+  id: string;
+  fechaConsulta: string;
+  ejercicioFiscal: number;
+  baseImponible: { detalle: string; fuentes: Record<string, { norma: string; url: string; detalle: string }> };
+  jurisdicciones: Record<string, unknown>;
+  notaComision: string;
+}
+
 /** Vigencia y fuentes normalizadas para mostrar en la UI */
 export interface Procedencia { nombre: string; vigencia: string; consultado: string; fuentes: string[] }

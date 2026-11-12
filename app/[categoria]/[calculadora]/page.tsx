@@ -12,6 +12,8 @@ import Aguinaldo from "@/components/calcs/Aguinaldo";
 import Indemnizacion from "@/components/calcs/Indemnizacion";
 import Ganancias from "@/components/calcs/Ganancias";
 import Monotributo from "@/components/calcs/Monotributo";
+import Iva from "@/components/calcs/Iva";
+import Autonomos from "@/components/calcs/Autonomos";
 import ActualizacionAlquiler from "@/components/calcs/ActualizacionAlquiler";
 import CuotasOContado from "@/components/calcs/CuotasOContado";
 import DolarTarjeta from "@/components/calcs/DolarTarjeta";
@@ -24,6 +26,10 @@ import Vacaciones from "@/components/calcs/Vacaciones";
 import HorasExtras from "@/components/calcs/HorasExtras";
 import LiquidacionFinal from "@/components/calcs/LiquidacionFinal";
 import CostoLaboral from "@/components/calcs/CostoLaboral";
+import CasasParticulares from "@/components/calcs/CasasParticulares";
+import AsignacionesFamiliares from "@/components/calcs/AsignacionesFamiliares";
+import CostoAlquilar from "@/components/calcs/CostoAlquilar";
+import RetencionGanancias from "@/components/calcs/RetencionGanancias";
 import { CALCULADORAS, SITE, getCalc, getCategoria, relacionadasDe, urlCalc, type CalcSlug } from "@/lib/content";
 import { EJEMPLOS } from "@/lib/ejemplos";
 import { PROCEDENCIA } from "@/lib/data";
@@ -31,11 +37,11 @@ import { fechaAR } from "@/lib/format";
 import { breadcrumb, dateModifiedDe, faqPage, webApp } from "@/lib/seo";
 
 const COMPONENTES: Partial<Record<CalcSlug, () => React.JSX.Element>> = {
-  "sueldo-neto": SueldoNeto, aguinaldo: Aguinaldo, indemnizacion: Indemnizacion, ganancias: Ganancias, monotributo: Monotributo,
-  "actualizacion-alquiler": ActualizacionAlquiler, "cuotas-o-contado": CuotasOContado, "dolar-tarjeta": DolarTarjeta,
+  "sueldo-neto": SueldoNeto, aguinaldo: Aguinaldo, indemnizacion: Indemnizacion, ganancias: Ganancias, "retencion-ganancias": RetencionGanancias, monotributo: Monotributo, iva: Iva, autonomos: Autonomos,
+  "actualizacion-alquiler": ActualizacionAlquiler, "costo-alquilar": CostoAlquilar, "cuotas-o-contado": CuotasOContado, "dolar-tarjeta": DolarTarjeta,
   "plazo-fijo": PlazoFijo, inflacion: Inflacion, "rendimiento-billeteras": RendimientoBilleteras, prestamos: Prestamos,
   combustible: Combustible, vacaciones: Vacaciones, "horas-extras": HorasExtras, "liquidacion-final": LiquidacionFinal,
-  "costo-laboral": CostoLaboral,
+  "costo-laboral": CostoLaboral, "casas-particulares": CasasParticulares, "asignaciones-familiares": AsignacionesFamiliares,
 };
 
 export const dynamicParams = false;

@@ -1,11 +1,17 @@
 // Adapta los JSON de /data a los parámetros de cada módulo de cálculo.
 import {
-  aguinaldo, alquileres, ansesActual, combustible, contribuciones, dolar,
-  ganancias, iclEn, ipc, ipcEn, indemnizacion, monotributo, plazoFijo, prestamos,
+  aguinaldo, alquileres, ansesActual, asignacionesFamiliares, autonomos, casasParticulares, combustible, contribuciones, dolar,
+  ganancias, iclEn, ipc, ipcEn, indemnizacion, iva, monotributo, plazoFijo, prestamos, sellosAlquiler,
   rangoICL, rangoIPC, sueldoNeto, tasaAportes, tasas, ultimoIPC, ultimaUVA, uvaEn,
   vacacionesHoras, liquidacion,
 } from "./data";
+import retencionReglasJson from "@/data/retencion-ganancias-reglas.json";
 import { diasSemestre } from "./calc/aguinaldo";
+import type { AportesPeriodo, EscalaPeriodo, SituacionAportes, TramoHoras } from "./calc/casasParticulares";
+import type { AsignacionesParams, CategoriaMono, ZonaAaff, ZonaAuh } from "./calc/asignaciones";
+import type { SellosAlquilerParams } from "./calc/costoAlquilar";
+import { MESES_RETENCION, type DeduccionesMensuales, type MesRetencion, type RetencionGananciasParams } from "./calc/retencionGanancias";
+import type { Tramo } from "./data/schema";
 
 export const pSueldo = { baseImponibleMaxima: ansesActual.baseImponibleMaxima, aportes: sueldoNeto.aportesTrabajador };
 export const pAguinaldo = { tasaAportes, baseImponibleMaxima: ansesActual.baseImponibleMaxima, diasDelSemestre: aguinaldo.diasDelSemestre };
@@ -29,7 +35,161 @@ export const pGanancias = {
   tasaAportes,
   baseImponibleMaxima: ansesActual.baseImponibleMaxima,
 };
+
+const rm = (ganancias as unknown as {
+  retencionMensual: {
+    escalaArt94Acumulada: Record<MesRetencion, (Tramo & { sobreExcedente?: number })[]>;
+    deduccionesArt30Acumuladas: DeduccionesMensuales & Record<string, Record<MesRetencion, number>>;
+  };
+}).retencionMensual;
+
+export const pRetencion: RetencionGananciasParams & {
+  avisoAlcance: string;
+  topeAnsesNota: string;
+  procedimientoSac: string;
+} = {
+  escalaPorMes: Object.fromEntries(
+    MESES_RETENCION.map((m) => [
+      m,
+      rm.escalaArt94Acumulada[m].map((t) => ({
+        desde: t.desde,
+        hasta: t.hasta,
+        fijo: t.fijo,
+        alicuota: t.alicuota,
+      })),
+    ]),
+  ) as Record<MesRetencion, Tramo[]>,
+  deducciones: {
+    gni: rm.deduccionesArt30Acumuladas.gni,
+    conyuge: rm.deduccionesArt30Acumuladas.conyuge,
+    hijo: rm.deduccionesArt30Acumuladas.hijo,
+    hijoIncapacitado: rm.deduccionesArt30Acumuladas.hijoIncapacitado,
+    deduccionEspecialAp2Empleados: rm.deduccionesArt30Acumuladas.deduccionEspecialAp2Empleados,
+  },
+  alquilerPorcentaje: ganancias.alquilerCasaHabitacion.porcentajeDeducible,
+  alquilerReliPorcentaje: ganancias.alquilerCasaHabitacion.adicional10PorCientoRELI.porcentaje,
+  tasaAportes,
+  baseImponibleMaxima: ansesActual.baseImponibleMaxima,
+  topeAnsesUnico: retencionReglasJson.topeAnsesUnico,
+  avisoAlcance:
+    "V1: un empleador, trabajo desde enero, sueldo mensual constante. Tope ANSES de noviembre 2026 en todos los meses. No es el aplicativo de ARCA ni el F. 1357.",
+  topeAnsesNota: retencionReglasJson.topeAnsesNota,
+  procedimientoSac: retencionReglasJson.procedimientoSac,
+};
 export const pMono = { categorias: monotributo.categorias, precioUnitarioMaximo: monotributo.precioUnitarioMaximoVentaMuebles };
+export const pIva = { alicuotas: iva.alicuotas, fechaConsulta: iva.fechaConsulta, norma: iva.norma, nota: iva.nota };
+export const pAutonomos = {
+  grupos: autonomos.grupos,
+  categorias: autonomos.grupos.flatMap((g) => g.categorias),
+  vigenciaDesde: autonomos.vigenciaDesde,
+  fechaConsulta: autonomos.fechaConsulta,
+};
+export const pCasas = {
+  fechaConsulta: casasParticulares.fechaConsulta,
+  periodos: Object.keys(casasParticulares.escalas).sort(),
+  escalas: casasParticulares.escalas as Record<string, EscalaPeriodo>,
+  aportes: casasParticulares.aportes as Record<string, AportesPeriodo>,
+  antiguedad: casasParticulares.antiguedad,
+  zonaDesfavorable: casasParticulares.zonaDesfavorable,
+  vacaciones: casasParticulares.vacaciones,
+  diasDelSemestre: aguinaldo.diasDelSemestre,
+  ordenAjustes: casasParticulares.ordenAjustes,
+  conversionHoras: casasParticulares.conversionHoras,
+  situaciones: ["activo18", "joven16a17", "jubilado"] as SituacionAportes[],
+  tramos: ["menos12", "de12a16", "de16mas"] as TramoHoras[],
+};
+
+const aI = asignacionesFamiliares.anexoI as {
+  prenatalHijo: AsignacionesParams["anexoI"]["prenatalHijo"];
+  hijoDiscapacidad: AsignacionesParams["anexoI"]["hijoDiscapacidad"];
+  ayudaEscolar: AsignacionesParams["anexoI"]["ayudaEscolar"];
+  pagosUnicos: AsignacionesParams["anexoI"]["pagosUnicos"];
+  zonas: Record<ZonaAaff, { etiqueta: string; detalle: string }>;
+};
+const aV = asignacionesFamiliares.anexoV as {
+  montos: AsignacionesParams["anexoV"]["montos"];
+  zonas: Record<ZonaAuh, { etiqueta: string; detalle: string }>;
+};
+const aVI = asignacionesFamiliares.anexoVI as {
+  categorias: AsignacionesParams["anexoVI"]["categorias"];
+};
+
+export const pAsignaciones: AsignacionesParams & {
+  notaIgf: string;
+  topePorIntegrante: number;
+  vigenciaDesde: string;
+  fechaConsulta: string;
+  zonasAnexoI: typeof aI.zonas;
+  zonasAnexoV: typeof aV.zonas;
+  categoriasMono: CategoriaMono[];
+} = {
+  topeIgf: asignacionesFamiliares.topeIgf,
+  topePorIntegrante: asignacionesFamiliares.topePorIntegrante.monto,
+  auhCobro: asignacionesFamiliares.auhRetencion.cobroMensual,
+  auhRetenido: asignacionesFamiliares.auhRetencion.retenido,
+  anexoI: {
+    prenatalHijo: aI.prenatalHijo,
+    hijoDiscapacidad: aI.hijoDiscapacidad,
+    ayudaEscolar: aI.ayudaEscolar,
+    pagosUnicos: aI.pagosUnicos,
+  },
+  anexoV: { montos: aV.montos },
+  anexoVI: { categorias: aVI.categorias },
+  notaIgf: asignacionesFamiliares.notaIgf,
+  vigenciaDesde: asignacionesFamiliares.vigenciaDesde,
+  fechaConsulta: asignacionesFamiliares.fechaConsulta,
+  zonasAnexoI: aI.zonas,
+  zonasAnexoV: aV.zonas,
+  categoriasMono: Object.keys(aVI.categorias) as CategoriaMono[],
+};
+
+const j = sellosAlquiler.jurisdicciones as {
+  pba: {
+    general: { alicuota: number };
+    turismo: { alicuota: number; plazoMaximoMeses: number };
+    viviendaUnica: { valuacionTope: number; hastaTope: { alicuota: number }; sobreTope: { alicuota: number } };
+    agro: { alicuota: number };
+  };
+  cordoba: {
+    urbano: { alicuota: number };
+    rural: { alicuota: number };
+    exencionUrbana: { promedioMensualMaximo: number };
+  };
+  caba: {
+    viviendaPermanente: { alicuota: number; verificadoEnNorma: boolean };
+    comercialTuristico: { alicuota: number; verificadoEnNorma: boolean };
+  };
+};
+
+export const pCostoAlquilar: SellosAlquilerParams & {
+  notaComision: string;
+  fechaConsulta: string;
+  cabaViviendaVerificada: boolean;
+  cabaComercialVerificada: boolean;
+} = {
+  pba: {
+    general: j.pba.general.alicuota,
+    turismo: j.pba.turismo.alicuota,
+    turismoPlazoMax: j.pba.turismo.plazoMaximoMeses,
+    viviendaValuacionTope: j.pba.viviendaUnica.valuacionTope,
+    viviendaHastaTope: j.pba.viviendaUnica.hastaTope.alicuota,
+    viviendaSobreTope: j.pba.viviendaUnica.sobreTope.alicuota,
+    agro: j.pba.agro.alicuota,
+  },
+  cordoba: {
+    urbano: j.cordoba.urbano.alicuota,
+    rural: j.cordoba.rural.alicuota,
+    exencionPromedioMax: j.cordoba.exencionUrbana.promedioMensualMaximo,
+  },
+  caba: {
+    vivienda: j.caba.viviendaPermanente.alicuota,
+    comercialTuristico: j.caba.comercialTuristico.alicuota,
+  },
+  notaComision: sellosAlquiler.notaComision,
+  fechaConsulta: sellosAlquiler.fechaConsulta,
+  cabaViviendaVerificada: j.caba.viviendaPermanente.verificadoEnNorma,
+  cabaComercialVerificada: j.caba.comercialTuristico.verificadoEnNorma,
+};
 
 export const pAlquiler = {
   vigente: alquileres.vigente,

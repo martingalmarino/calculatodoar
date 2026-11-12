@@ -1,0 +1,143 @@
+{
+  "id": "casas-particulares",
+  "fechaConsulta": "2026-11-12",
+  "norma": "Ley 26.844",
+  "ordenAjustes": "Primero el 31% de zona desfavorable sobre el mínimo de escala; después el 1% de antigüedad por año sobre ese subtotal (Res. CNTCP 2/2021 art. 3°).",
+  "conversionHoras": {
+    "detalle": "Remuneraciones mensuales = 48 h semanales. Menos de 24 h: valor hora × horas. Entre 24 y menos de 48: mensual × horas/48. Fuente: Tu salario — casas particulares (Ministerio).",
+    "alcance": "El texto oficial lo presenta como criterio para CABA y remite fuera de CABA a la autoridad provincial.",
+    "fuente": "https://www.argentina.gob.ar/trabajo/casasparticulares/trabajador/sueldo"
+  },
+  "antiguedad": {
+    "porcentajePorAnio": 0.01,
+    "computaDesde": "2020-09-01",
+    "seAbonaDesde": "2021-09-01",
+    "fuente": "https://www.argentina.gob.ar/normativa/nacional/norma-351294/texto",
+    "norma": "Res. CNTCP 2/2021 art. 3°"
+  },
+  "zonaDesfavorable": {
+    "porcentaje": 0.31,
+    "jurisdicciones": [
+      "La Pampa",
+      "Río Negro",
+      "Chubut",
+      "Neuquén",
+      "Santa Cruz",
+      "Tierra del Fuego",
+      "Antártida e Islas del Atlántico Sur",
+      "Partido de Patagones (PBA)"
+    ],
+    "detalle": "31% sobre los salarios mínimos de cada categoría (anexos salariales)."
+  },
+  "sac": {
+    "detalle": "50% de la mayor remuneración mensual del semestre; cuotas en la última jornada laboral de junio y de diciembre (Ley 26.844 arts. 26–28). No rige el 18/12 del art. 122 LCT.",
+    "fuente": "https://servicios.infoleg.gob.ar/infolegInternet/anexos/210000-214999/210489/texact.htm"
+  },
+  "vacaciones": {
+    "detalle": "Días corridos según antigüedad al 31/12 (art. 29). Informativo en v1; no se liquida el plus del 30% del art. 32.",
+    "tramos": [
+      { "hastaAnios": 5, "dias": 14 },
+      { "hastaAnios": 10, "dias": 21 },
+      { "hastaAnios": 20, "dias": 28 },
+      { "hastaAnios": null, "dias": 35 }
+    ]
+  },
+  "fuentesGenerales": [
+    "https://servicios.infoleg.gob.ar/infolegInternet/anexos/210000-214999/210489/texact.htm",
+    "https://www.arca.gob.ar/casasparticulares/",
+    "https://www.argentina.gob.ar/trabajo/casasparticulares/trabajador/sueldo"
+  ],
+  "escalas": {
+    "2026-10": {
+      "verificadoEnPdf": true,
+      "vigencia": "octubre 2026",
+      "fuente": "https://www.arca.gob.ar/casasparticulares/categorias-y-remuneraciones/documentos/2026/Casas-particulares-remuneraciones-10-26.pdf",
+      "categorias": {
+        "supervision": { "conRetiro": { "hora": 4805.82, "mes": 599514.52 }, "sinRetiro": { "hora": 5215.59, "mes": 661702.46 } },
+        "tareas-especificas": { "conRetiro": { "hora": 4580.8, "mes": 560776.33 }, "sinRetiro": { "hora": 4973.38, "mes": 618187.89 } },
+        "caseros": { "sinRetiro": { "hora": 4337.53, "mes": 548429.23 } },
+        "cuidado-personas": { "conRetiro": { "hora": 4337.53, "mes": 548429.23 }, "sinRetiro": { "hora": 4801.52, "mes": 605050 } },
+        "tareas-generales": { "conRetiro": { "hora": 4064.08, "mes": 498582.06 }, "sinRetiro": { "hora": 4337.53, "mes": 548429.23 } }
+      }
+    },
+    "2026-11": {
+      "verificadoEnPdf": true,
+      "vigencia": "noviembre 2026",
+      "fuente": "https://www.argentina.gob.ar/normativa/429627_res7-1_pdf/archivo",
+      "norma": "Anexo 4 Res. CNTCP 7/2026 (IF-2026-85628114-APN-CNTCP#MCH)",
+      "categorias": {
+        "supervision": { "conRetiro": { "hora": 4923.44, "mes": 614186.76 }, "sinRetiro": { "hora": 5339.08, "mes": 677369.7 } },
+        "tareas-especificas": { "conRetiro": { "hora": 4695.59, "mes": 574828.75 }, "sinRetiro": { "hora": 5093.82, "mes": 633158.89 } },
+        "caseros": { "sinRetiro": { "hora": 4447.11, "mes": 562284.09 } },
+        "cuidado-personas": { "conRetiro": { "hora": 4447.11, "mes": 562284.09 }, "sinRetiro": { "hora": 4918.66, "mes": 619810.8 } },
+        "tareas-generales": { "conRetiro": { "hora": 4170.52, "mes": 511639.37 }, "sinRetiro": { "hora": 4447.11, "mes": 562284.09 } }
+      }
+    },
+    "2026-12": {
+      "verificadoEnPdf": true,
+      "vigencia": "diciembre 2026",
+      "fuente": "https://www.argentina.gob.ar/normativa/429627_res7-2_pdf/archivo",
+      "norma": "Anexo 5 Res. CNTCP 7/2026 (IF-2026-85636281-APN-CNTCP#MCH)",
+      "categorias": {
+        "supervision": { "conRetiro": { "hora": 5002.21, "mes": 624013.75 }, "sinRetiro": { "hora": 5424.5, "mes": 688207.61 } },
+        "tareas-especificas": { "conRetiro": { "hora": 4770.72, "mes": 584026.01 }, "sinRetiro": { "hora": 5175.33, "mes": 643289.43 } },
+        "caseros": { "sinRetiro": { "hora": 4518.27, "mes": 571280.64 } },
+        "cuidado-personas": { "conRetiro": { "hora": 4518.27, "mes": 571280.64 }, "sinRetiro": { "hora": 4997.36, "mes": 629727.77 } },
+        "tareas-generales": { "conRetiro": { "hora": 4237.25, "mes": 519825.6 }, "sinRetiro": { "hora": 4518.27, "mes": 571280.64 } }
+      }
+    }
+  },
+  "aportes": {
+    "2026-10": {
+      "verificadoEnPdf": true,
+      "vigencia": "octubre 2026 (vencimiento noviembre 2026)",
+      "fuente": "https://www.arca.gob.ar/casasparticulares/aportes-contribuciones-ART/documentos/2026/Casas-particulares-aportes-y-contribuciones-10-26.pdf",
+      "filas": {
+        "activo18": {
+          "menos12": { "importeAPagar": 10856.52, "aportesSalud": 2084.85, "contribucionesSipa": 729.9, "cuotaArt": 8041.77 },
+          "de12a16": { "importeAPagar": 17007.37, "aportesSalud": 3863.3, "contribucionesSipa": 1459.48, "cuotaArt": 11684.59 },
+          "de16mas": { "importeAPagar": 44784.77, "aportesSalud": 25694.55, "contribucionesSipa": 2128.79, "cuotaArt": 16961.43 }
+        },
+        "joven16a17": {
+          "menos12": { "importeAPagar": 10126.62, "aportesSalud": 2084.85, "contribucionesSipa": 0, "cuotaArt": 8041.77 },
+          "de12a16": { "importeAPagar": 15547.89, "aportesSalud": 3863.3, "contribucionesSipa": 0, "cuotaArt": 11684.59 },
+          "de16mas": { "importeAPagar": 42655.98, "aportesSalud": 25694.55, "contribucionesSipa": 0, "cuotaArt": 16961.43 }
+        },
+        "jubilado": {
+          "menos12": { "importeAPagar": 8771.67, "aportesSalud": 0, "contribucionesSipa": 729.9, "cuotaArt": 8041.77 },
+          "de12a16": { "importeAPagar": 13144.07, "aportesSalud": 0, "contribucionesSipa": 1459.48, "cuotaArt": 11684.59 },
+          "de16mas": { "importeAPagar": 19090.22, "aportesSalud": 0, "contribucionesSipa": 2128.79, "cuotaArt": 16961.43 }
+        }
+      }
+    },
+    "2026-11": {
+      "verificadoEnPdf": true,
+      "vigencia": "noviembre 2026 (vencimiento diciembre 2026)",
+      "fuente": "https://www.arca.gob.ar/casasparticulares/aportes-contribuciones-ART/documentos/2026/Casas-particulares-aportes-y-contribuciones-11-26.pdf",
+      "filas": {
+        "activo18": {
+          "menos12": { "importeAPagar": 10953.66, "aportesSalud": 2084.85, "contribucionesSipa": 729.9, "cuotaArt": 8138.91 },
+          "de12a16": { "importeAPagar": 17162.8, "aportesSalud": 3863.3, "contribucionesSipa": 1459.48, "cuotaArt": 11840.02 },
+          "de16mas": { "importeAPagar": 45024.63, "aportesSalud": 25694.55, "contribucionesSipa": 2128.79, "cuotaArt": 17201.29 }
+        },
+        "joven16a17": {
+          "menos12": { "importeAPagar": 10223.76, "aportesSalud": 2084.85, "contribucionesSipa": 0, "cuotaArt": 8138.91 },
+          "de12a16": { "importeAPagar": 15703.32, "aportesSalud": 3863.3, "contribucionesSipa": 0, "cuotaArt": 11840.02 },
+          "de16mas": { "importeAPagar": 42895.84, "aportesSalud": 25694.55, "contribucionesSipa": 0, "cuotaArt": 17201.29 }
+        },
+        "jubilado": {
+          "menos12": { "importeAPagar": 8868.81, "aportesSalud": 0, "contribucionesSipa": 729.9, "cuotaArt": 8138.91 },
+          "de12a16": { "importeAPagar": 13299.5, "aportesSalud": 0, "contribucionesSipa": 1459.48, "cuotaArt": 11840.02 },
+          "de16mas": { "importeAPagar": 19330.08, "aportesSalud": 0, "contribucionesSipa": 2128.79, "cuotaArt": 17201.29 }
+        }
+      }
+    },
+    "2026-12": {
+      "verificadoEnPdf": false,
+      "vigencia": "diciembre 2026 — PDF no publicado al 12/11/2026",
+      "fuente": "https://www.arca.gob.ar/casasparticulares/aportes-contribuciones-ART/documentos/2026/Casas-particulares-aportes-y-contribuciones-12-26.pdf",
+      "filas": null,
+      "nota": "El PDF 12-26 no estaba publicado (HTTP 404). No se copian los valores de noviembre."
+    }
+  }
+}

@@ -1,0 +1,72 @@
+{
+  "id": "sellos-alquiler",
+  "fechaConsulta": "2026-11-12",
+  "ejercicioFiscal": 2026,
+  "baseImponible": {
+    "detalle": "En v1 la base es el canon total del contrato: alquiler mensual × plazo en meses.",
+    "fuentes": {
+      "pba": {
+        "norma": "Código Fiscal Ley 10.397 art. 286 (ARBA)",
+        "url": "https://www.arba.gov.ar/Intranet/Legislacion/Codigo/CodigoFiscal.pdf",
+        "detalle": "Monto total = alquileres pactados por el tiempo de duración del contrato. Art. 287: plazos no fijados, prórrogas y renovaciones."
+      },
+      "cordoba": {
+        "norma": "Código Tributario Ley 6.006 T.O. 2023 arts. 272 y 276",
+        "url": "https://www.rentascordoba.gob.ar/cms/wp-content/uploads/2025/03/CTP-2023-con-modificaciones-2025-.pdf",
+        "detalle": "Base = valor nominal; en tracto sucesivo, sobre la duración total. Si el pacto es menor al valor de referencia del art. 231, Rentas puede exigir ese valor (v1 no lo consulta)."
+      },
+      "caba": {
+        "norma": "Código Fiscal T.O. 2026 arts. 340 y 341 (Dec. 172/26)",
+        "url": "https://documentosboletinoficial.buenosaires.gob.ar/publico/PE-DEC-AJG-AJG-172-26-ANX.pdf",
+        "detalle": "Locación: no integran la base expensas e impuestos; el impuesto se aplica sobre la duración total. En comerciales puede incidir el VLR (v1 no lo consulta)."
+      }
+    }
+  },
+  "jurisdicciones": {
+    "pba": {
+      "nombre": "Provincia de Buenos Aires",
+      "norma": "Ley Impositiva 2026 art. 39 punto 9",
+      "fuente": "https://www.arba.gov.ar/archivos/Publicaciones/leyimpositiva2026.pdf",
+      "verificadoEnNorma": true,
+      "general": { "alicuota": 0.012, "detalle": "Locación o sublocación de inmuebles, regla general (inc. 9.a): 12‰." },
+      "turismo": { "alicuota": 0.02, "plazoMaximoMeses": 3, "detalle": "Zonas de turismo, plazo no mayor a 3 meses, y sus cesiones (inc. 9.b): 2%." },
+      "viviendaUnica": {
+        "valuacionTope": 1731600,
+        "hastaTope": { "alicuota": 0, "detalle": "Vivienda única, familiar y de ocupación permanente, valuación fiscal hasta $1.731.600 (inc. 9.c): 0%." },
+        "sobreTope": { "alicuota": 0.005, "detalle": "Misma vivienda, valuación fiscal mayor a $1.731.600 (inc. 9.d): 5‰." }
+      },
+      "agro": { "alicuota": 0.015, "detalle": "Inmuebles agropecuarios, locatarios que no sean personas humanas ni sucesiones indivisas (inc. 9.e): 15‰. No priorizado en la UI de v1." }
+    },
+    "cordoba": {
+      "nombre": "Córdoba",
+      "norma": "Ley 11.090 arts. 45 y 48",
+      "fuente": "https://www.rentascordoba.gob.ar/cms/ley-n-11090-ley-impositiva-anual-2026/",
+      "fuentePdf": "https://www.rentascordoba.gob.ar/cms/wp-content/uploads/2026/02/ley_n_11090_%E2%80%93_ley_impositiva_anual_2026.pdf",
+      "verificadoEnNorma": true,
+      "urbano": { "alicuota": 0.005, "detalle": "Locación y sublocación de inmuebles (art. 45 inc. 3.1): 5,00‰." },
+      "rural": { "alicuota": 0.0075, "detalle": "Arrendamiento de inmuebles rurales (art. 45 inc. 6.1): 7,50‰." },
+      "exencionUrbana": {
+        "promedioMensualMaximo": 1230000,
+        "detalle": "Exentos los contratos de locación de inmuebles urbanos si el valor locativo promedio mensual del plazo no supera $1.230.000 (art. 48 / inc. 35 art. 287 CTP)."
+      }
+    },
+    "caba": {
+      "nombre": "CABA",
+      "norma": "Ley Tarifaria 2026 (Ley 6.927); Código Fiscal T.O. 2026",
+      "fuenteLeyTarifaria": "https://documentosboletinoficial.buenosaires.gob.ar/publico/PL-LEY-LCABA-LCBA-6927-25-ANX.pdf",
+      "fuenteCodigoFiscal": "https://documentosboletinoficial.buenosaires.gob.ar/publico/PE-DEC-AJG-AJG-172-26-ANX.pdf",
+      "fuenteAgip": "https://imagenes.agip.gob.ar/impuestos/sellos",
+      "viviendaPermanente": {
+        "alicuota": 0,
+        "verificadoEnNorma": true,
+        "detalle": "Exentos los contratos de locación de inmuebles con destino vivienda (art. 365 inc. 6 CF T.O. 2026), salvo viviendas amobladas con fines turísticos."
+      },
+      "comercialTuristico": {
+        "alicuota": 0.005,
+        "verificadoEnNorma": false,
+        "detalle": "V1 usa 0,50% (Ley 6.927 art. 35) sobre el canon. El T.O. 2026 dejó la locación en el art. 340 y los arts. 344–345 son fútbol y seguros: confirmá la alícuota con AGIP. No se consulta el Valor Locativo de Referencia."
+      }
+    }
+  },
+  "notaComision": "La comisión la pactás con la inmobiliaria; no hay un porcentaje nacional único."
+}

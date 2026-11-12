@@ -1,0 +1,141 @@
+{
+  "id": "asignaciones-familiares",
+  "fechaConsulta": "2026-11-12",
+  "vigenciaDesde": "2026-11",
+  "norma": "Resolución ANSES 303/2026",
+  "normaDetalle": "Sanción 27/10/2026, BO 28/10/2026. Incremento del 1,93% sobre los anexos de la Res. 283/2026. Haberes o hechos generadores a partir de noviembre de 2026.",
+  "verificadoEnNorma": true,
+  "fuentes": [
+    "https://www.argentina.gob.ar/normativa/nacional/norma-431695/texto",
+    "https://www.argentina.gob.ar/normativa/431695_res303-1_pdf/archivo",
+    "https://www.argentina.gob.ar/normativa/431695_res303-5_pdf/archivo",
+    "https://www.argentina.gob.ar/normativa/431695_res303-6_pdf/archivo",
+    "https://www.argentina.gob.ar/iaf/retiros-y-pensiones/asignaciones-familiares/tabla-de-asignaciones-familiares",
+    "https://www.argentina.gob.ar/iaf/retiros-y-pensiones/asignaciones-familiares",
+    "https://servicios.infoleg.gob.ar/infolegInternet/anexos/35000-39999/39880/texact.htm"
+  ],
+  "anexosIf": {
+    "I": "IF-2026-101398571-ANSES-DGDPYN#ANSES",
+    "II": "IF-2026-101398383-ANSES-DGDPYN#ANSES",
+    "III": "IF-2026-101398038-ANSES-DGDPYN#ANSES",
+    "IV": "IF-2026-101397850-ANSES-DGDPYN#ANSES",
+    "V": "IF-2026-101397107-ANSES-DGDPYN#ANSES",
+    "VI": "IF-2026-101396917-ANSES-DGDPYN#ANSES",
+    "VII": "IF-2026-101396436-ANSES-DGDPYN#ANSES"
+  },
+  "topeIgf": 6543628,
+  "topePorIntegrante": {
+    "monto": 3271814,
+    "norma": "Res. ANSES 303/2026 art. 4°",
+    "detalle": "Si un integrante del grupo familiar del art. 1° del Decreto 1.667/12 percibe más que este monto, el grupo queda excluido de las asignaciones familiares, aunque el IGF no supere el tope de los anexos.",
+    "verificadoEnNorma": true,
+    "noAplicaA": ["hijo-discapacidad", "auh-anexo-v"]
+  },
+  "auhRetencion": {
+    "cobroMensual": 0.8,
+    "retenido": 0.2,
+    "norma": "Ley 24.714 art. 18 inc. k) (texto según Dec. 840/2020); citado por Res. ANSES 290/2026",
+    "verificadoEnNorma": true
+  },
+  "notaIgf": "En AAFF el IGF suma remuneraciones brutas y no remunerativas, sin horas extras, sin plus por zona desfavorable y sin aguinaldo (criterio de las cartillas ANSES).",
+  "anexoI": {
+    "nombre": "Relación de dependencia / Ley de riesgos del trabajo",
+    "verificadoEnNorma": true,
+    "zonas": {
+      "general": {
+        "etiqueta": "Valor general",
+        "detalle": "Resto del país."
+      },
+      "zona1": {
+        "etiqueta": "Zona 1",
+        "detalle": "Neuquén, La Pampa, Río Negro; Departamentos Bermejo, Ramón Lista y Matacos en Formosa; Departamento Las Heras (Distrito Las Cuevas); Departamento Luján de Cuyo (Distrito Potrerillos, Carrizal, Agrelo, Ugarteche, Perdriel, Las Compuertas); Departamento Tupungato (Distritos Santa Clara, Zapata, San José, Anchoris); Departamento Tunuyán (Distrito Los Árboles, Los Chacayes, Campo de los Andes); Departamento San Carlos (Distrito Pareditas); Departamento San Rafael (Distrito Cuadro Benegas); Departamento Malargüe (Distritos Malargüe, Río Grande, Río Barrancas, Agua Escondida); Departamento Maipú (Distritos Russell, Cruz de Piedra, Lumlunta, Las Barrancas); Departamento Rivadavia (Distritos El Mirador, Los Campamentos, Los Árboles, Reducción, Medrano) en Mendoza; Orán (excepto la ciudad de San Ramón de la Nueva Orán y su ejido urbano) en Salta."
+      },
+      "zona2": {
+        "etiqueta": "Zona 2",
+        "detalle": "Provincia de Chubut."
+      },
+      "zona3": {
+        "etiqueta": "Zona 3",
+        "detalle": "Departamentos Antofagasta de la Sierra (actividad minera) en Catamarca; Departamentos Cochinoca, Humahuaca, Rinconada, Santa Catalina, Susques, Yavi en Jujuy; Departamentos Los Andes, Santa Victoria, Rivadavia y Gral. San Martín (excepto la ciudad de Tartagal y su ejido urbano) en Salta."
+      },
+      "zona4": {
+        "etiqueta": "Zona 4",
+        "detalle": "Provincias de Tierra del Fuego, Santa Cruz e Islas del Atlántico Sur."
+      }
+    },
+    "pagosUnicos": {
+      "topeIgf": 6543628,
+      "nacimiento": 93035,
+      "matrimonio": 139300,
+      "adopcion": 556217,
+      "maternidad": {
+        "sinTopeIgf": true,
+        "importe": "remuneracion-bruta",
+        "detalle": "Sin tope de IGF; el importe es la remuneración bruta (v1 no calcula el monto)."
+      }
+    },
+    "prenatalHijo": {
+      "tramos": [
+        { "hasta": 1235699, "general": 79816, "zona1": 79816, "zona2": 172096, "zona3": 159399, "zona4": 172096 },
+        { "desde": 1235699.01, "hasta": 1812272, "general": 53841, "zona1": 71106, "zona2": 106504, "zona3": 141627, "zona4": 141627 },
+        { "desde": 1812272.01, "hasta": 2092326, "general": 32566, "zona1": 64091, "zona2": 96171, "zona3": 127985, "zona4": 127985 },
+        { "desde": 2092326.01, "hasta": 6543628, "general": 16806, "zona1": 32854, "zona2": 49163, "zona3": 65051, "zona4": 65051 }
+      ]
+    },
+    "hijoDiscapacidad": {
+      "tramos": [
+        { "hasta": 1235699, "general": 259864, "zona1": 259864, "zona2": 389414, "zona3": 519064, "zona4": 519064 },
+        { "desde": 1235699.01, "hasta": 1812272, "general": 183839, "zona1": 250668, "zona2": 375636, "zona3": 500683, "zona4": 500683 },
+        { "desde": 1812272.01, "hasta": null, "general": 116026, "zona1": 241343, "zona2": 361714, "zona3": 482143, "zona4": 482143 }
+      ]
+    },
+    "ayudaEscolar": {
+      "conTope": { "hasta": 6543628, "general": 55672, "zona1": 74257, "zona2": 92877, "zona3": 110967, "zona4": 110967 },
+      "sinTopeDiscapacidad": { "general": 55672, "zona1": 74257, "zona2": 92877, "zona3": 110967, "zona4": 110967 }
+    }
+  },
+  "anexoV": {
+    "nombre": "AUH / AUE (protección social)",
+    "verificadoEnNorma": true,
+    "zonas": {
+      "general": { "etiqueta": "Valor general", "detalle": "Resto del país." },
+      "zona1": {
+        "etiqueta": "Zona 1",
+        "detalle": "La Pampa, Chubut, Neuquén, Río Negro, Santa Cruz, Tierra del Fuego, Antártida e Islas del Atlántico Sur, y partido de Patagones (PBA)."
+      }
+    },
+    "montos": {
+      "general": {
+        "embarazo": 159611,
+        "hijo": 159611,
+        "hijoDiscapacidad": 519704,
+        "ayudaEscolar": 55672,
+        "nacimiento": 93035,
+        "adopcion": 556217,
+        "cuidadoSaludHijo": 159611,
+        "cuidadoSaludDiscapacidad": 519704
+      },
+      "zona1": {
+        "embarazo": 207495,
+        "hijo": 207495,
+        "hijoDiscapacidad": 675616,
+        "ayudaEscolar": 55672,
+        "nacimiento": 93035,
+        "adopcion": 556217,
+        "cuidadoSaludHijo": 207495,
+        "cuidadoSaludDiscapacidad": 675616
+      }
+    }
+  },
+  "anexoVI": {
+    "nombre": "Monotributistas",
+    "verificadoEnNorma": true,
+    "categorias": {
+      "A": { "prenatalHijo": 79816, "hijoDiscapacidad": 259864, "ayudaEscolar": 55672, "ayudaEscolarDiscapacidad": 55672 },
+      "B": { "prenatalHijo": 53841, "hijoDiscapacidad": 183839, "ayudaEscolar": 55672, "ayudaEscolarDiscapacidad": 55672 },
+      "C": { "prenatalHijo": 32566, "hijoDiscapacidad": 116026, "ayudaEscolar": 55672, "ayudaEscolarDiscapacidad": 55672 },
+      "D-G": { "prenatalHijo": 16806, "hijoDiscapacidad": 116026, "ayudaEscolar": 55672, "ayudaEscolarDiscapacidad": 55672 },
+      "H-K": { "prenatalHijo": null, "hijoDiscapacidad": 116026, "ayudaEscolar": null, "ayudaEscolarDiscapacidad": 55672 }
+    }
+  }
+}

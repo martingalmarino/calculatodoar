@@ -1,7 +1,7 @@
 import type {
-  AguinaldoFile, AlquileresReglasFile, AnsesTopesFile, CombustibleFile, ContribucionesPatronalesFile,
-  DolarReglasFile, GananciasFile, IndemnizacionFile, IpcFile, LiquidacionFinalFile, MonotributoFile,
-  PlazoFijoReglasFile, PrestamosReglasFile, Procedencia, SerieDiariaFile, SueldoNetoFile,
+  AguinaldoFile, AlquileresReglasFile, AnsesTopesFile, AsignacionesFamiliaresFile, AutonomosFile, CasasParticularesFile, CombustibleFile, ContribucionesPatronalesFile,
+  DolarReglasFile, GananciasFile, IndemnizacionFile, IpcFile, IvaFile, LiquidacionFinalFile, MonotributoFile,
+  PlazoFijoReglasFile, PrestamosReglasFile, Procedencia, SellosAlquilerFile, SerieDiariaFile, SueldoNetoFile,
   TasasReferenciaFile, VacacionesHorasExtrasFile,
 } from "./schema";
 import ansesJson from "@/data/anses-topes.json";
@@ -10,6 +10,11 @@ import aguinaldoJson from "@/data/aguinaldo.json";
 import ganJson from "@/data/ganancias-4ta-2026.json";
 import indemJson from "@/data/indemnizacion-despido.json";
 import monoJson from "@/data/monotributo.json";
+import ivaJson from "@/data/iva.json";
+import autonomosJson from "@/data/autonomos.json";
+import casasParticularesJson from "@/data/casas-particulares.json";
+import asignacionesJson from "@/data/asignaciones-familiares.json";
+import sellosAlquilerJson from "@/data/sellos-alquiler.json";
 import iclJson from "@/data/icl.json";
 import uvaJson from "@/data/uva.json";
 import ipcJson from "@/data/ipc.json";
@@ -30,6 +35,11 @@ export const aguinaldo = aguinaldoJson as AguinaldoFile;
 export const ganancias = ganJson as unknown as GananciasFile;
 export const indemnizacion = indemJson as unknown as IndemnizacionFile;
 export const monotributo = monoJson as MonotributoFile;
+export const iva = ivaJson as IvaFile;
+export const autonomos = autonomosJson as AutonomosFile;
+export const casasParticulares = casasParticularesJson as CasasParticularesFile;
+export const asignacionesFamiliares = asignacionesJson as unknown as AsignacionesFamiliaresFile;
+export const sellosAlquiler = sellosAlquilerJson as unknown as SellosAlquilerFile;
 
 export const icl = iclJson as SerieDiariaFile;
 export const uva = uvaJson as SerieDiariaFile;
@@ -77,6 +87,44 @@ export const PROCEDENCIA: Record<string, Procedencia> = {
   ganancias: { nombre: `Ganancias: escala art. 94 y deducciones art. 30, ${ganancias.anual.uso}`, vigencia: `período fiscal ${ganancias.periodoFiscal}`, consultado: fechaAR(ganancias.fechaConsulta), fuentes: [...ganancias.anual.fuentes, ganancias.alquilerCasaHabitacion.fuente] },
   indemnizacion: { nombre: `Indemnización: ${indemnizacion.norma}`, vigencia: "desde el 6/3/2026", consultado: fechaAR(indemnizacion.fechaConsulta), fuentes: indemnizacion.fuentes },
   monotributo: { nombre: "Monotributo: categorías, parámetros y cuotas (ARCA)", vigencia: `desde el ${fechaAR(monotributo.vigenciaDesde)}`, consultado: fechaAR(monotributo.fechaConsulta), fuentes: [monotributo.fuente] },
+  iva: { nombre: `IVA: alícuotas (${iva.norma})`, vigencia: iva.vigencia, consultado: fechaAR(iva.fechaConsulta), fuentes: iva.fuentes },
+  autonomos: {
+    nombre: "Aportes de trabajadores autónomos (ARCA)",
+    vigencia: `desde el ${fechaAR(autonomos.vigenciaDesde)}`,
+    consultado: fechaAR(autonomos.fechaConsulta),
+    fuentes: autonomos.fuentes,
+  },
+  casasParticulares: {
+    nombre: "Personal de casas particulares (Ley 26.844): escalas CNTCP/ARCA y aportes F. 102",
+    vigencia: "escalas oct–dic 2026; aportes oct–nov 2026 (dic sin PDF al 12/11/2026)",
+    consultado: fechaAR(casasParticulares.fechaConsulta),
+    fuentes: [
+      ...casasParticulares.fuentesGenerales,
+      ...Object.values(casasParticulares.escalas).map((e) => e.fuente),
+      ...Object.values(casasParticulares.aportes).map((a) => a.fuente),
+      casasParticulares.antiguedad.fuente,
+      casasParticulares.conversionHoras.fuente,
+    ],
+  },
+  asignaciones: {
+    nombre: `Asignaciones familiares y AUH (${asignacionesFamiliares.norma})`,
+    vigencia: `haberes desde ${asignacionesFamiliares.vigenciaDesde}`,
+    consultado: fechaAR(asignacionesFamiliares.fechaConsulta),
+    fuentes: asignacionesFamiliares.fuentes,
+  },
+  sellosAlquiler: {
+    nombre: "Impuesto de sellos sobre locaciones (CABA, PBA, Córdoba)",
+    vigencia: `ejercicio fiscal ${sellosAlquiler.ejercicioFiscal}`,
+    consultado: fechaAR(sellosAlquiler.fechaConsulta),
+    fuentes: [
+      sellosAlquiler.baseImponible.fuentes.pba.url,
+      sellosAlquiler.baseImponible.fuentes.cordoba.url,
+      sellosAlquiler.baseImponible.fuentes.caba.url,
+      "https://www.arba.gov.ar/archivos/Publicaciones/leyimpositiva2026.pdf",
+      "https://www.rentascordoba.gob.ar/cms/ley-n-11090-ley-impositiva-anual-2026/",
+      "https://documentosboletinoficial.buenosaires.gob.ar/publico/PL-LEY-LCABA-LCBA-6927-25-ANX.pdf",
+    ],
+  },
   icl: { nombre: "Índice para Contratos de Locación (ICL, BCRA)", vigencia: `${fechaAR(icl.primerFecha)} a ${fechaAR(icl.ultimaFecha)}`, consultado: fechaAR(icl.fechaConsulta), fuentes: icl.fuentes },
   uva: { nombre: "Unidad de Valor Adquisitivo (UVA, BCRA)", vigencia: `${fechaAR(uva.primerFecha)} a ${fechaAR(uva.ultimaFecha)}`, consultado: fechaAR(uva.fechaConsulta), fuentes: uva.fuentes },
   ipc: { nombre: "IPC nacional nivel general (INDEC)", vigencia: `${ipc.primerPeriodo} a ${ipc.ultimoPeriodo}`, consultado: fechaAR(ipc.fechaConsulta), fuentes: ipc.fuentes },

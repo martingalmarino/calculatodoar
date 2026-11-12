@@ -1,0 +1,82 @@
+{
+  "id": "autonomos",
+  "fechaConsulta": "2026-11-12",
+  "vigenciaDesde": "2026-10-15",
+  "verificadoEnPdf": true,
+  "tituloDocumento": "Valores vigentes a partir de octubre 2026",
+  "notaVigencia": "Estos valores entrarán en vigencia a partir del día 15/10/2026.",
+  "fuentes": [
+    "https://www.arca.gob.ar/autonomos/documentos/Valores-autonomos-desde-octubre-2026.pdf",
+    "https://www.arca.gob.ar/autonomos/",
+    "https://www.arca.gob.ar/autonomos/categorias-y-aportes/2026.asp"
+  ],
+  "umbralDecreto1866": {
+    "valor": 1761574.72,
+    "detalle": "Punto 4 del art. 1° del Decreto 1866/2006 (sustituye textos de los arts. 19 y 20 de la RG 2217/2007).",
+    "usoEnCalculadora": "Citado en Fuentes; la v1 no calcula con este umbral."
+  },
+  "rentasReferencia": [
+    { "categoria": "I", "importe": 244598.64 },
+    { "categoria": "II", "importe": 342432.85 },
+    { "categoria": "III", "importe": 489192.97 },
+    { "categoria": "IV", "importe": 782708.42 },
+    { "categoria": "V", "importe": 1076219.83 }
+  ],
+  "grupos": [
+    {
+      "id": "minimas",
+      "nombre": "Categorías mínimas de revista (régimen actual)",
+      "categorias": [
+        { "id": "minima-I", "etiqueta": "I", "descripcion": "Categoría mínima de revista I", "importeMensual": 78271.56 },
+        { "id": "minima-II", "etiqueta": "II", "descripcion": "Categoría mínima de revista II", "importeMensual": 109578.51 },
+        { "id": "minima-III", "etiqueta": "III", "descripcion": "Categoría mínima de revista III", "importeMensual": 156541.75 },
+        { "id": "minima-IV", "etiqueta": "IV", "descripcion": "Categoría mínima de revista IV", "importeMensual": 250466.7 },
+        { "id": "minima-V", "etiqueta": "V", "descripcion": "Categoría mínima de revista V", "importeMensual": 344390.34 }
+      ]
+    },
+    {
+      "id": "penosas",
+      "nombre": "Actividades penosas o riesgosas (régimen previsional diferencial)",
+      "categorias": [
+        { "id": "penosa-I", "etiqueta": "I′", "descripcion": "I prima — actividad penosa o riesgosa", "importeMensual": 85609.52 },
+        { "id": "penosa-II", "etiqueta": "II′", "descripcion": "II prima — actividad penosa o riesgosa", "importeMensual": 119851.5 },
+        { "id": "penosa-III", "etiqueta": "III′", "descripcion": "III prima — actividad penosa o riesgosa", "importeMensual": 171217.53 },
+        { "id": "penosa-IV", "etiqueta": "IV′", "descripcion": "IV prima — actividad penosa o riesgosa", "importeMensual": 273947.95 },
+        { "id": "penosa-V", "etiqueta": "V′", "descripcion": "V prima — actividad penosa o riesgosa", "importeMensual": 376676.94 }
+      ]
+    },
+    {
+      "id": "especiales-actual",
+      "nombre": "Afiliaciones voluntarias, menores y regímenes especiales (actual)",
+      "categorias": [
+        { "id": "voluntaria-I", "etiqueta": "Voluntaria · I", "descripcion": "Afiliación voluntaria, categoría I", "importeMensual": 78271.56 },
+        { "id": "menor-I", "etiqueta": "Menor de 21 · I", "descripcion": "Menores de 21 años, categoría I", "importeMensual": 78271.56 },
+        { "id": "jubilado-I", "etiqueta": "Beneficiario Ley 24.241 · I", "descripcion": "Beneficiarios de prestaciones previsionales de la Ley 24.241 (categoría I)", "importeMensual": 66041.63 },
+        { "id": "ama-I", "etiqueta": "Ama de casa Ley 24.828 · I", "descripcion": "Amas de casa con aporte reducido de la Ley 24.828 (categoría I)", "importeMensual": 26905.85 }
+      ]
+    },
+    {
+      "id": "revista",
+      "nombre": "Categorías de revista (sistema anterior, vigente hasta febrero de 2007 para algunas filas)",
+      "categorias": [
+        { "id": "revista-A", "etiqueta": "A", "descripcion": "Categoría de revista A", "importeMensual": 61049.52 },
+        { "id": "revista-B", "etiqueta": "B", "descripcion": "Categoría de revista B", "importeMensual": 74943.7 },
+        { "id": "revista-Bp", "etiqueta": "B′", "descripcion": "Categoría de revista B′", "importeMensual": 81969.67 },
+        { "id": "revista-C", "etiqueta": "C", "descripcion": "Categoría de revista C", "importeMensual": 100182.74 },
+        { "id": "revista-Cp", "etiqueta": "C′", "descripcion": "Categoría de revista C′", "importeMensual": 109574.87 },
+        { "id": "revista-D", "etiqueta": "D", "descripcion": "Categoría de revista D", "importeMensual": 149883.9 },
+        { "id": "revista-Dp", "etiqueta": "D′", "descripcion": "Categoría de revista D′", "importeMensual": 163935.52 },
+        { "id": "revista-E", "etiqueta": "E", "descripcion": "Categoría de revista E", "importeMensual": 250266.08 },
+        { "id": "revista-Ep", "etiqueta": "E′", "descripcion": "Categoría de revista E′", "importeMensual": 273728.52 },
+        { "id": "revista-F", "etiqueta": "F", "descripcion": "Categoría de revista F", "importeMensual": 350061.76 },
+        { "id": "revista-G", "etiqueta": "G", "descripcion": "Categoría de revista G", "importeMensual": 500339.56 },
+        { "id": "revista-Gp", "etiqueta": "G′", "descripcion": "Categoría de revista G′", "importeMensual": 547246.4 },
+        { "id": "revista-H", "etiqueta": "H", "descripcion": "Categoría de revista H", "importeMensual": 750803.89 },
+        { "id": "revista-I", "etiqueta": "I", "descripcion": "Categoría de revista I", "importeMensual": 939240.2 },
+        { "id": "revista-J", "etiqueta": "J", "descripcion": "Categoría de revista J", "importeMensual": 939240.2 },
+        { "id": "revista-jubilado-A", "etiqueta": "Beneficiario Ley 24.241 · A", "descripcion": "Beneficiarios Ley 24.241 en categorías de revista (A), vigente hasta febrero de 2007", "importeMensual": 51510.53 },
+        { "id": "revista-ama-A", "etiqueta": "Ama de casa Ley 24.828 · A", "descripcion": "Amas de casa Ley 24.828, categoría A del sistema de revista", "importeMensual": 20985.77 }
+      ]
+    }
+  ]
+}

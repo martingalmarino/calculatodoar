@@ -1,0 +1,15 @@
+{
+  "id": "retencion-ganancias-reglas",
+  "fechaConsulta": "2026-11-12",
+  "topeAnsesUnico": true,
+  "topeAnsesNota": "Se aplica la base imponible máxima de ANSES del devengado 11/2026 a todos los meses del año: el JSON de topes no tiene ene–oct 2026. Misma simplificación que la calculadora anual.",
+  "procedimientoSac": "rg4003-anexoII-C-opcion-a",
+  "procedimientoSacDetalle": "RG 4003/2017 Anexo II Apartado C (texto según RG 5531/2024): cada mes se adiciona 1/12 del SAC; en el mes de la cuota se suman el importe real y sus aportes y se descuentan las doceavas del semestre.",
+  "fuentes": [
+    "https://servicios.infoleg.gob.ar/infolegInternet/anexos/270000-274999/272231/texact.htm",
+    "https://arca.gob.ar/gananciasYBienes/ganancias/retenciones/empleadores/retenciones.asp",
+    "https://arca.gob.ar/gananciasYBienes/ganancias/personas-humanas-sucesiones-indivisas/declaracion-jurada/documentos/Tabla-Art-94-LIG-per-jul-a-dic-2026.pdf",
+    "https://arca.gob.ar/gananciasYBienes/ganancias/personas-humanas-sucesiones-indivisas/deducciones/documentos/Deducciones-personales-art-30-jul-dic-2026.pdf"
+  ],
+  "reusa": "data/ganancias-4ta-2026.json → retencionMensual (sin reescribir tablas; contrastado 12/11/2026)"
+}

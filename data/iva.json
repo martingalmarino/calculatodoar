@@ -1,0 +1,57 @@
+{
+  "id": "iva",
+  "fechaConsulta": "2026-11-12",
+  "vigencia": "permanente (alícuotas del art. 28 de la Ley de IVA)",
+  "norma": "Ley de IVA (t.o. Decreto 280/97), art. 28",
+  "alicuotas": [
+    {
+      "valor": 0.21,
+      "etiqueta": "21%",
+      "codigoLibroIva": "0005",
+      "nombre": "General",
+      "ayuda": "Alícuota general del art. 28, primer párrafo."
+    },
+    {
+      "valor": 0.105,
+      "etiqueta": "10,5%",
+      "codigoLibroIva": "0004",
+      "nombre": "Reducida",
+      "ayuda": "Equivalente al 50% de la general, para los conceptos del art. 28."
+    },
+    {
+      "valor": 0.27,
+      "etiqueta": "27%",
+      "codigoLibroIva": "0006",
+      "nombre": "Incrementada",
+      "ayuda": "Gas, energía eléctrica, aguas reguladas por medidor y telecomunicaciones, fuera de vivienda, a responsable inscripto o monotributista."
+    },
+    {
+      "valor": 0.05,
+      "etiqueta": "5%",
+      "codigoLibroIva": "0008",
+      "nombre": "5%",
+      "ayuda": "Código del Libro IVA Digital de ARCA para supuestos puntuales."
+    },
+    {
+      "valor": 0.025,
+      "etiqueta": "2,5%",
+      "codigoLibroIva": "0009",
+      "nombre": "2,5%",
+      "ayuda": "Código del Libro IVA Digital de ARCA para supuestos puntuales."
+    },
+    {
+      "valor": 0,
+      "etiqueta": "0%",
+      "codigoLibroIva": "0003",
+      "nombre": "Exento / no gravado",
+      "ayuda": "Exento o no gravado en el comprobante (arts. 7 y 8). No es lo mismo que “no inscripto”."
+    }
+  ],
+  "fuentes": [
+    "https://servicios.infoleg.gob.ar/infolegInternet/anexos/40000-44999/42701/texact.htm",
+    "https://biblioteca.arca.gob.ar/cuadroslegislativos/getAdjunto.aspx?i=7833",
+    "https://www.arca.gob.ar/iva/",
+    "https://arca.gob.ar/iva/documentos/Libro-IVA-Digital-Tablas-del-Sistema.pdf"
+  ],
+  "nota": "Las alícuotas 21%, 10,5% y 27% las fija el art. 28. El 5% y el 2,5% figuran en la tabla de códigos del Libro IVA Digital. El 0% es exento/no gravado en el comprobante; no inventamos listados de exenciones."
+}

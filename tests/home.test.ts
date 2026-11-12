@@ -25,9 +25,9 @@ test("categorías sin calculadoras no entran al catálogo ni al nav", () => {
   }
 });
 
-test("con tanda 2 el catálogo cubre 4 categorías y 17 calculadoras", () => {
+test("con tanda 2 el catálogo cubre 4 categorías y 23 calculadoras", () => {
   const cats = categoriasConContenido();
   assert.equal(cats.length, 4);
-  assert.equal(CALCULADORAS.length, 17);
-  assert.equal(cats.reduce((n, c) => n + calcsDe(c.slug).length, 0), 17);
+  assert.equal(CALCULADORAS.length, 23);
+  assert.equal(cats.reduce((n, c) => n + calcsDe(c.slug).length, 0), 23);
 });

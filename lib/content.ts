@@ -6,9 +6,9 @@ export const SITE = {
 
 export type CategoriaSlug = "laboral" | "impuestos" | "finanzas" | "hogar";
 export type CalcSlug =
-  | "sueldo-neto" | "aguinaldo" | "indemnizacion" | "vacaciones" | "horas-extras" | "liquidacion-final" | "costo-laboral"
-  | "ganancias" | "monotributo"
-  | "actualizacion-alquiler" | "cuotas-o-contado" | "dolar-tarjeta" | "plazo-fijo" | "inflacion" | "rendimiento-billeteras" | "prestamos"
+  | "sueldo-neto" | "aguinaldo" | "indemnizacion" | "vacaciones" | "horas-extras" | "liquidacion-final" | "costo-laboral" | "casas-particulares" | "asignaciones-familiares"
+  | "ganancias" | "retencion-ganancias" | "monotributo" | "iva" | "autonomos"
+  | "actualizacion-alquiler" | "costo-alquilar" | "cuotas-o-contado" | "dolar-tarjeta" | "plazo-fijo" | "inflacion" | "rendimiento-billeteras" | "prestamos"
   | "combustible";
 
 /** Las 5 del lanzamiento: van primero en el ranking de la home. */
@@ -169,6 +169,43 @@ export const CALCULADORAS: Calculadora[] = [
     relacionadas: [{ categoria: "laboral", slug: "sueldo-neto" }, { categoria: "laboral", slug: "horas-extras" }, { categoria: "laboral", slug: "liquidacion-final" }],
   },
   {
+    slug: "casas-particulares", categoria: "laboral", nombre: "Casas particulares",
+    resumen: "El sueldo mínimo, los aportes y el aguinaldo del personal de casas particulares.",
+    title: "Calculadora de casas particulares: sueldo, aportes y aguinaldo",
+    description: "Calculá el sueldo mínimo, los aportes a ARCA y el aguinaldo del personal de casas particulares, con la escala y las tablas vigentes.",
+    h1: "Calculadora de casas particulares: sueldo, aportes y aguinaldo",
+    intro: "Esta cuenta es para el régimen de la Ley 26.844, no para un contrato de la Ley de Contrato de Trabajo. Elegí la categoría, las horas y el mes, y te mostramos el mínimo, lo que se paga a ARCA y el medio aguinaldo.",
+    formula: "Remuneración = mínimo de la escala (con zona y antigüedad, si aplican); aportes = tabla de ARCA según horas semanales; medio aguinaldo = 50% de la mejor remuneración del semestre, proporcional a los días trabajados.",
+    sinonimos: ["empleada domestica", "servicio domestico", "casas particulares", "aportes empleada", "aguinaldo domestica"],
+    faq: [
+      { q: "¿Es lo mismo que un empleado en relación de dependencia de la LCT?", a: "No. Tiene categorías, escalas, aportes y recibo propios (Ley 26.844). Las calculadoras de sueldo neto y costo laboral del sitio son para el otro régimen." },
+      { q: "¿Cuándo se paga el aguinaldo?", a: "En este régimen, la Ley 26.844 (arts. 26 y 27) lo fija en la última jornada laboral de junio y de diciembre: es el 50% de la mejor remuneración mensual del semestre, proporcional si no se trabajó todo el período." },
+      { q: "¿Cuánto se paga a ARCA?", a: "Depende de las horas semanales (menos de 12, 12 a menos de 16, o 16 o más) y de si la persona es mayor de 18, de 16 a 17, o jubilada. El empleador deposita el total del F. 102 y descuenta los aportes que son a cargo de la trabajadora o el trabajador." },
+      { q: "¿Qué es la zona desfavorable?", a: "Un adicional del 31% sobre el mínimo de la categoría, para quienes trabajan en las provincias patagónicas enumeradas y en Patagones (Buenos Aires)." },
+      { q: "¿Y la antigüedad?", a: "Un 1% por año, computable desde el 1° de septiembre de 2020, sin retroactivo." },
+    ],
+    descargo: "Resultado orientativo, con los mínimos y las tablas del período elegido. Si pactaron por encima de la escala, cargá ese importe. No reemplaza el recibo de ARCA ni el asesoramiento de un contador.",
+    relacionadas: [{ categoria: "laboral", slug: "aguinaldo" }, { categoria: "laboral", slug: "costo-laboral" }, { categoria: "laboral", slug: "sueldo-neto" }],
+  },
+  {
+    slug: "asignaciones-familiares", categoria: "laboral", nombre: "Asignaciones familiares",
+    resumen: "Cuánto te corresponde de asignación por hijo, AUH o ayuda escolar, según ingresos y zona.",
+    title: "Calculadora de asignaciones familiares y AUH",
+    description: "Calculá la asignación por hijo, la AUH y la ayuda escolar con los topes y montos de ANSES vigentes. Indicá ingresos, zona y cantidad de hijos.",
+    h1: "Calculadora de asignaciones familiares y AUH",
+    intro: "Elegí si cobrás asignaciones como trabajador en relación de dependencia, si sos titular de la AUH o si estás en el monotributo. La cuenta usa las tablas de la Resolución ANSES 303/2026, para haberes de noviembre de 2026.",
+    formula: "Se busca el tramo de ingreso del grupo familiar (o la categoría, en el monotributo) en la tabla del anexo y se multiplica por la cantidad de hijos. En la AUH se muestra el 80% de cobro mensual y el 20% que queda retenido hasta acreditar los requisitos.",
+    sinonimos: ["auh", "asignacion universal", "asignacion por hijo", "ayuda escolar", "asignaciones anses"],
+    faq: [
+      { q: "¿Qué se cuenta en el ingreso del grupo familiar?", a: "En las asignaciones de relación de dependencia, ANSES suma las remuneraciones brutas y las no remunerativas, y no suma las horas extras, el plus por zona desfavorable ni el aguinaldo. Confirmalo en tu caso en ANSES o en la cartilla vigente." },
+      { q: "¿Por qué de la AUH me muestran un 80%?", a: "Por regla general se cobra el 80% todos los meses y el 20% queda retenido hasta acreditar controles de salud y escolaridad. En algunos casos ANSES puede verificar esos datos en forma automática; si ya te liquidan el 100%, el total de la tabla es lo que corresponde." },
+      { q: "¿Qué es la zona?", a: "Un adicional geográfico. La lista de localidades no es igual en todos los anexos: la de la AUH (Anexo V) no coincide con la del Anexo I. La calculadora usa la lista del régimen que hayas elegido." },
+      { q: "¿Cuándo se actualizan los montos?", a: "En general, con cada movilidad (en 2026, todos los meses). La vigencia de esta tabla es noviembre de 2026. Cuando ANSES publique la de diciembre, se actualiza el JSON." },
+      { q: "¿Y si soy monotributista?", a: "Hay una tabla propia (Anexo VI) según la categoría. En H a K no se cobran hijo, prenatal ni ayuda escolar general; sí, hijo con discapacidad." },
+    ],
+    relacionadas: [{ categoria: "laboral", slug: "sueldo-neto" }, { categoria: "laboral", slug: "aguinaldo" }, { categoria: "impuestos", slug: "monotributo" }],
+  },
+  {
     slug: "vacaciones", categoria: "laboral", nombre: "Vacaciones",
     resumen: "Días según antigüedad al 31/12 y cuánto cobrás (sueldo ÷ 25).",
     title: "Calculadora de vacaciones 2026: días y cuánto cobrás",
@@ -222,6 +259,25 @@ export const CALCULADORAS: Calculadora[] = [
     relacionadas: [{ categoria: "laboral", slug: "sueldo-neto" }, { categoria: "laboral", slug: "aguinaldo" }],
   },
   {
+    slug: "retencion-ganancias", categoria: "impuestos", nombre: "Retención de Ganancias",
+    resumen: "Cuánto te retienen de Ganancias este mes, con o sin aguinaldo, según la tabla acumulada de ARCA.",
+    title: "Calculadora de retención de Ganancias del mes (con aguinaldo)",
+    description: "Estimá la retención de Ganancias de tu recibo, incluido el aguinaldo, con la tabla acumulada del mes de pago que publica ARCA. Es una cuenta orientativa, no el F. 1357.",
+    h1: "Calculadora de retención de Ganancias del mes, con aguinaldo",
+    intro: "Esta cuenta estima lo que te retienen en el recibo, no el impuesto de todo el año. Si este mes cobrás el aguinaldo, lo sumamos a la tabla acumulada de ARCA. Para la liquidación anual, usá la calculadora de Ganancias.",
+    formula: "Retención del mes = impuesto acumulado según la escala del mes de pago − retenciones ya practicadas. Cada mes se provisiona 1/12 del SAC; cuando se cobra la cuota, se ajusta con el importe real (opción a) de la RG 4003). Las deducciones art. 30 son las acumuladas del mes.",
+    sinonimos: ["retencion ganancias", "ganancias aguinaldo", "descuento ganancias recibo", "siradig", "ganancias del mes"],
+    faq: [
+      { q: "¿En qué se diferencia de la otra calculadora de Ganancias?", a: "La otra estima el impuesto de todo el año. Esta estima la retención de un pago, que es lo que aparece en el recibo, y por eso usa la tabla acumulada del mes." },
+      { q: "¿El aguinaldo paga Ganancias?", a: "Sí. Se suma a las remuneraciones del mes en que lo pagás y entra en el procedimiento acumulado. Por eso en diciembre la retención suele saltar." },
+      { q: "¿Por qué puede no coincidir con mi recibo?", a: "Porque la v1 asume un solo empleo todo el año, un sueldo mensual constante y el tope de aportes de noviembre de 2026 en todos los meses. El F. 572 (SiRADIG) y el historial real del empleador pueden cambiar el número." },
+      { q: "¿Puedo cargar lo que ya me retuvieron?", a: "Sí. Si lo dejás vacío, se estima mes a mes con las mismas reglas. Si lo cargás, se resta ese importe del impuesto acumulado." },
+      { q: "¿Y la liquidación anual?", a: "Se hace con otra tabla (la anual), que ya está en la calculadora de Ganancias 4ta categoría." },
+    ],
+    descargo: "Resultado orientativo, con el recorte de la v1 (un empleador, sueldo constante, tope de aportes de noviembre en todos los meses). No reemplaza la retención que practica tu empleador ni el asesoramiento de un contador.",
+    relacionadas: [{ categoria: "impuestos", slug: "ganancias" }, { categoria: "laboral", slug: "aguinaldo" }, { categoria: "laboral", slug: "sueldo-neto" }],
+  },
+  {
     slug: "monotributo", categoria: "impuestos", nombre: "Monotributo",
     resumen: "Tu categoría y la cuota mensual según lo facturado en 12 meses.",
     title: "Calculadora de monotributo 2026: qué categoría te toca y cuánto pagás",
@@ -236,7 +292,50 @@ export const CALCULADORAS: Calculadora[] = [
       { q: "¿Cuál es el tope para vender cosas muebles?", a: "Hay un precio unitario máximo por venta; la calculadora te avisa si lo superás." },
       { q: "¿Puedo sumar familiares a la obra social?", a: "Sí, pagando el aporte por cada integrante adicional." },
     ],
-    relacionadas: [{ categoria: "impuestos", slug: "ganancias" }],
+    relacionadas: [{ categoria: "impuestos", slug: "ganancias" }, { categoria: "impuestos", slug: "iva" }],
+  },
+  {
+    slug: "iva", categoria: "impuestos", nombre: "IVA",
+    resumen: "Agregá o quitá el IVA de un precio, con las alícuotas de 21%, 10,5% y 27%.",
+    title: "Calculadora de IVA: agregar o quitar 21%, 10,5% o 27%",
+    description: "Sacá o sumá el IVA de un precio con las alícuotas vigentes en Argentina. La cuenta invertida se hace dividiendo por 1,21, no restando el 21%.",
+    h1: "Calculadora de IVA: agregar o quitar el impuesto",
+    intro: "Ingresá un precio y elegí si es neto o si ya tiene IVA. Usamos las alícuotas de la Ley de IVA: 21% la general, 10,5% la reducida y 27% la incrementada.",
+    formula: "IVA = neto × alícuota y, para sacarlo, neto = total ÷ (1 + alícuota).",
+    sinonimos: ["iva 21", "sacar el iva", "agregar iva", "iva 10.5", "iva 27"],
+    faq: [
+      { q: "¿Cómo se saca el IVA de un total?", a: "Se divide el total por 1,21 (o 1,105 o 1,27). No se resta el 21% del total: esa cuenta deja un neto chico de más." },
+      { q: "¿Cuándo se usa el 21%, el 10,5% y el 27%?", a: "El 21% es la alícuota general. El 10,5% aplica a los bienes y servicios que enumera el art. 28 (por ejemplo, ciertos alimentos y el transporte de pasajeros). El 27% es para gas, luz, agua por medidor y telecomunicaciones cuando no van a una vivienda y el comprador es responsable inscripto o monotributista." },
+      { q: "¿El monotributista discrimina IVA?", a: "En la factura de un monotributista no se discrimina IVA. Esta cuenta sirve para un responsable inscripto o para entender un precio de lista. Si facturás como monotributista, mirá también la calculadora de monotributo." },
+      { q: "¿Qué son las alícuotas del 5% y del 2,5%?", a: "Son códigos que ARCA prevé en el Libro IVA Digital para supuestos puntuales. Si no estás seguro, usá la alícuota de tu comprobante." },
+      { q: "¿Esta calculadora me dice si mi producto está exento?", a: "No. Las exenciones están en los arts. 7 y 8 de la ley. Acá solo hacemos la cuenta con la alícuota que indiques." },
+    ],
+    relacionadas: [
+      { categoria: "impuestos", slug: "monotributo" },
+      { categoria: "impuestos", slug: "ganancias" },
+      { categoria: "finanzas", slug: "cuotas-o-contado" },
+    ],
+  },
+  {
+    slug: "autonomos", categoria: "impuestos", nombre: "Autónomos",
+    resumen: "Tu categoría de autónomo y el aporte mensual, con la tabla vigente de ARCA.",
+    title: "Calculadora de autónomos: categoría y aporte mensual",
+    description: "Calculá el aporte mensual de trabajadores autónomos según la categoría de ARCA. Es el régimen que no es monotributo, con los valores vigentes.",
+    h1: "Calculadora de aportes de autónomos",
+    intro: "Elegí tu categoría y te mostramos el aporte mensual del régimen de trabajadores autónomos de ARCA. No es la cuota del monotributo: si estás en ese régimen, usá la otra calculadora.",
+    formula: "El aporte es el importe fijo de la categoría que publica ARCA para el período vigente.",
+    sinonimos: ["autonomo", "aportes autonomos", "categoria autonomo", "caja autonomos"],
+    faq: [
+      { q: "¿En qué se diferencia de un monotributista?", a: "Son dos encuadres distintos. El monotributo tiene una cuota que junta impuesto, jubilación y obra social por categoría de facturación. El autónomo paga un aporte previsional según estas categorías. Esta página no te dice cuál te corresponde." },
+      { q: "¿Cada cuánto cambian los valores?", a: "ARCA publica una tabla nueva cuando actualiza el aporte (en 2026 hubo, al menos, valores desde agosto y desde el 15 de octubre). La vigencia aparece abajo, en Fuentes." },
+      { q: "¿Qué categoría me toca?", a: "La define ARCA según la actividad y, en algunos casos, si es penosa o riesgosa. Revisá la tabla y, si dudás, consultá a tu contador o el micrositio de autónomos." },
+      { q: "¿Puedo descontar este aporte en Ganancias?", a: "En general el aporte previsional de autónomos se tiene en cuenta en la declaración; el detalle lo ves con tu contador. Esta calculadora solo muestra el importe mensual de la tabla." },
+    ],
+    relacionadas: [
+      { categoria: "impuestos", slug: "monotributo" },
+      { categoria: "impuestos", slug: "ganancias" },
+      { categoria: "impuestos", slug: "iva" },
+    ],
   },
   {
     slug: "actualizacion-alquiler", categoria: "finanzas", nombre: "Actualización de alquiler",
@@ -255,6 +354,25 @@ export const CALCULADORAS: Calculadora[] = [
       { q: "¿El ICL se sigue publicando?", a: "Sí. Aunque el DNU 70/2023 derogó la Ley 27.551, el BCRA lo sigue publicando (Com. B 13249/2026) y aplica a contratos que lo pacten o que se firmaron bajo la Ley 27.551." },
     ],
     relacionadas: [{ categoria: "finanzas", slug: "inflacion" }, { categoria: "finanzas", slug: "plazo-fijo" }, { categoria: "finanzas", slug: "rendimiento-billeteras" }],
+  },
+  {
+    slug: "costo-alquilar", categoria: "finanzas", nombre: "Costo de entrar a un alquiler",
+    resumen: "Cuánta plata juntás para entrar: depósito, mes adelantado, comisión y sellos, según la provincia.",
+    title: "Calculadora: cuánto cuesta entrar a un alquiler",
+    description: "Estimá depósito, mes adelantado, comisión inmobiliaria y el impuesto de sellos en CABA, Provincia de Buenos Aires o Córdoba, con las alícuotas de 2026.",
+    h1: "Calculadora: cuánto cuesta entrar a un alquiler",
+    intro: "Sumá lo que pedís para entrar (depósito, mes adelantado, comisión) y, si corresponde, el impuesto de sellos de tu jurisdicción. La comisión la cargás vos: no hay un porcentaje nacional único. Los sellos salen de las leyes impositivas de 2026.",
+    formula: "Total = mes adelantado + depósito + comisión + expensas + sellos. Los sellos, cuando corresponden, se calculan sobre el canon total del contrato (alquiler × meses), con la alícuota o la exención de cada provincia.",
+    sinonimos: ["sellos alquiler", "comision inmobiliaria", "deposito alquiler", "costo mudanza", "entrar a un alquiler"],
+    faq: [
+      { q: "¿La comisión está fijada por ley?", a: "No hay un porcentaje nacional obligatorio que esta calculadora pueda aplicar sola. Lo pactás con la inmobiliaria; por eso el campo es editable y puede ir en cero." },
+      { q: "¿En Córdoba siempre se pagan sellos?", a: "No. En 2026 están exentos los contratos de locación de inmuebles urbanos cuyo valor locativo promedio mensual no supera $1.230.000 (Ley 11.090, art. 48). Si lo superás, la alícuota es del 5‰ (art. 45 inc. 3.1)." },
+      { q: "¿Y en la Provincia de Buenos Aires?", a: "La regla general es el 12 por mil. Si es vivienda única, familiar y de ocupación permanente, está exenta cuando la valuación fiscal no supera $1.731.600; si la supera, paga el 5 por mil (Ley Impositiva 2026, art. 39 inc. 9)." },
+      { q: "¿En CABA se pagan sellos por un alquiler de vivienda?", a: "No, si es locación con destino vivienda: está exenta (art. 365 inc. 6 del Código Fiscal T.O. 2026), salvo viviendas amobladas con fines turísticos. Esas y las locaciones comerciales están alcanzadas; esta calculadora estima el 0,50% sobre el canon, con la salvedad de alícuota indicada en Fuentes." },
+      { q: "¿Esto reemplaza el ajuste por ICL o IPC?", a: "No. Para saber cuánto te aumenta el alquiler ya firmado, usá la [calculadora de actualización de alquiler](/finanzas/actualizacion-alquiler/)." },
+    ],
+    descargo: "Resultado orientativo. La comisión y el depósito dependen de lo que pactes. Los sellos son una estimación sobre el canon del contrato; en CABA puede incidir el Valor Locativo de Referencia. No reemplaza a un escribano, una inmobiliaria o un contador.",
+    relacionadas: [{ categoria: "finanzas", slug: "actualizacion-alquiler" }, { categoria: "finanzas", slug: "inflacion" }, { categoria: "laboral", slug: "sueldo-neto" }],
   },
   {
     slug: "cuotas-o-contado", categoria: "finanzas", nombre: "Cuotas o contado",
@@ -387,6 +505,7 @@ export const CALCULADORAS: Calculadora[] = [
 /** Relacionadas previstas para calculadoras que aún no están en CALCULADORAS (prompts 14–25). */
 export const RELACIONADAS_PLAN: Partial<Record<CalcSlug, { categoria: CategoriaSlug; slug: CalcSlug }[]>> = {
   "actualizacion-alquiler": [{ categoria: "finanzas", slug: "inflacion" }, { categoria: "finanzas", slug: "plazo-fijo" }, { categoria: "finanzas", slug: "rendimiento-billeteras" }],
+  "costo-alquilar": [{ categoria: "finanzas", slug: "actualizacion-alquiler" }, { categoria: "finanzas", slug: "inflacion" }, { categoria: "laboral", slug: "sueldo-neto" }],
   "cuotas-o-contado": [{ categoria: "finanzas", slug: "inflacion" }, { categoria: "finanzas", slug: "rendimiento-billeteras" }, { categoria: "finanzas", slug: "prestamos" }],
   "dolar-tarjeta": [{ categoria: "finanzas", slug: "inflacion" }, { categoria: "finanzas", slug: "plazo-fijo" }, { categoria: "finanzas", slug: "cuotas-o-contado" }],
   "plazo-fijo": [{ categoria: "finanzas", slug: "rendimiento-billeteras" }, { categoria: "finanzas", slug: "inflacion" }, { categoria: "finanzas", slug: "prestamos" }],
@@ -398,6 +517,9 @@ export const RELACIONADAS_PLAN: Partial<Record<CalcSlug, { categoria: CategoriaS
   "horas-extras": [{ categoria: "laboral", slug: "sueldo-neto" }, { categoria: "laboral", slug: "vacaciones" }, { categoria: "laboral", slug: "costo-laboral" }],
   "liquidacion-final": [{ categoria: "laboral", slug: "indemnizacion" }, { categoria: "laboral", slug: "vacaciones" }, { categoria: "laboral", slug: "aguinaldo" }],
   "costo-laboral": [{ categoria: "laboral", slug: "sueldo-neto" }, { categoria: "laboral", slug: "horas-extras" }, { categoria: "laboral", slug: "liquidacion-final" }],
+  "casas-particulares": [{ categoria: "laboral", slug: "aguinaldo" }, { categoria: "laboral", slug: "costo-laboral" }, { categoria: "laboral", slug: "sueldo-neto" }],
+  "asignaciones-familiares": [{ categoria: "laboral", slug: "sueldo-neto" }, { categoria: "laboral", slug: "aguinaldo" }, { categoria: "impuestos", slug: "monotributo" }],
+  "retencion-ganancias": [{ categoria: "impuestos", slug: "ganancias" }, { categoria: "laboral", slug: "aguinaldo" }, { categoria: "laboral", slug: "sueldo-neto" }],
 };
 
 export const getCategoria = (s: string) => CATEGORIAS.find((c) => c.slug === s);
