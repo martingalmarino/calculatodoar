@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { getNotasPublicadas, imagenVariante, urlNota, type Nota } from "@/lib/noticias";
+import { getNotasPublicadas, miniaturaNota, urlNota, type Nota } from "@/lib/noticias";
 
 function fechaBloque(nota: Nota): { label: string; datetime: string } {
   if (nota.tipo === "guia") {
@@ -25,7 +25,7 @@ export function BloqueUltimas() {
       <ul className="ultimas-notas">
         {notas.map((n) => {
           const f = fechaBloque(n);
-          const thumb = imagenVariante(n.imagen.src, "4x3");
+          const thumb = miniaturaNota(n, "4x3");
           return (
             <li key={n.slug}>
               <Link href={urlNota(n.slug)}>

@@ -71,6 +71,18 @@ export function imagenVariante(src: string, variante: "16x9" | "4x3" | "1x1" | "
   return src.replace(/-(16x9|4x3|1x1|og)\.(webp|avif|jpe?g|png)$/i, `-${variante}.$2`);
 }
 
+/** Miniatura para listados: usa 4x3/1x1 si existe en public/; si no, cae a la 16:9. */
+export function miniaturaNota(nota: Pick<Nota, "imagen">, variante: "4x3" | "1x1" = "4x3"): string {
+  const candidata = imagenVariante(nota.imagen.src, variante);
+  try {
+    const abs = rutaPublica(candidata);
+    if (fs.existsSync(abs) && fs.statSync(abs).isFile()) return candidata;
+  } catch {
+    // ruta inválida → fallback
+  }
+  return nota.imagen.src;
+}
+
 export function minutosLectura(cuerpo: string): number {
   const palabras = cuerpo.trim().split(/\s+/).filter(Boolean).length;
   return Math.max(1, Math.round(palabras / 200));
@@ -239,5 +251,19 @@ export function getNotaFixture(slug: string): Nota | undefined {
 /** Valida todas las notas del disco; tira si alguna falla. */
 export function assertNoticiasValidas(): void {
   resetNoticiasCache();
-  getTodasLasNotas();
+  const notas = getTodasLasNotas();
+  for (const n of notas) {
+    if (n.borrador) continue;
+    for (const v of ["4x3", "1x1"] as const) {
+      const ruta = imagenVariante(n.imagen.src, v);
+      try {
+        const abs = rutaPublica(ruta);
+        if (!fs.existsSync(abs) || !fs.statSync(abs).isFile()) {
+          console.warn(`Advertencia: falta ${ruta} para la nota publicada "${n.slug}"`);
+        }
+      } catch {
+        console.warn(`Advertencia: falta ${ruta} para la nota publicada "${n.slug}"`);
+      }
+    }
+  }
 }

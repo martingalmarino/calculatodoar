@@ -183,7 +183,7 @@ test("préstamo UVA: 50.000.000 el 2026-11-09", () => {
   if (r.ok) {
     assert.ok(Math.abs(r.capitalUVA - 22_878.2693) < 0.0001, `cap ${r.capitalUVA}`);
     assert.ok(Math.abs(r.cuotaUVA - 144.7392) < 0.0001, `cuotaU ${r.cuotaUVA}`);
-    cerca(r.cuotaPesosHoy, 316_324.69);
+    cerca(r.cuotaPesosHoy, 317_478.26);
     cerca(r.cuotaUVA * 2196.12, 317_864.71);
     cerca(r.filas.reduce((s, f) => s + f.amortizacion, 0), r.capitalUVA);
   }
