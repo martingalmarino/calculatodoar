@@ -310,8 +310,52 @@ test("costo laboral: tipo B, A, RIFL y FAL", () => {
   const fal = calcularCostoLaboral({ ...base, tipoEmpleador: "B", mipyme: true, periodo: "2026-12" }, pCosto);
   assert.equal(fal.ok, true);
   if (fal.ok) {
-    cerca(fal.fal!, 37_500);
-    cerca(fal.ss, 231_239.34);
+    const baseSipa = 1_500_000 - pCosto.detractionGeneral;
+    cerca(fal.baseSS, baseSipa);
+    cerca(fal.baseFal!, baseSipa);
+    cerca(fal.fal!, pCosto.falMipyme * baseSipa);
+    cerca(fal.ss, fal.ssBruta - fal.fal!);
     cerca(fal.costoMensual, 1_859_163.96);
+    assert.ok(Math.abs(fal.fal! - pCosto.falMipyme * 1_500_000) > 1, "el FAL no sale del bruto");
   }
+  const riflFal = calcularCostoLaboral({ ...base, tipoEmpleador: "B", rifl: true, periodo: "2026-12" }, pCosto);
+  assert.equal(riflFal.ok, true);
+  if (riflFal.ok) {
+    cerca(riflFal.ssBruta, 75_000);
+    cerca(riflFal.ss, 75_000);
+    cerca(riflFal.baseFal!, 1_500_000 - pCosto.detractionGeneral);
+    cerca(riflFal.fal!, pCosto.falMipyme * riflFal.baseFal!);
+    cerca(riflFal.costoMensual, 1_665_424.62 + riflFal.fal!);
+    const antes = calcularCostoLaboral({ ...base, tipoEmpleador: "B", rifl: true, periodo: "2026-11" }, pCosto);
+    assert.equal(antes.ok, true);
+    if (antes.ok) cerca(riflFal.costoAnual, antes.costoAnual + 12 * riflFal.fal! + pCosto.falMipyme * 1_500_000);
+  }
+  const tope = calcularCostoLaboral({ ...base, tipoEmpleador: "B", periodo: "2026-12" }, { ...pCosto, falMipyme: 0.5 });
+  assert.equal(tope.ok, true);
+  if (tope.ok) {
+    cerca(tope.ss, 0);
+    cerca(tope.costoMensual, tope.bruto + tope.fal! + tope.obraSocial + tope.scvo);
+  }
+});
+
+test("notas internas no salen en textos de las calculadoras", () => {
+  const textos = [
+    pCosto.detracciones.ayuda,
+    pCosto.detracciones.detalle,
+    pCosto.obraSocial.nota,
+    pCosto.art.detalle,
+    pCosto.art.referenciaFFEP.nota,
+    pCosto.rifl.requisitos,
+    pCosto.rifl.notaBase,
+    pCosto.rifl.noIncluye,
+    pCosto.fal.compensacion,
+    pDolar.ivaServiciosDigitales.nota,
+    pDolar.iibbServiciosDigitales.detalle,
+    ...pDolar.percepcion.noAlcanza,
+    pPrestamo.ivaIntereses.exencion,
+    pLiquidacion.sacSobreVacaciones,
+    ...pLiquidacion.motivos.map((m) => m.nota),
+    ...pAlquiler.regimenes.map((r) => `${r.ajuste} ${r.estado}`),
+  ];
+  for (const t of textos) assert.equal(t.includes("[VERIFICAR]"), false, t);
 });

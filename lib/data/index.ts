@@ -137,5 +137,18 @@ export const PROCEDENCIA: Record<string, Procedencia> = {
   vacaciones: { nombre: `Vacaciones: ${vacacionesHoras.vacaciones.norma}`, vigencia: "LCT vigente (art. 154 según Ley 27.802)", consultado: fechaAR(vacacionesHoras.fechaConsulta), fuentes: vacacionesHoras.vacaciones.fuentes },
   horasExtras: { nombre: `Horas extras: ${vacacionesHoras.horasExtras.normaRecargos}`, vigencia: "LCT y Decreto 484/2000", consultado: fechaAR(vacacionesHoras.fechaConsulta), fuentes: vacacionesHoras.horasExtras.fuentes },
   liquidacion: { nombre: "Liquidación final según motivo de egreso", vigencia: `consulta ${fechaAR(liquidacion.fechaConsulta)}`, consultado: fechaAR(liquidacion.fechaConsulta), fuentes: liquidacion.fuentes },
-  contribuciones: { nombre: "Contribuciones patronales, RIFL y FAL", vigencia: `consulta ${fechaAR(contribuciones.fechaConsulta)}`, consultado: fechaAR(contribuciones.fechaConsulta), fuentes: contribuciones.seguridadSocial.fuentes },
+  contribuciones: {
+    nombre: "Contribuciones patronales, RIFL y FAL",
+    vigencia: `FAL desde el devengado ${contribuciones.fal.primerPeriodoDevengado.split("-").reverse().join("/")}; consulta ${fechaAR(contribuciones.fechaConsulta)}`,
+    consultado: fechaAR(contribuciones.fechaConsulta),
+    fuentes: [...new Set([
+      ...contribuciones.seguridadSocial.fuentes,
+      contribuciones.detracciones.fuente,
+      ...contribuciones.rifl.fuentes,
+      ...contribuciones.fal.fuentes,
+      "https://www.argentina.gob.ar/normativa/nacional/ley-27541-333564/texto",
+      "https://servicios.infoleg.gob.ar/infolegInternet/anexos/330000-334999/333618/texact.htm",
+      "https://www.boletinoficial.gob.ar/detalleAviso/primera/224474/20200109",
+    ])],
+  },
 };

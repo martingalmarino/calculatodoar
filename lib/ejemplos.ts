@@ -220,7 +220,7 @@ export const EJEMPLOS: Partial<Record<CalcSlug, { aviso: string; ejemplo: string
     procedencia: ["liquidacion", "indemnizacion", "sac"],
   },
   "costo-laboral": {
-    aviso: `${pCosto.seguridadSocial.norma}. Detracción general ${pesos(pCosto.detracciones.general)}. SCVO ${pesos(pCosto.seguroVidaObligatorio.valor)} desde ${fechaAR(pCosto.seguroVidaObligatorio.vigenciaDesde)}. ${pCosto.seguridadSocial.tope}`,
+    aviso: `${pCosto.seguridadSocial.norma}. Detracción general ${pesos(pCosto.detracciones.general)}. SCVO ${pesos(pCosto.seguroVidaObligatorio.valor)} desde ${fechaAR(pCosto.seguroVidaObligatorio.vigenciaDesde)}. ${pCosto.seguridadSocial.tope} FAL desde ${pCosto.fal.primerPeriodoDevengado}: ${pCosto.fal.compensacion}`,
     ejemplo: (() => {
       const r = calcularCostoLaboral({
         bruto: 1_500_000, tipoEmpleador: "B", mipyme: true, rifl: false, detraccion: "general",

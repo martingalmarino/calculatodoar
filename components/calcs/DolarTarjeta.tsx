@@ -65,7 +65,7 @@ export default function DolarTarjeta() {
               ...(r.iibb ? [{ label: "IIBB provincial", valor: pesos(r.iibb) }] : []),
               { label: "Total", valor: modo === "dolaresPropios" ? `US$ ${r.total.toLocaleString("es-AR", { maximumFractionDigits: 2 })}` : pesos(r.total), total: true },
             ]}
-            nota={modo === "digital" ? pDolar.ivaServiciosDigitales.pendiente : modo === "compraOficial" ? "Personas humanas: sin percepción (RG 5617 art. 2 inc. e)." : undefined} />
+            nota={modo === "digital" ? pDolar.ivaServiciosDigitales.nota : modo === "compraOficial" ? "Personas humanas: sin percepción (RG 5617 art. 2 inc. e)." : undefined} />
         ) : (
           <section className="resultado" aria-labelledby="rt">
             <h2 id="rt" className="rot" style={{ fontFamily: "var(--fuente)", fontSize: "1rem", letterSpacing: 0 }}>Resultado</h2>

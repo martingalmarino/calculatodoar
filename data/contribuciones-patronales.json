@@ -26,13 +26,13 @@
     "sectoresDecretos1067_128_688": 17509.2,
     "adicionalHasta25Empleados": 10000,
     "detalle": "Se restan de la base de las contribuciones de seguridad social (art. 19), por trabajador y por mes, para devengados desde diciembre de 2019 (Ley 27.541 arts. 22-23). Montos fijos, sin actualización.",
-    "pendiente": "[VERIFICAR] si los $10.000 adicionales son por empleador (a repartir) o por trabajador; si se aplican en proporción en jornadas parciales; y si se suma detracción en el SAC. Por defecto: $10.000 por empleador, repartidos entre los empleados que ingrese el usuario; sin detracción sobre el SAC.",
+    "ayuda": "$10.000 por empleador (Ley 27.541 art. 23; RG 4661/2020 art. 3), repartidos entre los empleados que cargues. Sin detracción sobre el SAC.",
     "fuente": "https://www.arca.gob.ar/relaciones-laborales/empleadores/aportes-y-contribuciones.asp"
   },
   "obraSocial": {
     "alicuota": 0.06,
     "norma": "Ley 23.660 art. 16 inc. a)",
-    "nota": "Desde los devengados de enero de 2027 rige el nuevo texto del art. 16 inc. a) (Ley 27.802 art. 165, también 6%) y se deroga el art. 74 de la Ley 11.672 (art. 166) [VERIFICAR efecto en la distribución OS/FSR; no cambia el 6%].",
+    "nota": "Desde los devengados de enero de 2027 rige el nuevo texto del art. 16 inc. a) (Ley 27.802 art. 165, también 6%) y se deroga el art. 74 de la Ley 11.672 (art. 166). El 6% no cambia. Cómo se reparte entre obra social y el fondo solidario de redistribución no está resuelto en esta calculadora.",
     "fuente": "https://www.argentina.gob.ar/normativa/nacional/ley-27802-423680/texto"
   },
   "art": {
@@ -42,7 +42,7 @@
       "valor": 1637,
       "periodo": "2026-03",
       "fuente": "https://arca.gob.ar/declaracionenlinea/actualizacion-versiones/version47-6.asp",
-      "nota": "Solo referencia histórica; el valor vigente cambia cada mes [VERIFICAR]."
+      "nota": "Solo referencia histórica; el valor vigente cambia cada mes y no se usa en la calculadora."
     }
   },
   "seguroVidaObligatorio": {
@@ -69,7 +69,7 @@
     "duracionMeses": 48,
     "requisitos": "Trabajador sin empleo registrado al 10/12/2025, o desempleado los 6 meses previos, o monotributista, o que venga del sector público (art. 157).",
     "noIncluye": "Obra social, ART, seguro de vida y alícuotas de regímenes especiales.",
-    "pendiente": "[VERIFICAR] si la detracción de $7.003,68 se aplica sobre la base RIFL. Por defecto: no se aplica (resultado conservador).",
+    "notaBase": "La alícuota del 5% se calcula sobre el bruto. No está confirmado que la detracción de la Ley 27.541 art. 22 se reste de esa base; la calculadora no la resta.",
     "fuentes": [
       "https://www.argentina.gob.ar/normativa/nacional/resoluci%C3%B3n-5844-2026-425538/texto",
       "https://www.boletinoficial.gob.ar/detalleAviso/primera/341443/20260504",
@@ -84,12 +84,13 @@
       "grandes": 0.01,
       "mipyme": 0.025
     },
-    "compensacion": "El empleador tiene una reducción equivalente en sus contribuciones de seguridad social (art. 76), así que el costo total no cambia: solo se redistribuye. No aplica la reducción a relaciones RIFL (art. 76).",
-    "pendiente": "[VERIFICAR] si las relaciones RIFL pagan FAL sin reducción (costo adicional) o están exceptuadas; y sobre qué subsistema se imputa la reducción.",
+    "compensacion": "El FAL se calcula sobre el bruto menos la detracción, que es la base de las contribuciones patronales al SIPA (Ley 27.802 art. 60; RG 5907/2026 art. 8). Hay una reducción equivalente (art. 76), así que el costo total no cambia: solo se redistribuye. Las reducciones de alícuota no modifican ese cálculo (RG 5907 art. 15).",
     "fuentes": [
-      "https://www.argentina.gob.ar/noticias/prorroga-de-la-implementacion-del-fondo-de-asistencia-laboral",
-      "https://www.fiscal.com.ar/blog/fal-decreto-1228-2026-prorroga-vigencia-diciembre-2026-carencia-12-meses",
-      "https://servicios.infoleg.gob.ar/infolegInternet/anexos/420000-424999/423680/norma.htm"
+      "https://servicios.infoleg.gob.ar/infolegInternet/anexos/420000-424999/423680/norma.htm",
+      "https://www.argentina.gob.ar/normativa/nacional/decreto-408-2026-426272/texto",
+      "https://www.argentina.gob.ar/normativa/nacional/norma-430768/texto",
+      "https://www.arca.gob.ar/fal/caracteristicas/contribucion.asp",
+      "https://www.argentina.gob.ar/noticias/prorroga-de-la-implementacion-del-fondo-de-asistencia-laboral"
     ]
   },
   "aportesTrabajador": "ver sueldo-neto.json (17% con tope ANSES); se muestran solo como dato, no son costo del empleador."

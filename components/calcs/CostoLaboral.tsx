@@ -24,6 +24,9 @@ export default function CostoLaboral() {
   const [artPct, setArtPct] = useState("");
   const [artFijo, setArtFijo] = useState("");
 
+  const falVigente = periodo >= pCosto.fal.primerPeriodoDevengado;
+  const muestraDetraccion = !rifl || falVigente;
+
   const r = calcularCostoLaboral({
     bruto: parsePesos(bruto),
     tipoEmpleador: tipo,
@@ -56,20 +59,31 @@ export default function CostoLaboral() {
         {rifl && (
           <details>
             <summary>Requisitos del art. 157 (RIFL)</summary>
-            <p className="nota">{pCosto.rifl.requisitos} {pCosto.rifl.pendiente}</p>
+            <p className="nota">{pCosto.rifl.requisitos}</p>
           </details>
         )}
-        {!rifl && (
+        {muestraDetraccion && (
           <Seg name="det" legend="Detracción de seguridad social" value={det} onChange={setDet} opciones={[
             { v: "general", label: `General (${pesos(pCosto.detracciones.general)})` },
             { v: "sectorial", label: `Sectorial (${pesos(pCosto.detracciones.sectoresDecretos1067_128_688)})` },
           ]} />
         )}
+        {rifl && falVigente && (
+          <p className="ayuda" style={{ marginTop: 0 }}>
+            En el RIFL esta detracción no se resta de la alícuota del 5%. Sí se resta de la base del FAL (Ley 27.802 art. 60; RG 5907/2026 arts. 8 y 15).
+          </p>
+        )}
         <Campo id="emp" label="Empleados en nómina">
           <input id="emp" inputMode="numeric" value={empleados} onChange={(e) => setEmpleados(e.target.value.replace(/\D/g, ""))} />
         </Campo>
-        {!rifl && (
-          <Check id="adic" label="Aplicar detracción adicional ($10.000 / empleados, nómina ≤ 25)" checked={adic25} onChange={setAdic25} ayuda={pCosto.detracciones.pendiente} />
+        {muestraDetraccion && (
+          <Check
+            id="adic"
+            label="Aplicar detracción adicional ($10.000, nómina ≤ 25)"
+            checked={adic25}
+            onChange={setAdic25}
+            ayuda={rifl ? `${pCosto.detracciones.ayuda} En un alta RIFL solo entra en la base del FAL.` : pCosto.detracciones.ayuda}
+          />
         )}
         <Campo id="artp" label="ART alícuota (%)" ayuda={pCosto.art.detalle}>
           <input id="artp" inputMode="decimal" value={artPct} onChange={(e) => setArtPct(e.target.value.replace(/[^\d,]/g, ""))} placeholder="Vacío = sin ART" />
@@ -82,7 +96,12 @@ export default function CostoLaboral() {
           lineas={[
             { label: "Bruto", valor: pesos(r.bruto) },
             { label: r.rifl ? `Contribuciones SS (RIFL ${(r.alicuotaSS * 100).toLocaleString("es-AR")} %)` : `Contribuciones SS (${(r.alicuotaSS * 100).toLocaleString("es-AR")} %)${r.detraccionAplicada > 0 ? ` − detracción ${pesos(r.detraccionAplicada)}` : ""}`, valor: pesos(r.ss) },
-            ...(r.fal != null && r.falAlicuota != null ? [{ label: `De esto, FAL (${pct(r.falAlicuota)}) al Fondo de Asistencia Laboral`, valor: pesos(r.fal) }] : []),
+            ...(r.fal != null && r.falAlicuota != null ? [{
+              label: r.rifl
+                ? `FAL (${pct(r.falAlicuota)}) al Fondo de Asistencia Laboral`
+                : `De esto, FAL (${pct(r.falAlicuota)}) al Fondo de Asistencia Laboral`,
+              valor: pesos(r.fal),
+            }] : []),
             { label: `Obra social (${(pCosto.obraSocial.alicuota * 100).toLocaleString("es-AR")} %)`, valor: pesos(r.obraSocial) },
             { label: "ART", valor: r.art == null ? "sin ART" : pesos(r.art) },
             { label: "Seguro de vida obligatorio", valor: pesos(r.scvo) },
@@ -91,11 +110,13 @@ export default function CostoLaboral() {
             { label: "Aportes del trabajador (dato)", valor: pesos(r.trabajador.aportes) },
             { label: "Neto que cobra el trabajador", valor: pesos(r.trabajador.neto) },
           ]}
-          nota={r.rifl
-            ? pCosto.rifl.pendiente
-            : r.fal != null
-              ? `${pCosto.fal.compensacion} El total no cambia: solo se redistribuye.`
-              : pCosto.seguridadSocial.tope}
+          nota={r.rifl && r.fal != null
+            ? "En un alta RIFL el FAL se aporta y no se descuenta de las contribuciones (Ley 27.802 art. 76; Decreto 408/26 art. 24; RG 5907/2026 art. 9). El costo sube por ese importe."
+            : r.rifl
+              ? `${pCosto.rifl.notaBase} ${pCosto.rifl.noIncluye}`
+              : r.fal != null
+                ? pCosto.fal.compensacion
+                : pCosto.seguridadSocial.tope}
         />
       ) : (
         <section className="resultado" aria-labelledby="rt">

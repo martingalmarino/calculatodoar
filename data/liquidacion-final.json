@@ -14,7 +14,7 @@
         "vacacionesNoGozadas",
         "sacProporcional"
       ],
-      "nota": "Forma: telegrama o ante la autoridad (art. 240, sust. Ley 27.802 art. 49). El trabajador debe preavisar 15 días (art. 231 inc. a); si no lo hace, el empleador puede reclamarlo [VERIFICAR si se descuenta en la liquidación: la calculadora solo lo informa]."
+      "nota": "Forma: telegrama o ante la autoridad (art. 240, sust. Ley 27.802 art. 49). El trabajador debe preavisar 15 días (art. 231 inc. a). La calculadora no descuenta ese preaviso."
     },
     {
       "clave": "despidoSinCausa",
@@ -62,7 +62,7 @@
       "nota": "Sin indemnización y sin preaviso (art. 231 inc. b, sust. Ley 27.802 art. 48)."
     }
   ],
-  "sacSobreVacaciones": "[VERIFICAR] La calculadora no suma SAC sobre vacaciones no gozadas (criterio del plenario CNAT 'Tulosai', 2009); aclararlo en el texto.",
+  "sacSobreVacaciones": "La calculadora no suma SAC sobre vacaciones no gozadas (criterio del plenario CNAT «Tulosai», 2009).",
   "fuentes": [
     "https://www.argentina.gob.ar/normativa/nacional/ley-27802-423680/texto",
     "https://servicios.infoleg.gob.ar/infolegInternet/anexos/25000-29999/25552/texact.htm"

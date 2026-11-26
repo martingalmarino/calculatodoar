@@ -14,7 +14,7 @@
       "hasta": "2023-10-17",
       "ajuste": "anual por ICL",
       "formula": "alquiler × ICL(fecha de ajuste) / ICL(fecha de inicio)",
-      "estado": "Confirmado el uso del ICL (Ley 27.551 art. 14). Corte: la Ley 27.737 rige desde el 18/10/2023 [VERIFICAR en el BO; fuente secundaria]."
+      "estado": "Confirmado el uso del ICL (Ley 27.551 art. 14). La fecha de corte de la Ley 27.737 se tomó de fuentes secundarias."
     },
     {
       "clave": "ley27737",
@@ -23,7 +23,7 @@
       "hasta": "2023-12-28",
       "ajuste": "semestral por coeficiente 'Casa Propia'",
       "formula": "input del usuario: coeficiente del período",
-      "estado": "Coeficiente Casa Propia (según fuentes secundarias: el menor entre 0,9 × variación del CVS de INDEC y el CER) [VERIFICAR]. NO está cargado: pedirlo como input.",
+      "estado": "El coeficiente Casa Propia no está cargado: hay que ingresarlo. La fórmula citada sale de fuentes secundarias.",
       "fuentes": [
         "https://biblioteca.arca.gob.ar/dcp/LEY_C_027737_2023_10_10",
         "https://ajusteya.com.ar/ley-alquileres-27551-27737-dnu-70-2023/"
@@ -36,7 +36,7 @@
       "hasta": null,
       "ajuste": "el que pacten las partes (IPC, ICL u otro; trimestral, cuatrimestral, semestral…)",
       "formula": "IPC: alquiler × IPC(mes final) / IPC(mes base). Acuerdo: % fijo por período, input del usuario.",
-      "estado": "DNU 70/2023 vigente desde el 29/12/2023 (fuentes secundarias coinciden) [VERIFICAR en el BO]."
+      "estado": "DNU 70/2023: las fuentes secundarias coinciden en la vigencia desde el 29/12/2023."
     }
   ],
   "convencionIPC": "No hay una regla legal sobre qué meses de IPC usar: lo define el contrato. La calculadora pide mes base y mes final (por defecto, el último IPC publicado como mes final).",
