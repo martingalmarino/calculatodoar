@@ -116,7 +116,7 @@ export interface DolarReglasFile {
     norma: string; estado: string; alicuota: number; alcanza: string[]; noAlcanza: string[];
     baseCalculo: string; naturaleza: string; fuentes: string[];
   };
-  ivaServiciosDigitales: { alicuota: number; norma: string; fuente: string; pendiente?: string };
+  ivaServiciosDigitales: { alicuota: number; norma: string; fuente: string; nota: string };
   iibbServiciosDigitales: { valor: number | null; detalle: string };
   referencias: { clave: string; nombre: string; fecha: string; valor: number; fuente: string; nota?: string }[];
   dolarMEP: { valor: number | null; detalle: string };
@@ -226,7 +226,7 @@ export interface ContribucionesPatronalesFile {
     sectoresDecretos1067_128_688: number;
     adicionalHasta25Empleados: number;
     detalle: string;
-    pendiente?: string;
+    ayuda: string;
     fuente: string;
   };
   obraSocial: { alicuota: number; norma: string; nota: string; fuente: string };
@@ -237,12 +237,12 @@ export interface ContribucionesPatronalesFile {
     detalle: Record<string, number>;
     distribucion: Record<string, number>;
     altasDesde: string; altasHasta: string; duracionMeses: number;
-    requisitos: string; noIncluye: string; pendiente?: string; fuentes: string[];
+    requisitos: string; noIncluye: string; notaBase: string; fuentes: string[];
   };
   fal: {
     nombre: string; vigenciaDesde: string; primerPeriodoDevengado: string;
     alicuotas: { grandes: number; mipyme: number };
-    compensacion: string; pendiente?: string; fuentes: string[];
+    compensacion: string; fuentes: string[];
   };
   aportesTrabajador: string;
 }

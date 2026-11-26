@@ -22,7 +22,7 @@
       "Pago del resumen con dólares propios (la percepción solo aplica en la proporción que se paga en pesos, art. 1 último párrafo)",
       "Salud, medicamentos, libros, plataformas educativas (art. 2 inc. a)",
       "Transporte terrestre de pasajeros a países limítrofes (art. 2 inc. d)",
-      "Servicios digitales de los portales listados en el Anexo de la RG 5617 (art. 2 inc. f) [VERIFICAR listado vigente en arca.gob.ar]",
+      "Servicios digitales de los portales listados en el Anexo de la RG 5617 (art. 2 inc. f)",
       "Operaciones en o con destino a Islas Malvinas, Georgias y Sandwich del Sur"
     ],
     "baseCalculo": "30% sobre el importe en pesos de la operación (art. 6 inc. a). Conversión: tipo de cambio vendedor BNA del cierre del día hábil anterior a la emisión del resumen (art. 6).",
@@ -36,11 +36,11 @@
     "alicuota": 0.21,
     "norma": "Ley de IVA art. 1 inc. e) (Ley 27.430) y RG AFIP 4240/2018: la tarjeta percibe 21% sobre servicios digitales de prestadores del exterior",
     "fuente": "https://arca.gob.ar/iva/servicios-digitales/reg-percepcion-4240.asp",
-    "pendiente": "[VERIFICAR] si la percepción del 30% se calcula sobre el importe con o sin IVA; por defecto la calculadora la aplica sobre el importe sin IVA y lo aclara."
+    "nota": "La percepción del 30% se calcula sobre el importe sin IVA."
   },
   "iibbServiciosDigitales": {
     "valor": null,
-    "detalle": "Varias provincias perciben Ingresos Brutos sobre servicios digitales del exterior con alícuotas propias. [VERIFICAR] por provincia: input opcional del usuario, sin valor por defecto."
+    "detalle": "Varias provincias perciben Ingresos Brutos sobre servicios digitales del exterior, con alícuotas propias. Cargá el porcentaje de tu provincia: no hay un valor por defecto."
   },
   "referencias": [
     {

@@ -5,7 +5,7 @@
   "ivaIntereses": {
     "alicuota": 0.21,
     "aplica": "Intereses de préstamos personales a consumidores finales",
-    "exencion": "Intereses de préstamos para compra, construcción o mejora de vivienda única destinada a casa-habitación: exentos (Ley de IVA art. 7 inc. h) punto 16) [VERIFICAR apartado exacto y requisitos]",
+    "exencion": "Intereses de préstamos para compra, construcción o mejora de vivienda única destinada a casa-habitación: exentos (Ley de IVA art. 7 inc. h) punto 16).",
     "fuente": "https://leyes-ar.com/ley_de_impuesto_al_valor_agregado/7.htm"
   },
   "uva": {

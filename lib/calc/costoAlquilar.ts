@@ -139,7 +139,7 @@ function calcularSellos(
       alicuota: a,
       exento: false,
       motivo:
-        "CABA comercial/turístico: 0,50% sobre el canon (v1; alícuota pendiente de correlación art. 35 / art. 340). No se consulta el VLR.",
+        "CABA comercial/turístico: 0,50% sobre el canon. No se consulta el VLR.",
     };
   }
 

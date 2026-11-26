@@ -128,7 +128,7 @@ try {
     for (const h of hubsHome) assert.ok(["/laboral/", "/impuestos/", "/finanzas/", "/hogar/"].includes(h), `hub inesperado ${h}`);
     assert.equal(hubsHome.length, 4);
     const body = (await page.locator("body").innerText()) ?? "";
-    assert.equal(/Hacé la cuenta|Más usadas|Por tema|Tanda 2|\bNueva\b|Valores vigentes|sitio independiente|no pertenece al Estado/i.test(body), false);
+    assert.equal(/Hacé la cuenta|Más usadas|Por tema|Tanda 2|\bNueva\b|Valores vigentes|sitio independiente|no pertenece al Estado|\[VERIFICAR\]/i.test(body), false);
     assert.equal(await page.locator(".valores, .ranking").count(), 0);
     const ld = await page.$$eval('script[type="application/ld+json"]', (ss) => ss.map((s) => s.textContent ?? ""));
     assert.ok(ld.some((t) => t.includes('"WebSite"') && t.includes("SearchAction")));
